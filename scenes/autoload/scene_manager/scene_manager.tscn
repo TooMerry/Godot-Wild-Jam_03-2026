@@ -8,9 +8,9 @@ script = ExtResource("1_8vy5l")
 transition_map = Dictionary[StringName, ShaderMaterial]({
 &"circular_sweep": ExtResource("2_xh5my")
 })
-transition_rect = NodePath("ColorRect")
+transition_rect = NodePath("TransitionRect")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=503142423]
+[node name="TransitionRect" type="ColorRect" parent="." unique_id=503142423]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0

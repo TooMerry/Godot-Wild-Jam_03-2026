@@ -6,9 +6,9 @@ extends RightSideMenu
 @export var action_binding_row_scene: PackedScene
 @export var rebind_overlay: RebindOverlay
 
-var current_rebinding_row: ActionBindingRow
+var _current_rebinding_row: ActionBindingRow
 
-@onready var tree_root: Window = get_tree().root
+@onready var _tree_root: Window = get_tree().root
 
 
 func _ready() -> void:
@@ -30,33 +30,33 @@ func reset() -> void:
 
 
 func _on_rebind_requested(row: ActionBindingRow) -> void:
-	if current_rebinding_row != null:
+	if _current_rebinding_row != null:
 		return
 	
-	rebind_overlay.reparent(tree_root, false)
-	current_rebinding_row = row
+	rebind_overlay.reparent(_tree_root, false)
+	_current_rebinding_row = row
 	rebind_overlay.start_capture()
 
 
 func _on_rebind_cancelled() -> void:
-	if current_rebinding_row == null:
+	if _current_rebinding_row == null:
 		return
 	
-	current_rebinding_row.update_button_text()
-	current_rebinding_row.make_button_grab_focus()
-	current_rebinding_row = null
+	_current_rebinding_row.update_button_text()
+	_current_rebinding_row.make_button_grab_focus()
+	_current_rebinding_row = null
 	rebind_overlay.reparent(self, false)
 
 
 func _on_rebind_finished(event: InputEvent) -> void:
-	if current_rebinding_row == null:
+	if _current_rebinding_row == null:
 		return
 	
-	var action_name: StringName = current_rebinding_row.action_name
+	var action_name: StringName = _current_rebinding_row.action_name
 	InputMap.action_erase_events(action_name)
 	InputMap.action_add_event(action_name, event)
 	
-	current_rebinding_row.update_button_text()
-	current_rebinding_row.make_button_grab_focus()
-	current_rebinding_row = null
+	_current_rebinding_row.update_button_text()
+	_current_rebinding_row.make_button_grab_focus()
+	_current_rebinding_row = null
 	rebind_overlay.reparent(self, false)
