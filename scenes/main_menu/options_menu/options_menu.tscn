@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://dncrgp0kqf85p"]
+
+[ext_resource type="Script" uid="uid://xavnkyeplmob" path="res://scenes/main_menu/options_menu/options_menu.gd" id="1_yqoo4"]
+[ext_resource type="PackedScene" uid="uid://bl4dj6iiuvg5c" path="res://scenes/main_menu/options_menu/rebind_overlay.tscn" id="2_2ws05"]
+[ext_resource type="Script" uid="uid://vwft63q1jrdl" path="res://scenes/main_menu/options_menu/volume_slider.gd" id="2_is7k0"]
+[ext_resource type="PackedScene" uid="uid://caw84e5akm8b0" path="res://scenes/main_menu/options_menu/action_binding_row.tscn" id="2_yqoo4"]
+
+[node name="OptionsMenu" type="MarginContainer" unique_id=1074797397 node_paths=PackedStringArray("actions_container", "first_focus_target")]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 648.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+script = ExtResource("1_yqoo4")
+actions_container = NodePath("PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer")
+rebind_overlay_scene = ExtResource("2_2ws05")
+action_binding_row_scene = ExtResource("2_yqoo4")
+first_focus_target = NodePath("PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer/VolumeRow/VolumeSlider")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=588984403]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1438511401]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=871092766]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=480090420]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1648891589]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=654593865]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 8
+
+[node name="RowContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" unique_id=874720474]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VolumeRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer" unique_id=356344362]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer/VolumeRow" unique_id=1294860432]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "VOLUME"
+
+[node name="VolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer/VolumeRow" unique_id=725457216]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+script = ExtResource("2_is7k0")

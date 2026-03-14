@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://q1xtf6bfnyng"]
+
+[ext_resource type="Script" uid="uid://bnj5bihq5fhvv" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
+[ext_resource type="PackedScene" uid="uid://dgxci4oa3ycwk" path="res://scenes/main_menu/level_menu/level_menu.tscn" id="2_ob46e"]
+[ext_resource type="PackedScene" uid="uid://dncrgp0kqf85p" path="res://scenes/main_menu/options_menu/options_menu.tscn" id="4_uqeha"]
+
+[node name="MainMenu" type="Control" unique_id=193770007 node_paths=PackedStringArray("play_button", "level_menu", "options_button", "options_menu")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fsom3")
+play_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/PlayButton")
+level_menu = NodePath("LevelMenu")
+options_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/OptionsButton")
+options_menu = NodePath("OptionsMenu")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1152475819]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 469.0
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=926813152]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=895763560]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "GAME_TITLE"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=57170486]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1214257546]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "PLAY"
+
+[node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=767665850]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "OPTIONS"
+
+[node name="LevelMenu" parent="." unique_id=273564093 instance=ExtResource("2_ob46e")]
+layout_mode = 1
+
+[node name="OptionsMenu" parent="." unique_id=1074797397 instance=ExtResource("4_uqeha")]
+layout_mode = 1

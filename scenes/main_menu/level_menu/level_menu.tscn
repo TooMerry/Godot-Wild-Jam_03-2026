@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dgxci4oa3ycwk"]
+
+[ext_resource type="Script" uid="uid://jp3tkd737a5x" path="res://scenes/main_menu/right_side_menu.gd" id="1_o0pbw"]
+[ext_resource type="PackedScene" uid="uid://dgepmtesl10px" path="res://scenes/main_menu/level_menu/level_button.tscn" id="2_kwh6v"]
+
+[node name="LevelMenu" type="MarginContainer" unique_id=273564093 node_paths=PackedStringArray("first_focus_target")]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 648.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+script = ExtResource("1_o0pbw")
+first_focus_target = NodePath("PanelContainer/MarginContainer/VBoxContainer/HFlowContainer/LevelButton")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1345013729]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1448120012]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1830671027]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2147211779]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "LEVEL_SELECTION"
+horizontal_alignment = 1
+
+[node name="HFlowContainer" type="HFlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=898210860]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+
+[node name="LevelButton" parent="PanelContainer/MarginContainer/VBoxContainer/HFlowContainer" unique_id=854065977 instance=ExtResource("2_kwh6v")]
+layout_mode = 2
+scene_path = "uid://capafwt0o52uk"
