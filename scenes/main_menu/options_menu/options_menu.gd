@@ -24,6 +24,11 @@ func _ready() -> void:
 		actions_container.add_child(action_binding_row)
 
 
+func reset() -> void:
+	super.reset()
+	OptionsManager.save_options()
+
+
 func _on_rebind_requested(row: ActionBindingRow) -> void:
 	if current_rebinding_row != null:
 		return
