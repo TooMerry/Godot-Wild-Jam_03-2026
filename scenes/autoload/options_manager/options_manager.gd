@@ -50,7 +50,7 @@ func load_controls() -> void:
 		return
 	
 	var section_keys: PackedStringArray = options.get_section_keys(SECTION_CONTROLS)
-	for action in InputMap.get_actions():
+	for action: StringName in InputMap.get_actions():
 		if not section_keys.has(action):
 			continue
 		
@@ -71,7 +71,7 @@ func save_audio() -> void:
 
 
 func save_controls() -> void:
-	for action in InputMap.get_actions():
+	for action: StringName in InputMap.get_actions():
 		if action.begins_with("ui"):
 			continue
 		

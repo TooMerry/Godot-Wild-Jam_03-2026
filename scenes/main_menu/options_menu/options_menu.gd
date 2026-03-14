@@ -17,7 +17,7 @@ func _ready() -> void:
 	rebind_overlay.rebind_cancelled.connect(_on_rebind_cancelled)
 	rebind_overlay.rebind_finished.connect(_on_rebind_finished)
 	
-	for action in actions:
+	for action: StringName in actions:
 		var action_binding_row: ActionBindingRow = action_binding_row_scene.instantiate()
 		action_binding_row.setup(action)
 		action_binding_row.rebind_requested.connect(_on_rebind_requested)
