@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://k0445q528exu"]
+
+[ext_resource type="Shader" uid="uid://dr56koiv6k0l8" path="res://resources/shaders/transition/circular_sweep/circular_sweep.gdshader" id="1_jn887"]
+
+[resource]
+shader = ExtResource("1_jn887")
+shader_parameter/progress = 0.0

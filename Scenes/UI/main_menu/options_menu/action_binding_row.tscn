@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://caw84e5akm8b0"]
 
-[ext_resource type="Script" uid="uid://be1ot2p8o8atm" path="res://scenes/main_menu/options_menu/action_binding_row.gd" id="1_hsei2"]
+[ext_resource type="Script" uid="uid://be1ot2p8o8atm" path="res://scenes/ui/main_menu/options_menu/action_binding_row.gd" id="1_hsei2"]
 
 [node name="ActionBindingRow" type="HBoxContainer" unique_id=220533615 node_paths=PackedStringArray("label", "button")]
 custom_minimum_size = Vector2(0, 64)

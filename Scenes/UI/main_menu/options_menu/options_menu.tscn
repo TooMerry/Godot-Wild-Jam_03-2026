@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dncrgp0kqf85p"]
 
-[ext_resource type="Script" uid="uid://xavnkyeplmob" path="res://scenes/main_menu/options_menu/options_menu.gd" id="1_yqoo4"]
-[ext_resource type="PackedScene" uid="uid://bl4dj6iiuvg5c" path="res://scenes/main_menu/options_menu/rebind_overlay.tscn" id="2_2ws05"]
-[ext_resource type="Script" uid="uid://vwft63q1jrdl" path="res://scenes/main_menu/options_menu/volume_slider.gd" id="2_is7k0"]
-[ext_resource type="PackedScene" uid="uid://caw84e5akm8b0" path="res://scenes/main_menu/options_menu/action_binding_row.tscn" id="2_yqoo4"]
+[ext_resource type="Script" uid="uid://xavnkyeplmob" path="res://scenes/ui/main_menu/options_menu/options_menu.gd" id="1_yqoo4"]
+[ext_resource type="PackedScene" uid="uid://bl4dj6iiuvg5c" path="res://scenes/ui/main_menu/options_menu/rebind_overlay.tscn" id="2_2ws05"]
+[ext_resource type="Script" uid="uid://vwft63q1jrdl" path="res://scenes/ui/main_menu/options_menu/volume_slider.gd" id="2_is7k0"]
+[ext_resource type="PackedScene" uid="uid://caw84e5akm8b0" path="res://scenes/ui/main_menu/options_menu/action_binding_row.tscn" id="2_yqoo4"]
 
 [node name="OptionsMenu" type="MarginContainer" unique_id=1074797397 node_paths=PackedStringArray("actions_container", "rebind_overlay", "first_focus_target")]
 anchors_preset = 11

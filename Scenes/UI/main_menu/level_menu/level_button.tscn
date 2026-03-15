@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dgepmtesl10px"]
 
-[ext_resource type="Script" uid="uid://c62daklxyvx37" path="res://scenes/main_menu/level_menu/level_button.gd" id="1_necvy"]
+[ext_resource type="Script" uid="uid://c62daklxyvx37" path="res://scenes/ui/main_menu/level_menu/level_button.gd" id="1_necvy"]
 
 [node name="LevelButton" type="Button" unique_id=854065977]
 custom_minimum_size = Vector2(64, 64)

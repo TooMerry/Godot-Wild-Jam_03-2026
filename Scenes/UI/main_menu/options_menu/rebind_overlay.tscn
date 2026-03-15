@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bl4dj6iiuvg5c"]
 
-[ext_resource type="Script" uid="uid://b35pv1mbtxrlo" path="res://scenes/main_menu/options_menu/rebind_overlay.gd" id="1_3iaik"]
+[ext_resource type="Script" uid="uid://b35pv1mbtxrlo" path="res://scenes/ui/main_menu/options_menu/rebind_overlay.gd" id="1_3iaik"]
 
 [node name="RebindOverlay" type="Control" unique_id=1241625568 node_paths=PackedStringArray("cancel_button")]
 layout_mode = 3

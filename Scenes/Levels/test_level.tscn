@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ccgj00d4ytf21"]
+
+[ext_resource type="PackedScene" uid="uid://crtsrqp5yp1ik" path="res://scenes/character/character.tscn" id="1_v45ci"]
+[ext_resource type="PackedScene" uid="uid://cgye513ma42o4" path="res://scenes/objects/moving_platform/platform_path.tscn" id="2_48ne7"]
+[ext_resource type="PackedScene" uid="uid://coxx2yn3347dq" path="res://scenes/objects/grow_object/grow_obj.tscn" id="3_6xh4u"]
+[ext_resource type="PackedScene" uid="uid://c1d4cgsnem67a" path="res://scenes/ui/timer_hud.tscn" id="4_cyt5c"]
+
+[node name="LevelOne" type="Node2D" unique_id=1029438254]
+
+[node name="Character" parent="." unique_id=47124019 instance=ExtResource("1_v45ci")]
+position = Vector2(430, 175)
+
+[node name="PathPlatform" parent="." unique_id=2137929361 instance=ExtResource("2_48ne7")]
+position = Vector2(429, 306)
+progress_ratio = 0.46
+
+[node name="GrowObj" parent="." unique_id=1900398055 instance=ExtResource("3_6xh4u")]
+position = Vector2(431, 305)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1009467017]
+
+[node name="TimerHud" parent="CanvasLayer" unique_id=1546810575 instance=ExtResource("4_cyt5c")]
