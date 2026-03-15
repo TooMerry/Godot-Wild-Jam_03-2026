@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cgye513ma42o4"]
+
+[ext_resource type="Script" uid="uid://cvgkus60jjudo" path="res://Scenes/Objects/Moving Platform/platform_path.gd" id="1_ti5e4"]
+[ext_resource type="Texture2D" uid="uid://j63toosxu5jo" path="res://icon.svg" id="2_daxat"]
+[ext_resource type="Shader" uid="uid://cff2v346qh3vm" path="res://Shaders/highlight.gdshader" id="2_ly17s"]
+
+[sub_resource type="Curve2D" id="Curve2D_1sdbv"]
+bake_interval = 20.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 671, 0)
+}
+point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ly17s"]
+shader = ExtResource("2_ly17s")
+shader_parameter/outline_thickness = 2.0000000298024
+shader_parameter/anti_alias_amount = 2.0
+shader_parameter/outline_colour = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvoga"]
+size = Vector2(128, 128)
+
+[node name="PlatformPath" type="Path2D" unique_id=1366809630 node_paths=PackedStringArray("sprite", "animatable_body") groups=["stealable"]]
+curve = SubResource("Curve2D_1sdbv")
+script = ExtResource("1_ti5e4")
+sprite = NodePath("AnimatableBody2D/Sprite2D")
+animatable_body = NodePath("AnimatableBody2D")
+boomerang = true
+highlight_shader = SubResource("ShaderMaterial_ly17s")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=1515891538]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=798560832]
+shape = SubResource("RectangleShape2D_uvoga")
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=1656176179]
+texture = ExtResource("2_daxat")

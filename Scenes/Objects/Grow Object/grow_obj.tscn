@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://coxx2yn3347dq"]
+
+[ext_resource type="Texture2D" uid="uid://j63toosxu5jo" path="res://icon.svg" id="1_bosna"]
+[ext_resource type="Script" uid="uid://2ekv3r45yhc3" path="res://Scenes/Objects/Grow Object/grow_obj.gd" id="1_v1jtv"]
+[ext_resource type="Shader" uid="uid://cff2v346qh3vm" path="res://Shaders/highlight.gdshader" id="2_rrk06"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rrk06"]
+shader = ExtResource("2_rrk06")
+shader_parameter/outline_thickness = 2.0000000298024
+shader_parameter/anti_alias_amount = 2.0
+shader_parameter/outline_colour = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_rrk06"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(-64, 64, -64, -64, 64, -64, 64, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_iupk5"]
+resource_name = "grow"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.99, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(-64, 64, -64, -64, 64, -64, 64, 64), PackedVector2Array(-64, 64, -64, -64, -119, -190, 0, -186, 122, -191, 64, -64, 64, 64), PackedVector2Array(-64, 64, -64, -64, -119, -190, 0, -186, 122, -191, 64, -64, 64, 64)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t2okv"]
+_data = {
+&"RESET": SubResource("Animation_rrk06"),
+&"grow": SubResource("Animation_iupk5")
+}
+
+[node name="GrowObj" type="AnimatableBody2D" unique_id=1900398055 node_paths=PackedStringArray("hitbox", "sprite", "animation_player") groups=["stealable"]]
+input_pickable = true
+script = ExtResource("1_v1jtv")
+hitbox = NodePath("CollisionShape2D")
+sprite = NodePath("Sprite2D")
+animation_player = NodePath("AnimationPlayer")
+highlight_shader = SubResource("ShaderMaterial_rrk06")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." unique_id=1255144793]
+polygon = PackedVector2Array(-64, 64, -64, -64, 64, -64, 64, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=202794022]
+texture = ExtResource("1_bosna")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1810403594]
+libraries/ = SubResource("AnimationLibrary_t2okv")
