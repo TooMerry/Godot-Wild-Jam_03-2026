@@ -14,6 +14,11 @@ config/name="Godot-Wild-Jam_03-2026"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SceneManager="*uid://o43i5gyrs664"
+OptionsManager="*uid://ct3ccf0jlg66g"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
