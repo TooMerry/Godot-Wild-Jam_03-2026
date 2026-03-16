@@ -27,9 +27,13 @@ func _process(delta: float) -> void:
 		if Input.is_action_pressed("steal"):
 			var time_stolen: float = current_target.steal(delta)
 			PlayerStats.add_time(time_stolen)
+			if time_stolen > 0.0:
+				ParticleManager.generate(current_target.global_position, self)
 		elif Input.is_action_pressed("give"):
 			var time_given: float = current_target.give(delta)
 			PlayerStats.subtract_time(time_given)
+			if time_given > 0.0:
+				ParticleManager.generate(self.global_position, current_target)
 
 
 func _get_object_at_mouse() -> Node2D:

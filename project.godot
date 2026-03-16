@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 SceneManager="*uid://o43i5gyrs664"
 OptionsManager="*uid://ct3ccf0jlg66g"
 PlayerStats="*uid://de85wnlw3d7si"
+ParticleManager="*uid://dnrjfre830gtn"
 
 [global_group]
 
