@@ -8,7 +8,7 @@ var is_hovered: bool = false
 
 
 func _ready() -> void:
-	animation_player.current_animation = "grow"
+	animation_player.play(&"grow")
 	animation_player.pause()
 	
 	mouse_entered.connect(_on_mouse_enter)
