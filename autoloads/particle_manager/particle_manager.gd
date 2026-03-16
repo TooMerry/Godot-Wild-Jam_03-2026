@@ -9,15 +9,6 @@ extends Control
 var _particles: Array[Particle] = []
 
 
-func generate(from: Vector2, target: Node2D, amount: int = 1) -> void:
-	for i: int in amount:
-		var p = Particle.new()
-		p.position = from
-		p.velocity = Vector2.from_angle(randf() * TAU) * randf_range(40.0, 120.0)
-		p.target = target
-		_particles.append(p)
-
-
 func _process(delta: float) -> void:
 	if _particles.is_empty():
 		return
@@ -42,6 +33,15 @@ func _process(delta: float) -> void:
 func _draw():
 	for p in _particles:
 		draw_texture(particle_texture, p.position)
+
+
+func generate(from: Vector2, target: Node2D, amount: int = 1) -> void:
+	for i: int in amount:
+		var p = Particle.new()
+		p.position = from
+		p.velocity = Vector2.from_angle(randf() * TAU) * randf_range(40.0, 120.0)
+		p.target = target
+		_particles.append(p)
 
 
 class Particle:
