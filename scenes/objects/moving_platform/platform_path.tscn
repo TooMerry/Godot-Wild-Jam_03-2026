@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cgye513ma42o4"]
 
-[ext_resource type="Script" uid="uid://cvgkus60jjudo" path="res://temp_scenes/objects/moving_platform/platform_path.gd" id="1_ti5e4"]
+[ext_resource type="Script" uid="uid://cvgkus60jjudo" path="res://scenes/objects/moving_platform/platform_path.gd" id="1_ti5e4"]
 [ext_resource type="Texture2D" uid="uid://j63toosxu5jo" path="res://icon.svg" id="2_daxat"]
 
 [sub_resource type="Curve2D" id="Curve2D_1sdbv"]

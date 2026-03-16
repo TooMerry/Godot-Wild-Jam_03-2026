@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dgxci4oa3ycwk"]
 
-[ext_resource type="Script" uid="uid://jp3tkd737a5x" path="res://temp_scenes/ui/main_menu/right_side_menu.gd" id="1_o0pbw"]
-[ext_resource type="PackedScene" uid="uid://dgepmtesl10px" path="res://temp_scenes/ui/main_menu/level_menu/level_button.tscn" id="2_kwh6v"]
+[ext_resource type="Script" uid="uid://jp3tkd737a5x" path="res://scenes/ui/main_menu/right_side_menu.gd" id="1_o0pbw"]
+[ext_resource type="PackedScene" uid="uid://dgepmtesl10px" path="res://scenes/ui/main_menu/level_menu/level_button.tscn" id="2_kwh6v"]
 
 [node name="LevelMenu" type="MarginContainer" unique_id=273564093 node_paths=PackedStringArray("first_focus_target")]
 anchors_preset = 11

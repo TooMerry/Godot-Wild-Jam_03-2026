@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://coxx2yn3347dq"]
 
 [ext_resource type="Texture2D" uid="uid://j63toosxu5jo" path="res://icon.svg" id="1_bosna"]
-[ext_resource type="Script" uid="uid://2ekv3r45yhc3" path="res://temp_scenes/objects/grow_object/grow_obj.gd" id="1_v1jtv"]
+[ext_resource type="Script" uid="uid://2ekv3r45yhc3" path="res://scenes/objects/grow_object/grow_obj.gd" id="1_v1jtv"]
 [ext_resource type="Shader" uid="uid://cff2v346qh3vm" path="res://resources/shaders/highlight.gdshader" id="2_rrk06"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rrk06"]
