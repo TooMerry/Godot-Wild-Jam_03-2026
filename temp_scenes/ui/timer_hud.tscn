@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c1d4cgsnem67a"]
 
-[ext_resource type="Script" uid="uid://dt6w8e0sili1r" path="res://scenes/ui/timer_hud.gd" id="1_lvw3g"]
+[ext_resource type="Script" uid="uid://dt6w8e0sili1r" path="res://temp_scenes/ui/timer_hud.gd" id="1_lvw3g"]
 
 [node name="TimerHud" type="Control" unique_id=1546810575 node_paths=PackedStringArray("label")]
 layout_mode = 3

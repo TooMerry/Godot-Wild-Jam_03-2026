@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://ccgj00d4ytf21"]
 
-[ext_resource type="PackedScene" uid="uid://crtsrqp5yp1ik" path="res://scenes/character/character.tscn" id="1_v45ci"]
-[ext_resource type="PackedScene" uid="uid://cgye513ma42o4" path="res://scenes/objects/moving_platform/platform_path.tscn" id="2_48ne7"]
-[ext_resource type="PackedScene" uid="uid://coxx2yn3347dq" path="res://scenes/objects/grow_object/grow_obj.tscn" id="3_6xh4u"]
-[ext_resource type="PackedScene" uid="uid://c1d4cgsnem67a" path="res://scenes/ui/timer_hud.tscn" id="4_cyt5c"]
+[ext_resource type="PackedScene" uid="uid://crtsrqp5yp1ik" path="res://temp_scenes/character/character.tscn" id="1_v45ci"]
+[ext_resource type="PackedScene" uid="uid://cgye513ma42o4" path="res://temp_scenes/objects/moving_platform/platform_path.tscn" id="2_48ne7"]
+[ext_resource type="PackedScene" uid="uid://coxx2yn3347dq" path="res://temp_scenes/objects/grow_object/grow_obj.tscn" id="3_6xh4u"]
+[ext_resource type="PackedScene" uid="uid://c1d4cgsnem67a" path="res://temp_scenes/ui/timer_hud.tscn" id="4_cyt5c"]
 
 [node name="LevelOne" type="Node2D" unique_id=1029438254]
 
