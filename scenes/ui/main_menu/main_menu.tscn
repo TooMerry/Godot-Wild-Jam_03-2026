@@ -60,4 +60,4 @@ layout_mode = 1
 
 [node name="OptionsMenu" parent="." unique_id=1074797397 instance=ExtResource("4_uqeha")]
 layout_mode = 1
-actions = Array[StringName]([&"left", &"right", &"up", &"down", &"jump"])
+actions = Array[StringName]([&"left", &"right", &"up", &"down", &"jump", &"steal", &"give"])

@@ -1,11 +1,13 @@
 shader_type canvas_item;
 //Based on https://www.youtube.com/watch?v=6ZPOYG9geUQ
+instance uniform bool is_enabled = false;
+
 uniform float outline_thickness:hint_range(0.0, 20.0, 0.1) = 5.;
 uniform float anti_alias_amount = 1.0;
 uniform vec4 outline_colour:source_color = vec4(1);
 
 void fragment() {
-	if(COLOR.a == 0.){
+	if(is_enabled && COLOR.a == 0.){
 		//distance around this pixel we'll look for a solid pixel
 		float max_dist = outline_thickness + anti_alias_amount;
 		int max_pixel_offset = int(ceil(max_dist));
