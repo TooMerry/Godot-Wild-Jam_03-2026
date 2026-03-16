@@ -7,9 +7,8 @@
 
 [node name="LevelOne" type="Node2D" unique_id=1029438254]
 
-[node name="Character" parent="." unique_id=47124019 node_paths=PackedStringArray("current_target") instance=ExtResource("1_v45ci")]
+[node name="Character" parent="." unique_id=47124019 instance=ExtResource("1_v45ci")]
 position = Vector2(430, 175)
-current_target = NodePath("../GrowObj")
 
 [node name="PathPlatform" parent="." unique_id=2137929361 instance=ExtResource("2_48ne7")]
 position = Vector2(429, 306)

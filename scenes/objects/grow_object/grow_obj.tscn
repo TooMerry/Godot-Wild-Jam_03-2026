@@ -47,10 +47,9 @@ _data = {
 &"grow": SubResource("Animation_iupk5")
 }
 
-[node name="GrowObj" type="AnimatableBody2D" unique_id=1900398055 node_paths=PackedStringArray("hitbox", "sprite", "animation_player") groups=["stealable"]]
+[node name="GrowObj" type="AnimatableBody2D" unique_id=1900398055 node_paths=PackedStringArray("sprite", "animation_player") groups=["stealable"]]
 input_pickable = true
 script = ExtResource("1_v1jtv")
-hitbox = NodePath("CollisionShape2D")
 sprite = NodePath("Sprite2D")
 animation_player = NodePath("AnimationPlayer")
 
