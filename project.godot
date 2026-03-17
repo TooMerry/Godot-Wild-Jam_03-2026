@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Godot-Wild-Jam_03-2026"
+run/main_scene="uid://q1xtf6bfnyng"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
