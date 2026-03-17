@@ -1,10 +1,14 @@
 extends CharacterBody2D
 
+@export var sprite:Sprite2D
+
 @export var ground_speed:float = 300.0
 @export var jump_height:float = 128
 @export var air_speed = 200.0
 @export var ground_friction = 0.6
 @export var air_friction = 0.001
+@export var tree:AnimationTree
+@onready var animation_state_machine:AnimationNodeStateMachinePlayback = tree["parameters/playback"]
 var jump_velocity:Vector2 = Vector2(0,-400)
 var platform_velocity:Vector2
 enum{GROUND,EDGE,JUMP,AIR}
@@ -46,7 +50,6 @@ func _get_object_at_mouse() -> Node2D:
 	
 	return result[0].collider
 
-
 func _physics_process(delta: float) -> void:
 	gravity = get_gravity()
 	var gravAngle = gravity.angle_to(Vector2.DOWN)
@@ -57,8 +60,10 @@ func _physics_process(delta: float) -> void:
 		velocity += gravity * delta
 	
 	var direction := Input.get_axis("left", "right")
+	tree["parameters/ground/blend_position"] = direction
 	var velProj:Vector2 = velocity.rotated(gravAngle)
 	if direction && can_move_horizontal:
+		sprite.flip_h = direction < 0
 		velProj.x = direction*speed
 		 #= direction * speed
 	else:
@@ -108,6 +113,7 @@ func _enter_state(state:int) -> void:
 			speed = ground_speed
 			friction_coeff = ground_friction
 			can_move_horizontal = true
+			animation_state_machine.travel("land")
 		EDGE:
 			pass
 		JUMP:
@@ -115,11 +121,13 @@ func _enter_state(state:int) -> void:
 			speed = air_speed
 			friction_coeff = air_friction
 			can_move_horizontal = true
+			animation_state_machine.travel("jump")
 		AIR:
 			falling = true
 			speed = air_speed
 			friction_coeff = air_friction
 			can_move_horizontal = true
+			animation_state_machine.travel("air")
 		_:
 			pass
 	_state = state
