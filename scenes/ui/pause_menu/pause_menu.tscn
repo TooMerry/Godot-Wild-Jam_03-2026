@@ -27,6 +27,7 @@ resume_button = NodePath("LeftMenu/PanelContainer/VBoxContainer/VBoxContainer/Re
 main_menu_button = NodePath("LeftMenu/PanelContainer/VBoxContainer/VBoxContainer/MainMenuButton")
 options_button = NodePath("LeftMenu/PanelContainer/VBoxContainer/VBoxContainer/OptionsButton")
 options_menu = NodePath("OptionsMenu")
+_main_menu_uid = &"uid://q1xtf6bfnyng"
 
 [node name="LeftMenu" type="MarginContainer" parent="." unique_id=143617408]
 custom_minimum_size = Vector2(500, 0)
@@ -65,19 +66,19 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 29
 text = "Resume"
 
-[node name="MainMenuButton" type="Button" parent="LeftMenu/PanelContainer/VBoxContainer/VBoxContainer" unique_id=2000723095]
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 29
-text = "Return to Main Menu"
-
 [node name="OptionsButton" type="Button" parent="LeftMenu/PanelContainer/VBoxContainer/VBoxContainer" unique_id=1607078746]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 29
 text = "Options"
+
+[node name="MainMenuButton" type="Button" parent="LeftMenu/PanelContainer/VBoxContainer/VBoxContainer" unique_id=2000723095]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 29
+text = "Return to Main Menu"
 
 [node name="OptionsMenu" parent="." unique_id=403750368 instance=ExtResource("2_xgg5q")]
 layout_mode = 0

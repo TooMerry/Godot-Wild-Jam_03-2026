@@ -5,6 +5,7 @@ extends Control
 @export var epitaph_label:Label
 @export var retry_button:Button
 @export var main_menu_button:Button
+@export var _main_menu_uid:StringName
 @export var epitaphs:Array[String]
 
 
@@ -34,7 +35,7 @@ func _on_retry() -> void:
 
 func _on_main_menu() -> void:
 	get_tree().paused = false
-	SceneManager.change_scene(&"res://scenes/ui/main_menu/main_menu.tscn")
+	SceneManager.change_scene(_main_menu_uid)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

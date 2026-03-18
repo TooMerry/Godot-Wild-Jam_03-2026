@@ -7,7 +7,7 @@
 [sub_resource type="Curve2D" id="Curve2D_1sdbv"]
 bake_interval = 20.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 671, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 671, 0)
 }
 point_count = 2
 

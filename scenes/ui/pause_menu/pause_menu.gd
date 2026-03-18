@@ -6,18 +6,23 @@ extends Control
 @export var main_menu_button:Button
 @export var options_button:Button
 @export var options_menu:OptionsMenu
+@export var _main_menu_uid:StringName
 @onready var _tree:SceneTree = get_tree()
 
 func _ready() -> void:
 	hide()
 	resume_button.pressed.connect(close)
-	main_menu_button.pressed.connect(
-		func():
-			_tree.paused = false
-			SceneManager.change_scene(&"res://scenes/ui/main_menu/main_menu.tscn")
-	)
-	options_button.pressed.connect(func(): options_menu.reset() if options_menu.visible else options_menu.display())
-	
+	main_menu_button.pressed.connect(_on_main_menu_press)
+	options_button.pressed.connect(_on_options_button_pressed)
+
+func _on_main_menu_press() -> void:
+	_tree.paused = false
+	SceneManager.change_scene(_main_menu_uid)
+
+func _on_options_button_pressed() -> void:
+	@warning_ignore("standalone_ternary")
+	options_menu.reset() if options_menu.visible else options_menu.display()
+
 var _tween:Tween
 
 func open():

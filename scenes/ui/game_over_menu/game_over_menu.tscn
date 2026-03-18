@@ -28,6 +28,7 @@ game_over_label = NodePath("PopupMargin/PanelContainer/MarginContainer/VBoxConta
 epitaph_label = NodePath("PopupMargin/PanelContainer/MarginContainer/VBoxContainer/EpitaphLabel")
 retry_button = NodePath("PopupMargin/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Retry")
 main_menu_button = NodePath("PopupMargin/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MainMenu")
+_main_menu_uid = &"uid://q1xtf6bfnyng"
 
 [node name="PopupMargin" type="MarginContainer" parent="." unique_id=510330045]
 layout_mode = 1

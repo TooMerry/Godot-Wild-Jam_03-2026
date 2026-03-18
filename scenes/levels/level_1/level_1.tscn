@@ -2,20 +2,58 @@
 
 [ext_resource type="PackedScene" uid="uid://crtsrqp5yp1ik" path="res://scenes/character/character.tscn" id="1_v45ci"]
 [ext_resource type="PackedScene" uid="uid://cgye513ma42o4" path="res://scenes/objects/moving_platform/platform_path.tscn" id="2_48ne7"]
-[ext_resource type="PackedScene" uid="uid://coxx2yn3347dq" path="res://scenes/objects/grow_object/grow_obj.tscn" id="3_6xh4u"]
-[ext_resource type="PackedScene" uid="uid://c1d4cgsnem67a" path="res://scenes/ui/timer_hud.tscn" id="4_cyt5c"]
+[ext_resource type="PackedScene" uid="uid://c1d4cgsnem67a" path="res://scenes/ui/hud.tscn" id="4_cyt5c"]
+[ext_resource type="Script" uid="uid://l0oay6hngdph" path="res://scenes/levels/follow_camera.gd" id="5_7uxs1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7uxs1"]
+size = Vector2(1997.5, 107.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lh42"]
+size = Vector2(412, 80)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_spwf2"]
+normal = Vector2(0.9999422, 0.010752066)
+distance = -78.95242
+
+[sub_resource type="Curve2D" id="Curve2D_vmhy7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2, 2, 0, 0, 0, 0, -4, 174)
+}
+point_count = 2
 
 [node name="LevelOne" type="Node2D" unique_id=1029438254]
 
 [node name="Character" parent="." unique_id=47124019 instance=ExtResource("1_v45ci")]
 position = Vector2(430, 175)
 
-[node name="PathPlatform" parent="." unique_id=2137929361 instance=ExtResource("2_48ne7")]
-position = Vector2(429, 306)
-progress_ratio = 0.46
+[node name="Camera2D" type="Camera2D" parent="." unique_id=711602039 node_paths=PackedStringArray("target")]
+script = ExtResource("5_7uxs1")
+target = NodePath("../Character")
 
-[node name="GrowObj" parent="." unique_id=1900398055 instance=ExtResource("3_6xh4u")]
-position = Vector2(431, 305)
+[node name="Ground" type="StaticBody2D" parent="." unique_id=823194823]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=1698444553]
+position = Vector2(997.25, 588.75)
+shape = SubResource("RectangleShape2D_7uxs1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground" unique_id=105551486]
+position = Vector2(1116, 307)
+shape = SubResource("RectangleShape2D_3lh42")
+
+[node name="Panel" type="Panel" parent="Ground" unique_id=634059711]
+offset_top = 531.0
+offset_right = 1995.0
+offset_bottom = 642.0
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground" unique_id=1938992213]
+position = Vector2(78, 446)
+shape = SubResource("WorldBoundaryShape2D_spwf2")
+
+[node name="PlatformPath" parent="." unique_id=1366809630 instance=ExtResource("2_48ne7")]
+position = Vector2(1129, 286)
+curve = SubResource("Curve2D_vmhy7")
+looping = false
+boomerang = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1009467017]
 
