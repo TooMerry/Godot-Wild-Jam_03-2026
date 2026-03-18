@@ -16,6 +16,9 @@ extends Node
 ## SceneManager.change_scene("res://levels/level_3.tscn", "fade")
 ## [/codeblock]
 
+## Emitted after a scene transition has fully completed.
+signal transition_finished
+
 ## Resource type hint used when loading scenes.
 const TYPE_HINT_PACKED_SCENE: String = "PackedScene"
 
@@ -25,6 +28,9 @@ const TYPE_HINT_PACKED_SCENE: String = "PackedScene"
 
 ## Duration of the transition animation in seconds.
 @export var transition_time: float = 0.4
+
+## The [CanvasLayer] that contains the [member transition_rect].
+@export var transition_layer: CanvasLayer
 
 ## Fullscreen [ColorRect] used to render the transition shader.
 @export var transition_rect: ColorRect
@@ -94,6 +100,8 @@ func _change_scene_internal(path: String, transition_name: StringName) -> void:
 	
 	await _transition_in()
 	is_changing = false
+	
+	transition_finished.emit()
 
 
 ## Frees the currently active scene if one exists.[br]
@@ -116,7 +124,7 @@ func _unload_scene() -> void:
 ## Returns the [Signal] emitted when the tween finishes so callers can
 ## [code]await[/code] the end of the transition.
 func _transition_out() -> Signal:
-	transition_rect.reparent(_tree_root)
+	transition_layer.reparent(_tree_root)
 	transition_rect.set_instance_shader_parameter("inverted", false)
 	transition_rect.show()
 	
@@ -128,7 +136,7 @@ func _transition_out() -> Signal:
 			transition_time)\
 			.set_trans(Tween.TRANS_LINEAR)\
 			.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_callback(transition_rect.reparent.bind(self))
+	tween.tween_callback(transition_layer.reparent.bind(self))
 	return tween.finished
 
 
@@ -145,7 +153,7 @@ func _transition_out() -> Signal:
 ## Returns the [Signal] emitted when the tween finishes so callers can
 ## [code]await[/code] the end of the transition.
 func _transition_in() -> Signal:
-	transition_rect.reparent(_tree_root)
+	transition_layer.reparent(_tree_root)
 	transition_rect.set_instance_shader_parameter("inverted", true)
 	transition_rect.show()
 	
@@ -158,5 +166,5 @@ func _transition_in() -> Signal:
 			.set_trans(Tween.TRANS_LINEAR)\
 			.set_ease(Tween.EASE_IN_OUT)
 	tween.tween_callback(transition_rect.hide)
-	tween.tween_callback(transition_rect.reparent.bind(self))
+	tween.tween_callback(transition_layer.reparent.bind(self))
 	return tween.finished

@@ -1,0 +1,300 @@
+[gd_scene format=3 uid="uid://1ruio0qaspmx"]
+
+[ext_resource type="Script" uid="uid://fnlsjd58ahyw" path="res://scenes/levels/level.gd" id="1_e1xyi"]
+[ext_resource type="Script" uid="uid://l0oay6hngdph" path="res://scenes/levels/follow_camera.gd" id="2_4x8ai"]
+[ext_resource type="PackedScene" uid="uid://coxx2yn3347dq" path="res://scenes/objects/grow_object/grow_obj.tscn" id="2_pcaiw"]
+[ext_resource type="PackedScene" uid="uid://crtsrqp5yp1ik" path="res://scenes/character/character.tscn" id="2_w7xqs"]
+[ext_resource type="PackedScene" uid="uid://c1d4cgsnem67a" path="res://scenes/ui/timer_hud.tscn" id="4_4vors"]
+
+[sub_resource type="Animation" id="Animation_papml"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/CinematicBars/BottomBar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 648)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/CinematicBars/TopBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -64)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/TimerHud:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Character:process_mode")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4x8ai"]
+resource_name = "intro"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/CinematicBars/TopBar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -64), Vector2(0, 0), Vector2(0, 0), Vector2(0, -64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/CinematicBars/BottomBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 648), Vector2(0, 584), Vector2(0, 584), Vector2(0, 648)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/TimerHud:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Character:process_mode")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_papml"]
+_data = {
+&"RESET": SubResource("Animation_papml"),
+&"intro": SubResource("Animation_4x8ai")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_papml"]
+size = Vector2(1972, 100)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w7xqs"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4vors"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vors"]
+size = Vector2(1000, 360)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4x8ai"]
+size = Vector2(332, 128)
+
+[node name="Level0" type="Node2D" unique_id=329832045 node_paths=PackedStringArray("animation_player", "exit_area")]
+script = ExtResource("1_e1xyi")
+next_level_id = 1
+next_level_path = "uid://ccgj00d4ytf21"
+initial_timer = 20.0
+animation_player = NodePath("AnimationPlayer")
+exit_area = NodePath("Environment/ExitArea")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=921312593]
+libraries/ = SubResource("AnimationLibrary_papml")
+
+[node name="Environment" type="Node2D" parent="." unique_id=97439430]
+metadata/_edit_lock_ = true
+
+[node name="LevelLabel" type="Label" parent="Environment" unique_id=844203701]
+offset_left = 96.0
+offset_top = 128.0
+offset_right = 330.0
+offset_bottom = 216.0
+theme_override_font_sizes/font_size = 64
+text = "LEVEL 0"
+
+[node name="Ground" type="StaticBody2D" parent="Environment" unique_id=465795098]
+position = Vector2(986, 598)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Ground" unique_id=1463602051]
+shape = SubResource("RectangleShape2D_papml")
+
+[node name="ColorRect" type="ColorRect" parent="Environment/Ground" unique_id=2072376020]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -986.0
+offset_top = -50.0
+offset_right = 986.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+
+[node name="LeftWall" type="StaticBody2D" parent="Environment" unique_id=1032774474]
+position = Vector2(64, 0)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/LeftWall" unique_id=1254427927]
+shape = SubResource("WorldBoundaryShape2D_w7xqs")
+
+[node name="ColorRect" type="ColorRect" parent="Environment/LeftWall" unique_id=1367152172]
+offset_left = -64.0
+offset_bottom = 548.0
+color = Color(0.12591085, 0.12591085, 0.12591082, 1)
+
+[node name="RightWall" type="StaticBody2D" parent="Environment" unique_id=1316078610]
+position = Vector2(2240, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RightWall" unique_id=1125504482]
+shape = SubResource("WorldBoundaryShape2D_4vors")
+
+[node name="ColorRect" type="ColorRect" parent="Environment/RightWall" unique_id=238252702]
+offset_right = 64.0
+offset_bottom = 648.0
+color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+
+[node name="ExitLabel" type="Label" parent="Environment" unique_id=1989234720]
+offset_left = 128.0
+offset_top = 356.0
+offset_right = 194.0
+offset_bottom = 449.0
+theme_override_font_sizes/font_size = 32
+text = "EXIT
+  ->"
+
+[node name="GrowObj" parent="Environment" unique_id=1900398055 instance=ExtResource("2_pcaiw")]
+position = Vector2(848, 484)
+initial_progress = 1.0
+
+[node name="Block" type="StaticBody2D" parent="Environment" unique_id=1489470566]
+position = Vector2(1472, 368)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Block" unique_id=1437007746]
+shape = SubResource("RectangleShape2D_4vors")
+
+[node name="ColorRect" type="ColorRect" parent="Environment/Block" unique_id=1702207734]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -180.0
+offset_right = 500.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+
+[node name="ExitArea" type="Area2D" parent="Environment" unique_id=2146477806]
+position = Vector2(2138, 712)
+collision_layer = 0
+input_pickable = false
+monitorable = false
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExitArea" unique_id=693917043]
+shape = SubResource("RectangleShape2D_4x8ai")
+
+[node name="ExitLabel2" type="Label" parent="Environment" unique_id=142658008]
+offset_left = 2159.0
+offset_top = 52.0
+offset_right = 2225.0
+offset_bottom = 193.0
+theme_override_font_sizes/font_size = 32
+text = "EXIT
+  |
+  v"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=333814972 node_paths=PackedStringArray("target")]
+limit_left = 0
+limit_top = 0
+limit_right = 2304
+limit_bottom = 648
+script = ExtResource("2_4x8ai")
+target = NodePath("../Character")
+metadata/_edit_lock_ = true
+
+[node name="Character" parent="." unique_id=47124019 instance=ExtResource("2_w7xqs")]
+position = Vector2(288, -128)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1374405904]
+
+[node name="TimerHud" parent="CanvasLayer" unique_id=1546810575 instance=ExtResource("4_4vors")]
+metadata/_edit_lock_ = true
+
+[node name="CinematicBars" type="Control" parent="CanvasLayer" unique_id=1936585724]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopBar" type="ColorRect" parent="CanvasLayer/CinematicBars" unique_id=434883807]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -64.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BottomBar" type="ColorRect" parent="CanvasLayer/CinematicBars" unique_id=866197433]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

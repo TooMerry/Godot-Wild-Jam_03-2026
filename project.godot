@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Godot-Wild-Jam_03-2026"
+run/main_scene="uid://q1xtf6bfnyng"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -20,6 +21,7 @@ SceneManager="*uid://o43i5gyrs664"
 OptionsManager="*uid://ct3ccf0jlg66g"
 PlayerStats="*uid://de85wnlw3d7si"
 ParticleManager="*uid://dnrjfre830gtn"
+SaveManager="*uid://dqfedfru1csyv"
 
 [global_group]
 
