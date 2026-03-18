@@ -13,12 +13,10 @@ extends Node
 
 func _ready() -> void:
 	exit_area.body_entered.connect(_on_exit_area_entered)
-	
+	PlayerStats.set_time(initial_timer)
 	await SceneManager.transition_finished
 	animation_player.play(&"intro")
 	await animation_player.animation_finished
-	
-	PlayerStats.set_time(initial_timer)
 	PlayerStats.paused = false
 
 
