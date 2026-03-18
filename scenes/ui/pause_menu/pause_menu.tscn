@@ -79,7 +79,16 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 29
 text = "Options"
 
-[node name="OptionsMenu" parent="." unique_id=1074797397 instance=ExtResource("2_xgg5q")]
+[node name="OptionsMenu" parent="." unique_id=403750368 instance=ExtResource("2_xgg5q")]
 layout_mode = 0
 anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1152.0
+offset_top = 32.0
+offset_right = 1768.0
+offset_bottom = 616.0
+grow_horizontal = 1
+grow_vertical = 1
 actions = Array[StringName]([&"left", &"right", &"up", &"down", &"jump", &"steal", &"give"])

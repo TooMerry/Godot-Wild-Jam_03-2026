@@ -1,3 +1,4 @@
+class_name GameOverMenu
 extends Control
 
 @export var game_over_label:Label
@@ -9,14 +10,15 @@ extends Control
 
 func _ready() -> void:
 	modulate.a = 0
+	hide()
 	retry_button.pressed.connect(_on_retry)
 	main_menu_button.pressed.connect(_on_main_menu)
 	if epitaphs && !epitaphs.is_empty():
 		epitaph_label.text = epitaphs[randi_range(0,epitaphs.size() - 1)]
-	open()
 
 func open() -> void:
 	get_tree().paused = true
+	show()
 	var tween:Tween = create_tween()
 	tween.tween_property(self,"modulate",Color(modulate,1.),1)
 	tween.tween_callback(retry_button.grab_focus)

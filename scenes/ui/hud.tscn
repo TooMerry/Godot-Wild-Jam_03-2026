@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c1d4cgsnem67a"]
+
+[ext_resource type="Script" uid="uid://dt6w8e0sili1r" path="res://scenes/ui/hud.gd" id="1_bo48s"]
+[ext_resource type="PackedScene" uid="uid://cwvumscyl7lmo" path="res://scenes/ui/game_over_menu/game_over_menu.tscn" id="2_8qguk"]
+[ext_resource type="PackedScene" uid="uid://wrvyh1hpnb7x" path="res://scenes/ui/pause_menu/pause_menu.tscn" id="3_136eg"]
+
+[node name="Hud" type="Control" unique_id=1546810575 node_paths=PackedStringArray("label", "pause_button", "_game_over_menu", "_pause_menu")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_bo48s")
+label = NodePath("MarginContainer/Label")
+pause_button = NodePath("MarginContainer/PauseButton")
+_game_over_menu = NodePath("GameOverMenu")
+_pause_menu = NodePath("PauseMenu")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1150160667]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=667783569]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 65
+text = "42.617s"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PauseButton" type="Button" parent="MarginContainer" unique_id=780994477]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 27
+text = "Pause"
+
+[node name="GameOverMenu" parent="." unique_id=262418473 instance=ExtResource("2_8qguk")]
+layout_mode = 1
+
+[node name="PauseMenu" parent="." unique_id=490790483 instance=ExtResource("3_136eg")]
+layout_mode = 1

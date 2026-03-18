@@ -7,13 +7,14 @@ extends RightSideMenu
 @export var rebind_overlay: RebindOverlay
 
 var _current_rebinding_row: ActionBindingRow
+@onready var _rebind_canvas:CanvasLayer = CanvasLayer.new()
 
 @onready var _tree_root: Window = get_tree().root
 
 
 func _ready() -> void:
 	super._ready()
-	
+	_rebind_canvas.process_mode = Node.PROCESS_MODE_ALWAYS
 	rebind_overlay.rebind_cancelled.connect(_on_rebind_cancelled)
 	rebind_overlay.rebind_finished.connect(_on_rebind_finished)
 	
@@ -32,8 +33,8 @@ func reset() -> void:
 func _on_rebind_requested(row: ActionBindingRow) -> void:
 	if _current_rebinding_row != null:
 		return
-	
-	rebind_overlay.reparent(_tree_root, false)
+	_tree_root.add_child(_rebind_canvas)
+	rebind_overlay.reparent(_rebind_canvas, false)
 	_current_rebinding_row = row
 	rebind_overlay.start_capture()
 
@@ -46,6 +47,7 @@ func _on_rebind_cancelled() -> void:
 	_current_rebinding_row.make_button_grab_focus()
 	_current_rebinding_row = null
 	rebind_overlay.reparent(self, false)
+	_tree_root.remove_child(_rebind_canvas)
 
 
 func _on_rebind_finished(event: InputEvent) -> void:
@@ -61,3 +63,4 @@ func _on_rebind_finished(event: InputEvent) -> void:
 	_current_rebinding_row.make_button_grab_focus()
 	_current_rebinding_row = null
 	rebind_overlay.reparent(self, false)
+	_tree_root.remove_child(_rebind_canvas)
