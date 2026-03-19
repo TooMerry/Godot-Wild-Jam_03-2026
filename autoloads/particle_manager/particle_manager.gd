@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 
 @export var particle_texture: Texture2D
 @export var distance_threshold: float = 32.0
