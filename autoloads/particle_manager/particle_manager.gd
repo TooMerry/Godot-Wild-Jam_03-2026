@@ -45,6 +45,11 @@ func generate(from: Vector2, target: Node2D, sfx: AudioStream, amount: int = 1) 
 		_particles.append(p)
 
 
+func remove_all() -> void:
+	_particles.clear()
+	queue_redraw()
+
+
 class Particle:
 	var position: Vector2
 	var velocity: Vector2
