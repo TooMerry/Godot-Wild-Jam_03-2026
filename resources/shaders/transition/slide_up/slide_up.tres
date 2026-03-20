@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dm30dh25apyat"]
+
+[ext_resource type="Shader" uid="uid://dq446h3g7yr0n" path="res://resources/shaders/transition/slide_up/slide_up.gdshader" id="1_0fys6"]
+
+[resource]
+shader = ExtResource("1_0fys6")
+shader_parameter/progress = 0.0

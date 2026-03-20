@@ -21,14 +21,11 @@ func _ready() -> void:
 	animation_player.play(&"grow")
 	animation_player.pause()
 	animation_player.advance(initial_progress * animation_player.current_animation_length)
-	
-	mouse_entered.connect(_on_mouse_enter)
-	mouse_exited.connect(_on_mouse_exit)
 
 
 func steal(seconds:float) -> float:
 	seconds*=time_transfer_multiplier
-	if is_hovered and animation_player.current_animation_position > 0.0:
+	if animation_player.current_animation_position > 0.0:
 		animation_player.advance(-seconds)
 		return seconds
 	return 0.0
@@ -36,17 +33,11 @@ func steal(seconds:float) -> float:
 
 func give(seconds:float) -> float:
 	seconds*=time_transfer_multiplier
-	if is_hovered and animation_player.current_animation_position < animation_player.current_animation_length:
+	if animation_player.current_animation_position < animation_player.current_animation_length:
 		animation_player.advance(seconds)
 		return seconds
 	return 0.0
 
 
-func _on_mouse_enter() -> void:
-	is_hovered = true
-	sprite.set_instance_shader_parameter("is_enabled", is_hovered)
-
-
-func _on_mouse_exit() -> void:
-	is_hovered = false
-	sprite.set_instance_shader_parameter("is_enabled", is_hovered)
+func set_highlight(enabled: bool) -> void:
+	sprite.set_instance_shader_parameter("is_enabled", enabled)

@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 
 @export var particle_texture: Texture2D
 @export var distance_threshold: float = 32.0
@@ -43,6 +43,11 @@ func generate(from: Vector2, target: Node2D, sfx: AudioStream, amount: int = 1) 
 		p.target = target
 		AudioManager.play_sfx(sfx, true)
 		_particles.append(p)
+
+
+func remove_all() -> void:
+	_particles.clear()
+	queue_redraw()
 
 
 class Particle:

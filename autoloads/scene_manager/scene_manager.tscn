@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" uid="uid://llby23x6v1ae" path="res://autoloads/scene_manager/scene_manager.gd" id="1_8vy5l"]
 [ext_resource type="Material" uid="uid://k0445q528exu" path="res://resources/shaders/transition/circular_sweep/circular_sweep.tres" id="2_xh5my"]
+[ext_resource type="Material" uid="uid://dm30dh25apyat" path="res://resources/shaders/transition/slide_up/slide_up.tres" id="3_vdgyo"]
 
 [node name="SceneManager" type="Node" unique_id=274669452 node_paths=PackedStringArray("transition_layer", "transition_rect")]
 script = ExtResource("1_8vy5l")
 transition_map = Dictionary[StringName, ShaderMaterial]({
-&"circular_sweep": ExtResource("2_xh5my")
+&"circular_sweep": ExtResource("2_xh5my"),
+&"slide_up": ExtResource("3_vdgyo")
 })
 transition_layer = NodePath("CanvasLayer")
 transition_rect = NodePath("CanvasLayer/TransitionRect")

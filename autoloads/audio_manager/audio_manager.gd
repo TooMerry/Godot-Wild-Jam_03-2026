@@ -3,6 +3,7 @@ extends Node
 @export var bgm_player: AudioStreamPlayer
 @export var sfx_container: Node
 @export var max_sfx_players: int = 16
+@export var sfx_bus_name: StringName = &"Sfx"
 
 var _available_sfx_players: Array[AudioStreamPlayer] = []
 var _busy_sfx_players: Array[AudioStreamPlayer] = []
@@ -30,6 +31,7 @@ func play_sfx(stream: AudioStream, with_random_pitch: bool = false) -> void:
 	
 	var sfx_player: AudioStreamPlayer = _available_sfx_players.pop_back()
 	sfx_player.set_stream(stream)
+	sfx_player.set_bus(sfx_bus_name)
 	if with_random_pitch:
 		sfx_player.set_pitch_scale(randf_range(0.8, 1.2))
 	else:

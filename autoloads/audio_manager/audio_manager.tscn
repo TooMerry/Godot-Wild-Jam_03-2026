@@ -8,6 +8,7 @@ bgm_player = NodePath("BgmPlayer")
 sfx_container = NodePath("SfxContainer")
 
 [node name="BgmPlayer" type="AudioStreamPlayer" parent="." unique_id=1474774773]
+bus = &"Bgm"
 
 [node name="SfxContainer" type="Node" parent="." unique_id=631153966]
 

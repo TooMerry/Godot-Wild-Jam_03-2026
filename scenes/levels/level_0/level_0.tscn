@@ -115,20 +115,23 @@ _data = {
 &"intro": SubResource("Animation_4x8ai")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dugi3"]
+size = Vector2(64, 704)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssous"]
+size = Vector2(4096, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aeg4k"]
+size = Vector2(64, 704)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1lse"]
+size = Vector2(645, 127)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_papml"]
-size = Vector2(1972, 100)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w7xqs"]
-normal = Vector2(1, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4vors"]
-normal = Vector2(-1, 0)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vors"]
-size = Vector2(1000, 360)
+size = Vector2(1013, 357)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4x8ai"]
-size = Vector2(332, 128)
+size = Vector2(512, 128)
 
 [node name="Level0" type="Node2D" unique_id=329832045 node_paths=PackedStringArray("animation_player", "exit_area")]
 script = ExtResource("1_e1xyi")
@@ -137,6 +140,7 @@ next_level_path = "uid://ccgj00d4ytf21"
 initial_timer = 20.0
 animation_player = NodePath("AnimationPlayer")
 exit_area = NodePath("Environment/ExitArea")
+metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=921312593]
 libraries/ = SubResource("AnimationLibrary_papml")
@@ -152,52 +156,6 @@ offset_bottom = 216.0
 theme_override_font_sizes/font_size = 64
 text = "LEVEL 0"
 
-[node name="Ground" type="StaticBody2D" parent="Environment" unique_id=465795098]
-position = Vector2(986, 598)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Ground" unique_id=1463602051]
-shape = SubResource("RectangleShape2D_papml")
-
-[node name="ColorRect" type="ColorRect" parent="Environment/Ground" unique_id=2072376020]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -986.0
-offset_top = -50.0
-offset_right = 986.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.1254902, 0.1254902, 0.1254902, 1)
-
-[node name="LeftWall" type="StaticBody2D" parent="Environment" unique_id=1032774474]
-position = Vector2(64, 0)
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/LeftWall" unique_id=1254427927]
-shape = SubResource("WorldBoundaryShape2D_w7xqs")
-
-[node name="ColorRect" type="ColorRect" parent="Environment/LeftWall" unique_id=1367152172]
-offset_left = -64.0
-offset_bottom = 548.0
-color = Color(0.12591085, 0.12591085, 0.12591082, 1)
-
-[node name="RightWall" type="StaticBody2D" parent="Environment" unique_id=1316078610]
-position = Vector2(2240, 0)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RightWall" unique_id=1125504482]
-shape = SubResource("WorldBoundaryShape2D_4vors")
-
-[node name="ColorRect" type="ColorRect" parent="Environment/RightWall" unique_id=238252702]
-offset_right = 64.0
-offset_bottom = 648.0
-color = Color(0.1254902, 0.1254902, 0.1254902, 1)
-
 [node name="ExitLabel" type="Label" parent="Environment" unique_id=1989234720]
 offset_left = 128.0
 offset_top = 356.0
@@ -207,33 +165,72 @@ theme_override_font_sizes/font_size = 32
 text = "EXIT
   ->"
 
-[node name="GrowObj" parent="Environment" unique_id=1900398055 instance=ExtResource("2_pcaiw")]
-position = Vector2(848, 484)
+[node name="ExitLabel2" type="Label" parent="Environment" unique_id=142658008]
+offset_left = 4126.0
+offset_top = 369.0
+offset_right = 4192.0
+offset_bottom = 510.0
+theme_override_font_sizes/font_size = 32
+text = "EXIT
+  |
+  v"
+
+[node name="Colliders" type="StaticBody2D" parent="Environment" unique_id=1106344774]
+metadata/_edit_lock_ = true
+
+[node name="LeftWall" type="CollisionShape2D" parent="Environment/Colliders" unique_id=668465748]
+position = Vector2(32, 352)
+shape = SubResource("RectangleShape2D_dugi3")
+
+[node name="Ground" type="CollisionShape2D" parent="Environment/Colliders" unique_id=1588863097]
+position = Vector2(2048, 640)
+shape = SubResource("RectangleShape2D_ssous")
+
+[node name="RightWall" type="CollisionShape2D" parent="Environment/Colliders" unique_id=65270945]
+position = Vector2(4576, 352)
+shape = SubResource("RectangleShape2D_aeg4k")
+
+[node name="Block" type="CollisionShape2D" parent="Environment/Colliders" unique_id=1101387805]
+position = Vector2(1289.5, 542.5)
+shape = SubResource("RectangleShape2D_d1lse")
+
+[node name="Block2" type="CollisionShape2D" parent="Environment/Colliders" unique_id=1589958947]
+position = Vector2(1297.5, 169)
+shape = SubResource("RectangleShape2D_papml")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Colliders" unique_id=1705948828]
+position = Vector2(3230.0469, 429.79065)
+polygon = PackedVector2Array(-1025.0469, -58.790634, -1025.0469, 28.209364, 853.9531, 89.209366, 851.9531, -63.790634)
+
+[node name="Objects" type="Node2D" parent="Environment" unique_id=89715000]
+metadata/_edit_lock_ = true
+
+[node name="GrowObj" parent="Environment/Objects" unique_id=1900398055 instance=ExtResource("2_pcaiw")]
+position = Vector2(901, 542)
 initial_progress = 1.0
 
-[node name="Block" type="StaticBody2D" parent="Environment" unique_id=1489470566]
-position = Vector2(1472, 368)
-metadata/_edit_group_ = true
+[node name="GrowObj2" parent="Environment/Objects" unique_id=1061055209 instance=ExtResource("2_pcaiw")]
+position = Vector2(1679, 544)
+initial_progress = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Block" unique_id=1437007746]
-shape = SubResource("RectangleShape2D_4vors")
+[node name="GrowObj3" parent="Environment/Objects" unique_id=975831933 instance=ExtResource("2_pcaiw")]
+position = Vector2(2268, 309)
+initial_progress = 1.0
 
-[node name="ColorRect" type="ColorRect" parent="Environment/Block" unique_id=1702207734]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -500.0
-offset_top = -180.0
-offset_right = 500.0
-offset_bottom = 180.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+[node name="GrowObj4" parent="Environment/Objects" unique_id=1929540872 instance=ExtResource("2_pcaiw")]
+position = Vector2(2514, 306)
+initial_progress = 1.0
+
+[node name="GrowObj5" parent="Environment/Objects" unique_id=1317380532 instance=ExtResource("2_pcaiw")]
+position = Vector2(2765, 305)
+initial_progress = 1.0
+
+[node name="GrowObj6" parent="Environment/Objects" unique_id=1360952698 instance=ExtResource("2_pcaiw")]
+position = Vector2(3015, 306)
+initial_progress = 1.0
 
 [node name="ExitArea" type="Area2D" parent="Environment" unique_id=2146477806]
-position = Vector2(2138, 712)
+position = Vector2(4352, 768)
 collision_layer = 0
 input_pickable = false
 monitorable = false
@@ -242,20 +239,10 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExitArea" unique_id=693917043]
 shape = SubResource("RectangleShape2D_4x8ai")
 
-[node name="ExitLabel2" type="Label" parent="Environment" unique_id=142658008]
-offset_left = 2159.0
-offset_top = 52.0
-offset_right = 2225.0
-offset_bottom = 193.0
-theme_override_font_sizes/font_size = 32
-text = "EXIT
-  |
-  v"
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=333814972 node_paths=PackedStringArray("target")]
 limit_left = 0
 limit_top = 0
-limit_right = 2304
+limit_right = 4608
 limit_bottom = 648
 script = ExtResource("2_4x8ai")
 target = NodePath("../Character")
@@ -263,6 +250,7 @@ metadata/_edit_lock_ = true
 
 [node name="Character" parent="." unique_id=47124019 instance=ExtResource("2_w7xqs")]
 position = Vector2(288, -128)
+jump_height = 160.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1374405904]
 
@@ -277,6 +265,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="TopBar" type="ColorRect" parent="CanvasLayer/CinematicBars" unique_id=434883807]
 layout_mode = 1

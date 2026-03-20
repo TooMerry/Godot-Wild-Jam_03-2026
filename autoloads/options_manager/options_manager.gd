@@ -20,12 +20,20 @@ const OPTIONS_FILE: String = "user://options.cfg"
 
 const SECTION_AUDIO: String = "audio"
 const SECTION_KEY_MASTER_VOLUME: String = "master_volume"
+const SECTION_KEY_BGM_VOLUME: String = "bgm_volume"
+const SECTION_KEY_SFX_VOLUME: String = "sfx_volume"
 
 const SECTION_CONTROLS: String = "controls"
 
 @export_range(0.0, 1.0, 0.01) var default_master_volume: float = 0.2
+@export_range(0.0, 1.0, 0.01) var default_bgm_volume: float = 1.0
+@export_range(0.0, 1.0, 0.01) var default_sfx_volume: float = 1.0
 
 var _options: ConfigFile = ConfigFile.new()
+
+var _master_bus_index: int = AudioServer.get_bus_index("Master")
+var _bgm_bus_index: int = AudioServer.get_bus_index("Bgm")
+var _sfx_bus_index: int = AudioServer.get_bus_index("Sfx")
 
 
 func _ready() -> void:
@@ -43,7 +51,9 @@ func _init_options() -> void:
 
 
 func _create_options() -> void:
-	AudioServer.set_bus_volume_linear(0, default_master_volume)
+	AudioServer.set_bus_volume_linear(_master_bus_index, default_master_volume)
+	AudioServer.set_bus_volume_linear(_bgm_bus_index, default_bgm_volume)
+	AudioServer.set_bus_volume_linear(_sfx_bus_index, default_sfx_volume)
 	save_options()
 
 
@@ -61,7 +71,19 @@ func _load_audio() -> void:
 			SECTION_AUDIO,
 			SECTION_KEY_MASTER_VOLUME,
 			default_master_volume)
-	AudioServer.set_bus_volume_linear(0, master_volume)
+	AudioServer.set_bus_volume_linear(_master_bus_index, master_volume)
+	
+	var bgm_volume: float = _options.get_value(
+			SECTION_AUDIO,
+			SECTION_KEY_BGM_VOLUME,
+			default_bgm_volume)
+	AudioServer.set_bus_volume_linear(_bgm_bus_index, bgm_volume)
+	
+	var sfx_volume: float = _options.get_value(
+			SECTION_AUDIO,
+			SECTION_KEY_SFX_VOLUME,
+			default_sfx_volume)
+	AudioServer.set_bus_volume_linear(_sfx_bus_index, sfx_volume)
 
 
 func _load_controls() -> void:
@@ -85,8 +107,14 @@ func save_options() -> void:
 
 
 func _save_audio() -> void:
-	var master_volume: float = AudioServer.get_bus_volume_linear(0)
+	var master_volume: float = AudioServer.get_bus_volume_linear(_master_bus_index)
 	_options.set_value(SECTION_AUDIO, SECTION_KEY_MASTER_VOLUME, master_volume)
+	
+	var bgm_volume: float = AudioServer.get_bus_volume_linear(_bgm_bus_index)
+	_options.set_value(SECTION_AUDIO, SECTION_KEY_BGM_VOLUME, bgm_volume)
+	
+	var sfx_volume: float = AudioServer.get_bus_volume_linear(_sfx_bus_index)
+	_options.set_value(SECTION_AUDIO, SECTION_KEY_SFX_VOLUME, sfx_volume)
 
 
 func _save_controls() -> void:

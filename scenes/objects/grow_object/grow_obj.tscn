@@ -38,7 +38,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.99, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [PackedVector2Array(-64, 64, -64, -64, 64, -64, 64, 64), PackedVector2Array(-64, 64, -64, -64, -119, -190, 0, -186, 122, -191, 64, -64, 64, 64), PackedVector2Array(-64, 64, -64, -64, -119, -190, 0, -186, 122, -191, 64, -64, 64, 64)]
+"values": [PackedVector2Array(-64, 64, -64, -64, -63, -64, 0, -64, 63, -64, 64, -64, 64, 64), PackedVector2Array(-64, 64, -64, -64, -119, -190, 0, -186, 122, -191, 64, -64, 64, 64), PackedVector2Array(-64, 64, -64, -64, -119, -190, 0, -186, 122, -191, 64, -64, 64, 64)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t2okv"]

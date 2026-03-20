@@ -15,13 +15,7 @@ fill_to = Vector2(0.125, 0.125)
 metadata/_snap_enabled = true
 metadata/_snap_count = 16
 
-[node name="ParticleManager" type="Control" unique_id=292972663]
+[node name="ParticleManager" type="Node2D" unique_id=536262406]
 z_index = 1
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("1_7nmep")
 particle_texture = SubResource("GradientTexture2D_ekc7j")
