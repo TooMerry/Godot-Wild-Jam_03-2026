@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://cwvumscyl7lmo"]
+
+[ext_resource type="Script" uid="uid://dcy6osfbgoe2b" path="res://scenes/ui/game_over_menu/game_over_menu.gd" id="1_5coa8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmylx"]
+bg_color = Color(0.5296, 0.6, 0.40800002, 0.49411765)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.61, 0.54818666, 0.41480002, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="GameOverMenu" type="Control" unique_id=262418473 node_paths=PackedStringArray("game_over_label", "epitaph_label", "retry_button", "main_menu_button")]
+process_mode = 3
+modulate = Color(1, 1, 1, 0.9607843)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5coa8")
+game_over_label = NodePath("PopupMargin/PanelContainer/MarginContainer/VBoxContainer/GameOverLabel")
+epitaph_label = NodePath("PopupMargin/PanelContainer/MarginContainer/VBoxContainer/EpitaphLabel")
+retry_button = NodePath("PopupMargin/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Retry")
+main_menu_button = NodePath("PopupMargin/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MainMenu")
+_main_menu_uid = &"uid://q1xtf6bfnyng"
+
+[node name="PopupMargin" type="MarginContainer" parent="." unique_id=510330045]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 150
+
+[node name="PanelContainer" type="PanelContainer" parent="PopupMargin" unique_id=236336545]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lmylx")
+
+[node name="MarginContainer" type="MarginContainer" parent="PopupMargin/PanelContainer" unique_id=1797827306]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupMargin/PanelContainer/MarginContainer" unique_id=1908811551]
+layout_mode = 2
+alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="PopupMargin/PanelContainer/MarginContainer/VBoxContainer" unique_id=795198593]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EpitaphLabel" type="Label" parent="PopupMargin/PanelContainer/MarginContainer/VBoxContainer" unique_id=2066509512]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 15
+text = "\"A life well lived\""
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupMargin/PanelContainer/MarginContainer/VBoxContainer" unique_id=1296343311]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Retry" type="Button" parent="PopupMargin/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=617577661]
+layout_mode = 2
+text = "Retry Level"
+
+[node name="MainMenu" type="Button" parent="PopupMargin/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=520733202]
+layout_mode = 2
+text = "Return to Menu"

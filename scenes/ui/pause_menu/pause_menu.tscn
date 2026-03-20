@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://wrvyh1hpnb7x"]
+
+[ext_resource type="Script" uid="uid://do4fdnw20u2uw" path="res://scenes/ui/pause_menu/pause_menu.gd" id="1_rbnsh"]
+[ext_resource type="PackedScene" uid="uid://dncrgp0kqf85p" path="res://scenes/ui/main_menu/options_menu/options_menu.tscn" id="2_xgg5q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rv5mv"]
+bg_color = Color(0.5372, 0.68, 0.48960003, 0.7176471)
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.78613335, 0.8, 0.592, 0.7254902)
+border_blend = true
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+
+[node name="PauseMenu" type="Control" unique_id=490790483 node_paths=PackedStringArray("left_menu", "resume_button", "main_menu_button", "options_button", "options_menu")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rbnsh")
+left_menu = NodePath("LeftMenu")
+resume_button = NodePath("LeftMenu/PanelContainer/VBoxContainer/VBoxContainer/ResumeButton")
+main_menu_button = NodePath("LeftMenu/PanelContainer/VBoxContainer/VBoxContainer/MainMenuButton")
+options_button = NodePath("LeftMenu/PanelContainer/VBoxContainer/VBoxContainer/OptionsButton")
+options_menu = NodePath("OptionsMenu")
+_main_menu_uid = &"uid://q1xtf6bfnyng"
+
+[node name="LeftMenu" type="MarginContainer" parent="." unique_id=143617408]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -500.0
+grow_vertical = 2
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="PanelContainer" type="PanelContainer" parent="LeftMenu" unique_id=679255005]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rv5mv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftMenu/PanelContainer" unique_id=688283879]
+layout_mode = 2
+theme_override_constants/separation = 42
+alignment = 1
+
+[node name="GamePaused" type="Label" parent="LeftMenu/PanelContainer/VBoxContainer" unique_id=1690535520]
+layout_mode = 2
+theme_override_font_sizes/font_size = 62
+text = "Game Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftMenu/PanelContainer/VBoxContainer" unique_id=1686310035]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ResumeButton" type="Button" parent="LeftMenu/PanelContainer/VBoxContainer/VBoxContainer" unique_id=371846867]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 29
+text = "Resume"
+
+[node name="OptionsButton" type="Button" parent="LeftMenu/PanelContainer/VBoxContainer/VBoxContainer" unique_id=1607078746]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 29
+text = "Options"
+
+[node name="MainMenuButton" type="Button" parent="LeftMenu/PanelContainer/VBoxContainer/VBoxContainer" unique_id=2000723095]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 29
+text = "Return to Main Menu"
+
+[node name="OptionsMenu" parent="." unique_id=403750368 instance=ExtResource("2_xgg5q")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1152.0
+offset_top = 32.0
+offset_right = 1768.0
+offset_bottom = 616.0
+grow_horizontal = 1
+grow_vertical = 1
+actions = Array[StringName]([&"left", &"right", &"up", &"down", &"jump", &"steal", &"give"])

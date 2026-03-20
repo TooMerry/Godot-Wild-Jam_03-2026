@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://l0oay6hngdph" path="res://scenes/levels/follow_camera.gd" id="2_4x8ai"]
 [ext_resource type="PackedScene" uid="uid://coxx2yn3347dq" path="res://scenes/objects/grow_object/grow_obj.tscn" id="2_pcaiw"]
 [ext_resource type="PackedScene" uid="uid://crtsrqp5yp1ik" path="res://scenes/character/character.tscn" id="2_w7xqs"]
-[ext_resource type="PackedScene" uid="uid://c1d4cgsnem67a" path="res://scenes/ui/timer_hud.tscn" id="4_4vors"]
+[ext_resource type="PackedScene" uid="uid://c1d4cgsnem67a" path="res://scenes/ui/hud.tscn" id="4_4vors"]
 
 [sub_resource type="Animation" id="Animation_papml"]
 length = 0.001
@@ -136,7 +136,7 @@ size = Vector2(512, 128)
 [node name="Level0" type="Node2D" unique_id=329832045 node_paths=PackedStringArray("animation_player", "exit_area")]
 script = ExtResource("1_e1xyi")
 next_level_id = 1
-next_level_path = "uid://ccgj00d4ytf21"
+next_level_path = "uid://cjihvxocx4n42"
 initial_timer = 20.0
 animation_player = NodePath("AnimationPlayer")
 exit_area = NodePath("Environment/ExitArea")

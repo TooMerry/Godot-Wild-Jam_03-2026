@@ -1,6 +1,6 @@
 @tool
 class_name GrowObj
-extends AnimatableBody2D
+extends Stealable
 
 @export_range(0.0, 1.0, 0.01) var initial_progress: float = 0.0:
 	set(value):
@@ -14,6 +14,8 @@ extends AnimatableBody2D
 @export var sprite: Sprite2D
 @export var animation_player: AnimationPlayer
 
+var is_hovered: bool = false
+@export var time_transfer_multiplier = 1.
 
 func _ready() -> void:
 	animation_player.play(&"grow")
@@ -22,6 +24,7 @@ func _ready() -> void:
 
 
 func steal(seconds:float) -> float:
+	seconds*=time_transfer_multiplier
 	if animation_player.current_animation_position > 0.0:
 		animation_player.advance(-seconds)
 		return seconds
@@ -29,6 +32,7 @@ func steal(seconds:float) -> float:
 
 
 func give(seconds:float) -> float:
+	seconds*=time_transfer_multiplier
 	if animation_player.current_animation_position < animation_player.current_animation_length:
 		animation_player.advance(seconds)
 		return seconds

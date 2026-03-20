@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://crpxufqdoi3sx"]
+
+[ext_resource type="Script" uid="uid://de85wnlw3d7si" path="res://autoloads/player_stats/player_stats.gd" id="1_f3ytw"]
+[ext_resource type="AudioStream" uid="uid://unidy1l0v27t" path="res://resources/sounds/particle/particle.ogg" id="2_pfty0"]
+[ext_resource type="AudioStream" uid="uid://cuwsippdomlx5" path="res://resources/sounds/particle/particle_inverted.ogg" id="3_uf8w4"]
+
+[node name="PlayerStats" type="Node" unique_id=1297595942]
+script = ExtResource("1_f3ytw")
+steal_sfx = ExtResource("2_pfty0")
+give_sfx = ExtResource("3_uf8w4")
+main_menu_uid = "uid://q1xtf6bfnyng"

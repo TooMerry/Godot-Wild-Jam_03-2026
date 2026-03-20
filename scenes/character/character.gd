@@ -6,9 +6,12 @@ extends CharacterBody2D
 @export_category("Physics")
 @export var ground_speed:float = 300.0
 @export var jump_height:float = 128
-@export var air_speed = 200.0
-@export var ground_friction = 0.6
-@export var air_friction = 0.001
+@export var air_speed:float = 200.0
+@export var ground_friction:float = 0.6
+@export var air_friction:float = 0.001
+#How much time the character can be in the air before state moves to air state
+@export var air_time:float = 0.1
+var _air_time_remaining = air_time
 
 @export_category("Age Dependant")
 #Time value after which character starts slowing
@@ -35,47 +38,9 @@ var falling:bool = false
 var gravity:Vector2
 var friction_coeff = ground_friction
 
-@export_category("Interaction SFX")
-@export var steal_sfx: AudioStream
-@export var give_sfx: AudioStream
+func _ready() -> void:
+	PlayerStats.set_player(self)
 
-var current_target: GrowObj = null
-
-@onready var space_state = get_world_2d().direct_space_state
-
-
-func _process(delta: float) -> void:
-	var new_target = _get_object_at_mouse()
-	if new_target != current_target:
-		# Remove highlight from previous target
-		if current_target:
-			current_target.set_highlight(false)
-		
-		current_target = new_target
-	
-	if current_target:
-		current_target.set_highlight(true)
-		if Input.is_action_pressed("steal"):
-			var time_stolen: float = current_target.steal(delta)
-			PlayerStats.add_time(time_stolen)
-			if time_stolen > 0.0:
-				ParticleManager.generate(current_target.global_position, self, steal_sfx)
-		elif Input.is_action_pressed("give"):
-			var time_given: float = current_target.give(delta)
-			PlayerStats.subtract_time(time_given)
-			if time_given > 0.0:
-				ParticleManager.generate(self.global_position, current_target, give_sfx)
-
-
-func _get_object_at_mouse() -> GrowObj:
-	var query = PhysicsPointQueryParameters2D.new()
-	query.position = get_global_mouse_position()
-	
-	var result = space_state.intersect_point(query, 1)
-	if result.is_empty() or result[0].collider is not GrowObj:
-		return null
-	
-	return result[0].collider
 
 func _set_time_dependent_factors() -> void:
 	var t:float = PlayerStats.remaining_time
@@ -94,13 +59,16 @@ func _physics_process(delta: float) -> void:
 	_set_time_dependent_factors()
 	
 	scale = Vector2.ONE*_scale_factor
-	
-	gravity = get_gravity()
+	if(get_gravity() != Vector2.ZERO):
+		gravity = get_gravity()
+		up_direction = -gravity.normalized()
 	var gravAngle = gravity.angle_to(Vector2.DOWN)
+	rotation = -gravAngle
+	
 	#Set jump velocity so that the height is consistent an can be finely tuned. Since d = v^2/(2a), v = sqrt(2ad)
 	jump_velocity = -gravity.normalized()*sqrt(2*gravity.length()*jump_height)
-	_do_state()
-	if falling:
+	_do_state(delta)
+	if !is_on_floor() || falling:
 		velocity += gravity * delta
 	
 	var direction := Input.get_axis("left", "right")
@@ -119,7 +87,7 @@ func _physics_process(delta: float) -> void:
 #States are mainly meant to enable animation differences
 #in the future. There might be separate walk, jump, and
 #fall animations later
-func _do_state() -> void:
+func _do_state(delta:float) -> void:
 	match _state:
 		GROUND:
 			if Input.is_action_just_pressed("jump"):
@@ -127,8 +95,13 @@ func _do_state() -> void:
 				_transition_state(JUMP)
 				return
 			if !is_on_floor():
-				_transition_state(AIR)
-				return
+				if(_air_time_remaining > 0):
+					_air_time_remaining -= delta
+				else:
+					_transition_state(AIR)
+					return
+			else:
+				_air_time_remaining = air_time
 		EDGE:
 			pass
 		JUMP:
@@ -158,6 +131,7 @@ func _enter_state(state:int) -> void:
 			friction_coeff = ground_friction
 			can_move_horizontal = true
 			animation_state_machine.travel("land")
+			_air_time_remaining = air_time
 		EDGE:
 			pass
 		JUMP:
@@ -179,6 +153,7 @@ func _enter_state(state:int) -> void:
 func _exit_state(state:int) -> void:
 	match state:
 		GROUND:
+			_air_time_remaining = air_time
 			pass
 		EDGE:
 			pass

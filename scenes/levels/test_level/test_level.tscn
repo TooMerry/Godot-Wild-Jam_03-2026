@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://ccgj00d4ytf21"]
+
+[ext_resource type="Script" uid="uid://bumgohx5dy0b3" path="res://scenes/levels/test_level/test_level.gd" id="1_u4cxi"]
+[ext_resource type="PackedScene" uid="uid://crtsrqp5yp1ik" path="res://scenes/character/character.tscn" id="2_nvi8s"]
+[ext_resource type="Script" uid="uid://l0oay6hngdph" path="res://scenes/levels/follow_camera.gd" id="3_l4mxu"]
+[ext_resource type="PackedScene" uid="uid://cgye513ma42o4" path="res://scenes/objects/moving_platform/platform_path.tscn" id="4_15cv5"]
+[ext_resource type="PackedScene" uid="uid://c1d4cgsnem67a" path="res://scenes/ui/hud.tscn" id="5_ex43x"]
+
+[sub_resource type="Curve2D" id="Curve2D_vmhy7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2, 2, 0, 0, 0, 0, -4, 174)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7uxs1"]
+size = Vector2(5310.5, 1127)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lh42"]
+size = Vector2(412, 80)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_spwf2"]
+normal = Vector2(0.9999422, 0.010752066)
+distance = -78.95242
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7uxs1"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vmhy7"]
+size = Vector2(182, 275)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7uxs1"]
+radius = 104.702354
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3lh42"]
+radius = 99.724625
+
+[node name="TestLevel" type="Node2D" unique_id=1029438254 node_paths=PackedStringArray("animation_player", "exit_area")]
+script = ExtResource("1_u4cxi")
+level_id = 1
+animation_player = NodePath("AnimationPlayer")
+exit_area = NodePath("Area2D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1660511655]
+
+[node name="Character" parent="." unique_id=47124019 instance=ExtResource("2_nvi8s")]
+position = Vector2(430, 175)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=711602039 node_paths=PackedStringArray("target")]
+ignore_rotation = false
+rotation_smoothing_enabled = true
+script = ExtResource("3_l4mxu")
+target = NodePath("../Character")
+
+[node name="PlatformPath" parent="." unique_id=1366809630 instance=ExtResource("4_15cv5")]
+position = Vector2(1129, 286)
+curve = SubResource("Curve2D_vmhy7")
+
+[node name="AnimatableBody2D" parent="PlatformPath" index="0" unique_id=1515891538]
+looping = false
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=823194823]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=1698444553]
+position = Vector2(2653.75, 1098.5)
+shape = SubResource("RectangleShape2D_7uxs1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground" unique_id=105551486]
+position = Vector2(1116, 307)
+shape = SubResource("RectangleShape2D_3lh42")
+
+[node name="Panel" type="Panel" parent="Ground" unique_id=634059711]
+offset_top = 531.0
+offset_right = 5313.0
+offset_bottom = 1660.0
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground" unique_id=1938992213]
+position = Vector2(78, 446)
+shape = SubResource("WorldBoundaryShape2D_spwf2")
+
+[node name="Panel2" type="Panel" parent="Ground" unique_id=1370610702]
+offset_left = -724.0
+offset_top = 5.0
+offset_right = -3.0
+offset_bottom = 1669.0
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Ground" unique_id=747326555]
+position = Vector2(5313, 530)
+shape = SubResource("WorldBoundaryShape2D_7uxs1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1009467017]
+
+[node name="TimerHud" parent="CanvasLayer" unique_id=1546810575 instance=ExtResource("5_ex43x")]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=190020448]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=588360025]
+position = Vector2(5224, 392)
+shape = SubResource("RectangleShape2D_vmhy7")
+
+[node name="GravArea" type="Area2D" parent="." unique_id=1892919345]
+position = Vector2(3584, -1693)
+scale = Vector2(20, 20)
+gravity_space_override = 3
+gravity_point = true
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravArea" unique_id=114018312]
+shape = SubResource("CircleShape2D_7uxs1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="GravArea" unique_id=1882548243]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravArea/StaticBody2D" unique_id=2084801871]
+shape = SubResource("CircleShape2D_3lh42")
+
+[editable path="PlatformPath"]

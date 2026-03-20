@@ -50,7 +50,7 @@ scene_path = "uid://1ruio0qaspmx"
 [node name="Level1Button" parent="PanelContainer/MarginContainer/VBoxContainer/HFlowContainer" unique_id=1273137282 instance=ExtResource("2_kwh6v")]
 layout_mode = 2
 text = "1"
-scene_path = "uid://ccgj00d4ytf21"
+scene_path = "uid://cjihvxocx4n42"
 
 [node name="Level2Button" parent="PanelContainer/MarginContainer/VBoxContainer/HFlowContainer" unique_id=1410717987 instance=ExtResource("2_kwh6v")]
 layout_mode = 2

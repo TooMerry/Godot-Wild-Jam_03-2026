@@ -24,9 +24,9 @@ buses/default_bus_layout="uid://xdfejdhlyg2d"
 AudioManager="*uid://dy8u6tswelrqk"
 SceneManager="*uid://o43i5gyrs664"
 OptionsManager="*uid://ct3ccf0jlg66g"
-PlayerStats="*uid://de85wnlw3d7si"
 ParticleManager="*uid://dnrjfre830gtn"
 SaveManager="*uid://dqfedfru1csyv"
+PlayerStats="*uid://crpxufqdoi3sx"
 
 [global_group]
 

@@ -95,8 +95,7 @@ func _change_scene_internal(path: String, transition_name: StringName) -> void:
 		
 		await _tree.create_timer(0.0).timeout
 		
-		_tree_root.add_child(_current_scene)
-		_tree.set_current_scene(_current_scene)
+		_tree.change_scene_to_node(_current_scene)
 	
 	await _transition_in()
 	is_changing = false
