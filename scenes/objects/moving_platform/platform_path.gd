@@ -50,14 +50,10 @@ var _remote:RemoteTransform2D
 @export var _frame:int = 0
 		
 @export_category("Collision")
-var is_hovered:bool = false
 @export var time_transfer_multiplier:float = 2.
 
 
 func _ready() -> void:
-	mouse_entered.connect(_on_mouse_enter)
-	mouse_exited.connect(_on_mouse_exit)
-	
 	if !_sprite:
 		_sprite = Sprite2D.new()
 		add_child(_sprite)
@@ -68,9 +64,6 @@ func _ready() -> void:
 	path_follow.cubic_interp = false
 	path_follow.loop = looping
 	setup.call_deferred()
-	#_path.add_child.call_deferred(path_follow)
-	
-	
 	input_pickable = true
 
 func setup() -> void:
@@ -116,14 +109,6 @@ func give(seconds:float) -> float:
 		progress += speed*seconds
 	return seconds
 
-func _on_mouse_enter() -> void:
-	is_hovered = true
-	_sprite.set_instance_shader_parameter("is_enabled",is_hovered)
-
-func _on_mouse_exit() -> void:
-	is_hovered = false
-	_sprite.set_instance_shader_parameter("is_enabled",is_hovered)
-
 var _internal_time:float = 0.
 
 func _do_time_step(delta:float) -> void:
@@ -132,7 +117,6 @@ func _do_time_step(delta:float) -> void:
 	if looping || (next_prog < max_progress && next_prog >= 0):
 		progress = next_prog
 
-var selected:bool = false
 func _physics_process(delta: float) -> void:
 	_do_time_step(delta)
 
@@ -171,3 +155,6 @@ func set_platform_frame(val:int) -> void:
 	if val > max_frame:
 		val = max_frame
 	_sprite.frame = val
+
+func set_highlight(enabled:bool) -> void:
+	set_instance_shader_parameter("is_enabled",enabled)

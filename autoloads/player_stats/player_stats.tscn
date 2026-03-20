@@ -8,3 +8,4 @@
 script = ExtResource("1_f3ytw")
 steal_sfx = ExtResource("2_pfty0")
 give_sfx = ExtResource("3_uf8w4")
+main_menu_uid = "uid://q1xtf6bfnyng"

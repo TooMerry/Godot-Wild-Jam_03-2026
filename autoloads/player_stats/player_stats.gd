@@ -6,17 +6,28 @@ var remaining_time:float = 617.0
 
 @export var steal_sfx:AudioStream
 @export var give_sfx:AudioStream
+@export var main_menu_uid:String
 
 @onready var _tree:SceneTree = get_tree()
 @onready var _scene:Node = _tree.current_scene
 @onready var _world:World2D = _scene.get_viewport().find_world_2d()
 @onready var _space_state:PhysicsDirectSpaceState2D = _world.direct_space_state
 
-var _current_target:Node2D
+var _current_target:Stealable
 var _target_selected:bool = false
 
 func _ready() -> void:
+	_decide_process_mode()
 	_tree.scene_changed.connect(_on_scene_change)
+	SceneManager.transition_finished.connect(_decide_process_mode)
+
+func _decide_process_mode() -> void:
+	if ResourceUID.id_to_text(ResourceLoader.get_resource_uid(_scene.scene_file_path)) == main_menu_uid:
+		set_process(false)
+		print("not processing")
+	else:
+		set_process(true)
+		print("processing")
 
 func _on_scene_change() -> void:
 	_tree = get_tree()
@@ -35,7 +46,7 @@ func _get_mouse_position() -> Vector2:
 		return (screen_transform*canvas_transform).affine_inverse()*screenPos
 	return Vector2.ZERO
 
-func _get_object_at_mouse() -> Node2D:
+func _get_object_at_mouse() -> Stealable:
 	var query = PhysicsPointQueryParameters2D.new()
 	query.position = _get_mouse_position()
 	query.collide_with_bodies = true
@@ -65,8 +76,15 @@ func set_player(new_player:CharacterBody2D) -> void:
 
 
 func _process(delta: float) -> void:
-	if !_target_selected:_current_target = _get_object_at_mouse()
+	if !_target_selected:
+		var new_target:Stealable
+		new_target = _get_object_at_mouse()
+		if new_target != _current_target:
+			if _current_target:
+				_current_target.set_highlight(false)
+			_current_target = new_target
 	if _current_target:
+		_current_target.set_highlight(true)
 		_target_selected = true
 		if Input.is_action_pressed("steal"):
 			var time_stolen: float = _current_target.steal(delta)

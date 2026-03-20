@@ -16,17 +16,13 @@ func _ready() -> void:
 	exit_area.body_entered.connect(_on_exit_area_entered)
 	if traps:
 		traps.body_entered.connect(_on_traps_entered)
-	
-	await SceneManager.transition_finished
-	animation_player.play(&"intro")
-	await animation_player.animation_finished
-	
 	PlayerStats.set_time(initial_timer)
 	await SceneManager.transition_finished
 	if(animation_player.has_animation(&"intro")):
 		animation_player.play(&"intro")
 		await animation_player.animation_finished
 	PlayerStats.paused = false
+	print(PlayerStats.paused)
 
 
 func go_to_next_level() -> void:

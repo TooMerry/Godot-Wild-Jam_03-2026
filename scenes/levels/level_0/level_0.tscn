@@ -136,7 +136,7 @@ size = Vector2(512, 128)
 [node name="Level0" type="Node2D" unique_id=329832045 node_paths=PackedStringArray("animation_player", "exit_area")]
 script = ExtResource("1_e1xyi")
 next_level_id = 1
-next_level_path = "uid://ccgj00d4ytf21"
+next_level_path = "uid://cjihvxocx4n42"
 initial_timer = 20.0
 animation_player = NodePath("AnimationPlayer")
 exit_area = NodePath("Environment/ExitArea")
