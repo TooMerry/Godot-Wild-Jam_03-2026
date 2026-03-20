@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6wjt4egqc35f"
-path="res://.godot/imported/dirt.png-70cfce7ede540fa830de40204ef727f9.ctex"
+path="res://.godot/imported/dirt.png-113f351002a78afacb55278319e481d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/images/tileset/dirt.png"
-dest_files=["res://.godot/imported/dirt.png-70cfce7ede540fa830de40204ef727f9.ctex"]
+source_file="res://resources/images/tilesets/dirt.png"
+dest_files=["res://.godot/imported/dirt.png-113f351002a78afacb55278319e481d2.ctex"]
 
 [params]
 
