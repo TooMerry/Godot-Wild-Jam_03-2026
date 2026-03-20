@@ -45,8 +45,16 @@ var current_target: GrowObj = null
 
 
 func _process(delta: float) -> void:
-	current_target = _get_object_at_mouse()
+	var new_target = _get_object_at_mouse()
+	if new_target != current_target:
+		# Remove highlight from previous target
+		if current_target:
+			current_target.set_highlight(false)
+		
+		current_target = new_target
+	
 	if current_target:
+		current_target.set_highlight(true)
 		if Input.is_action_pressed("steal"):
 			var time_stolen: float = current_target.steal(delta)
 			PlayerStats.add_time(time_stolen)
@@ -59,7 +67,7 @@ func _process(delta: float) -> void:
 				ParticleManager.generate(self.global_position, current_target, give_sfx)
 
 
-func _get_object_at_mouse() -> Node2D:
+func _get_object_at_mouse() -> GrowObj:
 	var query = PhysicsPointQueryParameters2D.new()
 	query.position = get_global_mouse_position()
 	

@@ -16,8 +16,8 @@ void fragment() {
 	float normalized_angle = (angle + PI) / (2.0 * PI);
 	
 	if (inverted) {
-		normalized_angle = 1.0 - normalized_angle;
+		COLOR.a = step(1.0 - normalized_angle, progress);
+	} else {
+		COLOR.a = step(normalized_angle, progress);
 	}
-	
-	COLOR.a = step(normalized_angle, progress);
 }
