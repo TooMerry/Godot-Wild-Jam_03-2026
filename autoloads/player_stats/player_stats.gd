@@ -72,7 +72,41 @@ func set_player(new_player:CharacterBody2D) -> void:
 		player = new_player
 
 
-func _process(delta: float) -> void:
+#func _process(delta: float) -> void:
+	#if !_target_selected:
+		#var new_target:Stealable
+		#new_target = _get_object_at_mouse()
+		#if new_target != _current_target:
+			#if _current_target:
+				#_current_target.set_highlight(false)
+			#_current_target = new_target
+	#if _current_target:
+		#_current_target.set_highlight(true)
+		#_target_selected = true
+		#if Input.is_action_pressed("steal"):
+			#var time_stolen: float = _current_target.steal(delta)
+			#PlayerStats.add_time(time_stolen)
+			#if time_stolen > 0.0:
+				#ParticleManager.generate(_current_target.global_position, player, steal_sfx)
+		#elif Input.is_action_pressed("give"):
+			#var time_given: float = _current_target.give(delta)
+			#PlayerStats.subtract_time(time_given)
+			#if time_given > 0.0:
+				#ParticleManager.generate(player.global_position, _current_target, give_sfx)
+		#else:
+			#_target_selected = false
+
+func _physics_process(delta: float) -> void:
+	if !paused:
+		if(remaining_time >= delta):
+			remaining_time -= delta
+		else:
+			remaining_time = 0
+		if(remaining_time <= 0):
+			paused = true
+			timeout.emit()
+			return
+	
 	if !_target_selected:
 		var new_target:Stealable
 		new_target = _get_object_at_mouse()
@@ -84,25 +118,15 @@ func _process(delta: float) -> void:
 		_current_target.set_highlight(true)
 		_target_selected = true
 		if Input.is_action_pressed("steal"):
-			var time_stolen: float = _current_target.steal(delta)
-			PlayerStats.add_time(time_stolen)
+			var time_stolen: float = _current_target.steal(delta*_current_target.time_transfer_multiplier)
+			add_time(time_stolen)
 			if time_stolen > 0.0:
 				ParticleManager.generate(_current_target.global_position, player, steal_sfx)
 		elif Input.is_action_pressed("give"):
-			var time_given: float = _current_target.give(delta)
-			PlayerStats.subtract_time(time_given)
+			var time_given: float = _current_target.give(delta*_current_target.time_transfer_multiplier)
+			subtract_time(time_given)
 			if time_given > 0.0:
 				ParticleManager.generate(player.global_position, _current_target, give_sfx)
 		else:
 			_target_selected = false
-
-func _physics_process(delta: float) -> void:
-	if !paused:
-		if(remaining_time >= delta):
-			remaining_time -= delta
-		else:
-			remaining_time = 0
-		if(remaining_time <= 0):
-			paused = true
-			timeout.emit()
 		

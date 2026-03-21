@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://cpyn0ve7v3qv6"]
+[gd_scene format=3 uid="uid://s206wvi7nn5l"]
 
-[ext_resource type="Script" uid="uid://fnlsjd58ahyw" path="res://scenes/levels/level.gd" id="1_f1k8i"]
-[ext_resource type="Script" uid="uid://l0oay6hngdph" path="res://scenes/levels/follow_camera.gd" id="2_83l3i"]
-[ext_resource type="PackedScene" uid="uid://coxx2yn3347dq" path="res://scenes/objects/grow_object/grow_obj.tscn" id="2_hopjm"]
-[ext_resource type="PackedScene" uid="uid://crtsrqp5yp1ik" path="res://scenes/character/character.tscn" id="3_hopjm"]
-[ext_resource type="PackedScene" uid="uid://c1d4cgsnem67a" path="res://scenes/ui/hud.tscn" id="4_68es0"]
+[ext_resource type="Script" uid="uid://fnlsjd58ahyw" path="res://scenes/levels/level.gd" id="1_mmhdy"]
+[ext_resource type="Script" uid="uid://l0oay6hngdph" path="res://scenes/levels/follow_camera.gd" id="1_pvu1q"]
+[ext_resource type="PackedScene" uid="uid://crtsrqp5yp1ik" path="res://scenes/character/character.tscn" id="2_mmhdy"]
+[ext_resource type="PackedScene" uid="uid://c1d4cgsnem67a" path="res://scenes/ui/hud.tscn" id="3_2laes"]
+[ext_resource type="PackedScene" uid="uid://wrvyh1hpnb7x" path="res://scenes/ui/pause_menu/pause_menu.tscn" id="4_2o5qv"]
 
 [sub_resource type="Animation" id="Animation_papml"]
 length = 0.001
@@ -109,53 +109,37 @@ tracks/3/keys = {
 "values": [0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_83l3i"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_83a0a"]
 _data = {
 &"RESET": SubResource("Animation_papml"),
 &"intro": SubResource("Animation_4x8ai")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_83l3i"]
-size = Vector2(64, 704)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hopjm"]
-size = Vector2(4096, 64)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_68es0"]
-size = Vector2(64, 704)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugaie"]
-size = Vector2(503.25, 68)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e74df"]
-size = Vector2(880, 68)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6exq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qra2n"]
 size = Vector2(512, 128)
 
-[node name="Level2" type="Node2D" unique_id=1443883852 node_paths=PackedStringArray("animation_player", "exit_area", "traps")]
-script = ExtResource("1_f1k8i")
-level_id = 2
-next_level_id = 3
-next_level_path = "uid://b2fhxdd3awyb2"
+[node name="LevelTemplate" type="Node2D" unique_id=1522238413 node_paths=PackedStringArray("animation_player", "exit_area", "traps")]
+script = ExtResource("1_mmhdy")
 animation_player = NodePath("AnimationPlayer")
 exit_area = NodePath("Environment/ExitArea")
 traps = NodePath("Environment/Traps")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1529449993]
-libraries/ = SubResource("AnimationLibrary_83l3i")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=699644653]
+libraries/ = SubResource("AnimationLibrary_83a0a")
 
-[node name="Environment" type="Node2D" parent="." unique_id=796504651]
+[node name="Environment" type="Node2D" parent="." unique_id=599037856]
+metadata/_edit_lock_ = true
 
-[node name="LevelLabel" type="Label" parent="Environment" unique_id=2072871891]
+[node name="LevelLabel" type="Label" parent="Environment" unique_id=1191056325]
 offset_left = 96.0
 offset_top = 128.0
 offset_right = 330.0
 offset_bottom = 216.0
 theme_override_font_sizes/font_size = 64
-text = "LEVEL 2"
+text = "LEVEL <NUMBER>"
+metadata/_edit_use_anchors_ = true
 
-[node name="ExitLabel" type="Label" parent="Environment" unique_id=1620915659]
+[node name="ExitLabel" type="Label" parent="Environment" unique_id=566057794]
 offset_left = 128.0
 offset_top = 356.0
 offset_right = 194.0
@@ -163,8 +147,9 @@ offset_bottom = 449.0
 theme_override_font_sizes/font_size = 32
 text = "EXIT
   ->"
+metadata/_edit_use_anchors_ = true
 
-[node name="ExitLabel2" type="Label" parent="Environment" unique_id=1809461021]
+[node name="ExitLabel2" type="Label" parent="Environment" unique_id=223000884]
 offset_left = 4126.0
 offset_top = 369.0
 offset_right = 4192.0
@@ -173,71 +158,55 @@ theme_override_font_sizes/font_size = 32
 text = "EXIT
   |
   v"
+metadata/_edit_use_anchors_ = true
 
-[node name="Colliders" type="StaticBody2D" parent="Environment" unique_id=1625522050]
+[node name="Colliders" type="StaticBody2D" parent="Environment" unique_id=1536253596]
 metadata/_edit_lock_ = true
 
-[node name="LeftWall" type="CollisionShape2D" parent="Environment/Colliders" unique_id=2064509386]
-position = Vector2(32, 352)
-shape = SubResource("RectangleShape2D_83l3i")
-
-[node name="Ground" type="CollisionShape2D" parent="Environment/Colliders" unique_id=2072941731]
-position = Vector2(2048, 640)
-shape = SubResource("RectangleShape2D_hopjm")
-
-[node name="RightWall" type="CollisionShape2D" parent="Environment/Colliders" unique_id=1655806221]
-position = Vector2(4576, 352)
-shape = SubResource("RectangleShape2D_68es0")
-
-[node name="Block" type="CollisionShape2D" parent="Environment/Colliders" unique_id=1669749559]
-position = Vector2(743.375, 309)
-shape = SubResource("RectangleShape2D_ugaie")
-
-[node name="Objects" type="Node2D" parent="Environment" unique_id=438698636]
+[node name="Objects" type="Node2D" parent="Environment" unique_id=1663960372]
 metadata/_edit_lock_ = true
 
-[node name="GrowObj" parent="Environment/Objects" unique_id=1900398055 instance=ExtResource("2_hopjm")]
-position = Vector2(330, 540)
-initial_progress = 1.0
-
-[node name="Traps" type="Area2D" parent="Environment" unique_id=1081537334]
+[node name="Traps" type="Area2D" parent="Environment" unique_id=1105877759]
 collision_layer = 0
 input_pickable = false
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Traps" unique_id=601983094]
-position = Vector2(842, 566)
-shape = SubResource("RectangleShape2D_e74df")
-
-[node name="ExitArea" type="Area2D" parent="Environment" unique_id=860822696]
+[node name="ExitArea" type="Area2D" parent="Environment" unique_id=1970465594]
 position = Vector2(4352, 768)
 collision_layer = 0
 input_pickable = false
 monitorable = false
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExitArea" unique_id=1697502174]
-shape = SubResource("RectangleShape2D_x6exq")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExitArea" unique_id=1747327435]
+shape = SubResource("RectangleShape2D_qra2n")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=615388103 node_paths=PackedStringArray("target")]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1894551901 node_paths=PackedStringArray("target")]
 limit_left = 0
 limit_top = 0
 limit_right = 4608
 limit_bottom = 648
-script = ExtResource("2_83l3i")
+script = ExtResource("1_pvu1q")
 target = NodePath("../Character")
 metadata/_edit_lock_ = true
 
-[node name="Character" parent="." unique_id=47124019 instance=ExtResource("3_hopjm")]
+[node name="Character" parent="." unique_id=47124019 instance=ExtResource("2_mmhdy")]
 position = Vector2(338, -139)
 jump_height = 160.0
+slowing_threshold_time = 65.0
+max_slow_time = 110.0
+min_speed_scale = 0.308
+shrinking_threshold_time = 20
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=287993893]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1362938602]
 
-[node name="TimerHud" parent="CanvasLayer" unique_id=1546810575 instance=ExtResource("4_68es0")]
+[node name="TimerHud" parent="CanvasLayer" unique_id=1546810575 instance=ExtResource("3_2laes")]
 metadata/_edit_lock_ = true
 
-[node name="CinematicBars" type="Control" parent="CanvasLayer" unique_id=631858161]
+[node name="PauseMenu" parent="CanvasLayer" unique_id=490790483 instance=ExtResource("4_2o5qv")]
+metadata/_edit_use_anchors_ = true
+
+[node name="CinematicBars" type="Control" parent="CanvasLayer" unique_id=1664238887]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -247,7 +216,7 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="TopBar" type="ColorRect" parent="CanvasLayer/CinematicBars" unique_id=460064785]
+[node name="TopBar" type="ColorRect" parent="CanvasLayer/CinematicBars" unique_id=1722165201]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -255,8 +224,9 @@ offset_top = -64.0
 grow_horizontal = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
-[node name="BottomBar" type="ColorRect" parent="CanvasLayer/CinematicBars" unique_id=243301549]
+[node name="BottomBar" type="ColorRect" parent="CanvasLayer/CinematicBars" unique_id=668184786]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -267,3 +237,4 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true

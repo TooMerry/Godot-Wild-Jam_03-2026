@@ -9,6 +9,7 @@ var _remote:RemoteTransform2D
 
 #Variables describing the movement of the platform
 @export_category("Movement")
+@export var time_before_movement_start:float = 0.
 #Speed (in number of pixels per second) of the platform
 @export var speed:float = 100;
 @export var looping:bool = true
@@ -17,16 +18,11 @@ var _remote:RemoteTransform2D
 #teleports back to the start of its path
 @export var boomerang:bool = false
 #Progress (in number of pixels travelled along the curve)
-@export var progress:float = 0:
+var progress:float = 0:
 	set(val):
 		if is_equal_approx(val,progress):
 			return
-		if !looping:
-			progress = clampf(val,0,max_progress*0.9999)
-			path_follow.progress = get_real_progress(progress)
-			return
-		progress = float_mod(val,max_progress)
-		progress_ratio = progress/max_progress
+		progress = float_mod(val,max_progress) if looping else clampf(val,0,max_progress*0.9999)
 		if !is_node_ready():
 			return
 		path_follow.progress = get_real_progress(progress)
@@ -49,11 +45,19 @@ var _remote:RemoteTransform2D
 @export var _vframes:int = 1
 @export var _frame:int = 0
 		
-@export_category("Collision")
-@export var time_transfer_multiplier:float = 2.
+@export_category("Time")
+@export var _time_transfer_multiplier:float = 2.:
+	set(value):
+		time_transfer_multiplier = value
+		_time_transfer_multiplier = value
+#Maximum number of seconds back the platform can be from the current moment.
+@export var max_temporal_offset:float = 4.
+@export var min_temporal_offset:float = -4.
+var temporal_offset:float = 0
 
 
 func _ready() -> void:
+	time_transfer_multiplier = _time_transfer_multiplier
 	if !_sprite:
 		_sprite = Sprite2D.new()
 		add_child(_sprite)
@@ -71,6 +75,7 @@ func setup() -> void:
 	path_follow.progress_ratio = 1
 	max_progress = path_follow.progress * (2. if boomerang else 1.)
 	path_follow.progress = get_real_progress(progress)
+	print(path_follow.progress,progress)
 	_remote = RemoteTransform2D.new()
 	path_follow.add_child(_remote)
 	_remote.remote_path = _remote.get_path_to(self)
@@ -91,31 +96,38 @@ func get_real_progress(prog:float)->float:
 	return max_progress/2 - abs(float_mod(prog,max_progress) - max_progress/2)
 
 func steal(seconds:float) -> float:
-	seconds *= time_transfer_multiplier
-	if _internal_time <= 0.:
+	if _internal_time <= seconds || temporal_offset <= min_temporal_offset:
 		return 0.
-	seconds = min(_internal_time,seconds)
-	PlayerStats.add_time(seconds)
-	_internal_time -= seconds
-	if looping || (_internal_time*speed < max_progress && _internal_time >= 0):
+	temporal_offset -= min(seconds,temporal_offset - min_temporal_offset)
+	#_internal_time -= seconds
+	var offset_time:float = _internal_time + temporal_offset
+	if offset_time < time_before_movement_start:
+		return seconds
+	var internal_time_adj = offset_time - time_before_movement_start
+	if looping || (internal_time_adj*speed < max_progress && internal_time_adj >= 0):
 		progress -= speed*seconds
 	return seconds
 
 func give(seconds:float) -> float:
-	seconds *= time_transfer_multiplier
-	PlayerStats.subtract_time(seconds)
-	_internal_time += seconds
-	if looping || (_internal_time*speed < max_progress && _internal_time >= 0):
+	if temporal_offset >= max_temporal_offset:
+		return 0.
+	temporal_offset += min(seconds,max_temporal_offset - temporal_offset)
+	var offset_time:float = _internal_time + temporal_offset
+	if offset_time < time_before_movement_start:
+		return seconds
+	var internal_time_adj = offset_time - time_before_movement_start
+	if looping || (internal_time_adj*speed < max_progress && internal_time_adj >= 0):
 		progress += speed*seconds
 	return seconds
 
 var _internal_time:float = 0.
 
 func _do_time_step(delta:float) -> void:
-	_internal_time += delta;
-	var next_prog:float = progress + speed * delta
-	if looping || (next_prog < max_progress && next_prog >= 0):
-		progress = next_prog
+	_internal_time += delta
+	if(_internal_time + temporal_offset > time_before_movement_start):
+		var next_prog:float = progress + speed * delta
+		if looping || (next_prog < max_progress && next_prog >= 0):
+			progress = next_prog
 
 func _physics_process(delta: float) -> void:
 	_do_time_step(delta)
@@ -156,5 +168,6 @@ func set_platform_frame(val:int) -> void:
 		val = max_frame
 	_sprite.frame = val
 
+var transferring:bool = false
 func set_highlight(enabled:bool) -> void:
-	set_instance_shader_parameter("is_enabled",enabled)
+	_sprite.set_instance_shader_parameter("is_enabled",enabled)

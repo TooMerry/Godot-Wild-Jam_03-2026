@@ -15,7 +15,7 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 script = ExtResource("1_hc5dj")
-level_buttons = [NodePath("PanelContainer/MarginContainer/VBoxContainer/HFlowContainer/Level0Button"), NodePath("PanelContainer/MarginContainer/VBoxContainer/HFlowContainer/Level1Button"), NodePath("PanelContainer/MarginContainer/VBoxContainer/HFlowContainer/Level2Button")]
+level_buttons = [NodePath("PanelContainer/MarginContainer/VBoxContainer/HFlowContainer/Level0Button"), NodePath("PanelContainer/MarginContainer/VBoxContainer/HFlowContainer/Level1Button"), NodePath("PanelContainer/MarginContainer/VBoxContainer/HFlowContainer/Level2Button"), NodePath("PanelContainer/MarginContainer/VBoxContainer/HFlowContainer/Level3Button"), NodePath("PanelContainer/MarginContainer/VBoxContainer/HFlowContainer/Level4Button")]
 first_focus_target = NodePath("PanelContainer/MarginContainer/VBoxContainer/HFlowContainer/Level0Button")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1345013729]
@@ -56,3 +56,15 @@ scene_path = "uid://cjihvxocx4n42"
 layout_mode = 2
 text = "2"
 scene_path = "uid://cpyn0ve7v3qv6"
+
+[node name="Level3Button" parent="PanelContainer/MarginContainer/VBoxContainer/HFlowContainer" unique_id=1978658103 instance=ExtResource("2_kwh6v")]
+layout_mode = 2
+disabled = false
+text = "3"
+scene_path = "uid://b2fhxdd3awyb2"
+
+[node name="Level4Button" parent="PanelContainer/MarginContainer/VBoxContainer/HFlowContainer" unique_id=547942397 instance=ExtResource("2_kwh6v")]
+layout_mode = 2
+disabled = false
+text = "4"
+scene_path = "uid://83wieng44kk8"
