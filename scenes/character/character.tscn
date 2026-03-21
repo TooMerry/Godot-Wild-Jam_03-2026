@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dj06olmweaw2e" path="res://scenes/character/character.gd" id="1_lkv7d"]
 [ext_resource type="Texture2D" uid="uid://c6y4wdoiu8vap" path="res://resources/images/stickman.png" id="2_cuyo6"]
-[ext_resource type="AudioStream" uid="uid://unidy1l0v27t" path="res://resources/sounds/particle/particle.ogg" id="2_fgi2k"]
-[ext_resource type="AudioStream" uid="uid://cuwsippdomlx5" path="res://resources/sounds/particle/particle_inverted.ogg" id="3_f8hpl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ushfy"]
 radius = 16.0
@@ -180,12 +178,11 @@ transitions = ["jump", "air", SubResource("AnimationNodeStateMachineTransition_m
 graph_offset = Vector2(61.320087, -18.204964)
 
 [node name="Character" type="CharacterBody2D" unique_id=47124019 node_paths=PackedStringArray("sprite", "tree")]
+collision_mask = 3
 script = ExtResource("1_lkv7d")
 sprite = NodePath("Sprite")
 tree = NodePath("AnimationTree")
 jump_height = 132.0
-steal_sfx = ExtResource("2_fgi2k")
-give_sfx = ExtResource("3_f8hpl")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1903765647]
 texture = ExtResource("2_cuyo6")
