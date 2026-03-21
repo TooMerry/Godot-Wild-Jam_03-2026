@@ -72,6 +72,7 @@ _data = {
 }
 
 [node name="GrowObj" type="AnimatableBody2D" unique_id=1900398055 node_paths=PackedStringArray("sprite", "animation_player") groups=["stealable"]]
+collision_layer = 2
 input_pickable = true
 script = ExtResource("1_v1jtv")
 sprite = NodePath("Sprite2D")

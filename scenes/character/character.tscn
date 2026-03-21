@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://crtsrqp5yp1ik"]
 
 [ext_resource type="Script" uid="uid://dj06olmweaw2e" path="res://scenes/character/character.gd" id="1_lkv7d"]
-[ext_resource type="Texture2D" uid="uid://c6y4wdoiu8vap" path="res://resources/images/stickman.png" id="2_cuyo6"]
-[ext_resource type="AudioStream" uid="uid://unidy1l0v27t" path="res://resources/sounds/particle/particle.ogg" id="2_fgi2k"]
-[ext_resource type="AudioStream" uid="uid://cuwsippdomlx5" path="res://resources/sounds/particle/particle_inverted.ogg" id="3_f8hpl"]
+[ext_resource type="Texture2D" uid="uid://c6y4wdoiu8vap" path="res://resources/images/sprites/character_adult.png" id="2_cuyo6"]
+[ext_resource type="Texture2D" uid="uid://okfwcwc37nbh" path="res://resources/images/sprites/character_old.png" id="2_f8hpl"]
+[ext_resource type="Texture2D" uid="uid://dcqystqtmwep1" path="res://resources/images/sprites/character_teen.png" id="4_7ex5l"]
+[ext_resource type="Texture2D" uid="uid://b3t32q6pj1enq" path="res://resources/images/sprites/character_child.png" id="5_bix7t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ushfy"]
 radius = 16.0
-height = 110.0
+height = 100.0
 
 [sub_resource type="Animation" id="Animation_mutn8"]
 length = 0.001
@@ -179,13 +180,24 @@ states/land/position = Vector2(282.05017, 129.29752)
 transitions = ["jump", "air", SubResource("AnimationNodeStateMachineTransition_maja8"), "Start", "ground", SubResource("AnimationNodeStateMachineTransition_btfbg"), "ground", "jump", SubResource("AnimationNodeStateMachineTransition_jghgk"), "ground", "air", SubResource("AnimationNodeStateMachineTransition_4qkus"), "air", "land", SubResource("AnimationNodeStateMachineTransition_f6x4b"), "jump", "land", SubResource("AnimationNodeStateMachineTransition_cuyo6"), "land", "ground", SubResource("AnimationNodeStateMachineTransition_mutn8")]
 graph_offset = Vector2(61.320087, -18.204964)
 
-[node name="Character" type="CharacterBody2D" unique_id=47124019 node_paths=PackedStringArray("sprite", "tree")]
+[node name="Character" type="CharacterBody2D" unique_id=47124019 node_paths=PackedStringArray("sprite", "collision_shape", "tree")]
+collision_mask = 3
 script = ExtResource("1_lkv7d")
 sprite = NodePath("Sprite")
+collision_shape = NodePath("CollisionShape2D")
 tree = NodePath("AnimationTree")
 jump_height = 132.0
-steal_sfx = ExtResource("2_fgi2k")
-give_sfx = ExtResource("3_f8hpl")
+age_map = Dictionary[int, float]({
+0: 45.0,
+1: 20.0,
+2: 10.0
+})
+sprite_map = Dictionary[int, Texture2D]({
+0: ExtResource("2_f8hpl"),
+1: ExtResource("2_cuyo6"),
+2: ExtResource("4_7ex5l"),
+3: ExtResource("5_bix7t")
+})
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1903765647]
 texture = ExtResource("2_cuyo6")
@@ -193,7 +205,7 @@ hframes = 6
 vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2066918363]
-position = Vector2(0, 10)
+position = Vector2(0, 14)
 shape = SubResource("CapsuleShape2D_ushfy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=944747217]

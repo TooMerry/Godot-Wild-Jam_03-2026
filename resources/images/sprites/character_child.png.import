@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6y4wdoiu8vap"
-path="res://.godot/imported/stickman.png-17df4fa739c69b0258fe01f64856a5da.ctex"
+uid="uid://b3t32q6pj1enq"
+path="res://.godot/imported/character_child.png-6a1cb3a22574293e4beca03a882d90de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/images/stickman.png"
-dest_files=["res://.godot/imported/stickman.png-17df4fa739c69b0258fe01f64856a5da.ctex"]
+source_file="res://resources/images/sprites/character_child.png"
+dest_files=["res://.godot/imported/character_child.png-6a1cb3a22574293e4beca03a882d90de.ctex"]
 
 [params]
 
