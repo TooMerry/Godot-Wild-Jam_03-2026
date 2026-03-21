@@ -1,8 +1,15 @@
 [gd_scene format=3 uid="uid://q1xtf6bfnyng"]
 
 [ext_resource type="Script" uid="uid://bnj5bihq5fhvv" path="res://scenes/ui/main_menu/main_menu.gd" id="1_fsom3"]
+[ext_resource type="Texture2D" uid="uid://sdwv8ridpewy" path="res://resources/images/backgrounds/sky.png" id="2_5mqxt"]
 [ext_resource type="PackedScene" uid="uid://dgxci4oa3ycwk" path="res://scenes/ui/main_menu/level_menu/level_menu.tscn" id="2_ob46e"]
+[ext_resource type="Texture2D" uid="uid://c1xxg7gjp8fmx" path="res://resources/images/backgrounds/clouds_back.png" id="3_tk7lu"]
+[ext_resource type="Texture2D" uid="uid://c33pdoujp77ea" path="res://resources/images/backgrounds/mountains.png" id="4_chxti"]
 [ext_resource type="PackedScene" uid="uid://dncrgp0kqf85p" path="res://scenes/ui/main_menu/options_menu/options_menu.tscn" id="4_uqeha"]
+[ext_resource type="Texture2D" uid="uid://ck4g4jxdvx0f8" path="res://resources/images/backgrounds/clouds_front.png" id="5_2pxis"]
+[ext_resource type="Texture2D" uid="uid://yv5id2ccrcre" path="res://resources/images/backgrounds/plains.png" id="6_jo8o5"]
+[ext_resource type="Texture2D" uid="uid://dlfquotkpamwy" path="res://resources/images/backgrounds/tree.png" id="7_tk7lu"]
+[ext_resource type="Texture2D" uid="uid://bt8r6slba83ba" path="res://resources/images/backgrounds/main_menu_adult.png" id="8_chxti"]
 
 [node name="MainMenu" type="Control" unique_id=193770007 node_paths=PackedStringArray("play_button", "level_menu", "options_button", "options_menu")]
 layout_mode = 3
@@ -16,6 +23,61 @@ play_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/PlayButton")
 level_menu = NodePath("LevelMenu")
 options_button = NodePath("MarginContainer/VBoxContainer/VBoxContainer/OptionsButton")
 options_menu = NodePath("OptionsMenu")
+
+[node name="Background" type="Node2D" parent="." unique_id=2050161110]
+position = Vector2(-128, -72)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Sky" type="Parallax2D" parent="Background" unique_id=1693619048]
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Sky" unique_id=1891099685]
+texture = ExtResource("2_5mqxt")
+centered = false
+
+[node name="CloudsBack" type="Parallax2D" parent="Background" unique_id=1136656918]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(-4, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/CloudsBack" unique_id=916892871]
+texture = ExtResource("3_tk7lu")
+centered = false
+
+[node name="Mountains" type="Parallax2D" parent="Background" unique_id=1429346040]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Mountains" unique_id=400226617]
+texture = ExtResource("4_chxti")
+centered = false
+
+[node name="CloudsFront" type="Parallax2D" parent="Background" unique_id=1031225829]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(-16, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/CloudsFront" unique_id=925621708]
+texture = ExtResource("5_2pxis")
+centered = false
+
+[node name="Plains" type="Parallax2D" parent="Background" unique_id=1157371068]
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Plains" unique_id=2845901]
+texture = ExtResource("6_jo8o5")
+centered = false
+
+[node name="Tree" type="Sprite2D" parent="Background" unique_id=1349179551]
+texture = ExtResource("7_tk7lu")
+centered = false
+
+[node name="Character" type="Sprite2D" parent="Background" unique_id=2132612341]
+texture = ExtResource("8_chxti")
+centered = false
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1152475819]
 layout_mode = 1
