@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var sprite:Sprite2D
+@export var collision_shape: CollisionShape2D
 @export var tree:AnimationTree
 
 @export_category("Physics")
@@ -22,6 +23,9 @@ var _air_time_remaining = air_time
 @export var shrinking_threshold_time = 200
 @export_range(0,1,0.001) var min_scale_factor:float = 0.5
 
+enum Age { OLD, ADULT, TEEN, CHILD }
+@export var sprite_map: Dictionary[Age, Texture2D] = {}
+
 var _speed_scale:float = 1
 var _scale_factor:float = 1
 
@@ -38,21 +42,42 @@ var falling:bool = false
 var gravity:Vector2
 var friction_coeff = ground_friction
 
+var _shape: CapsuleShape2D
+
+
 func _ready() -> void:
 	PlayerStats.set_player(self)
+	_shape = collision_shape.shape
 
 
 func _set_time_dependent_factors() -> void:
 	var t:float = PlayerStats.remaining_time
-	if t > shrinking_threshold_time:
-		_scale_factor = 1.
-	else:
-		_scale_factor = lerpf(min_scale_factor,1,t/shrinking_threshold_time)
+	#if t > shrinking_threshold_time:
+		#_scale_factor = 1.
+	#else:
+		#_scale_factor = lerpf(min_scale_factor,1,t/shrinking_threshold_time)
 	
 	if t < slowing_threshold_time:
 			_speed_scale = 1.
 	else:
 		_speed_scale = lerpf(1,min_speed_scale,(t - slowing_threshold_time)/(max_slow_time - slowing_threshold_time))
+	
+	if t > 45.0:
+		sprite.texture = sprite_map[Age.OLD]
+		_shape.height = 100.0
+		collision_shape.position.y = 14.0
+	elif t > 20.0:
+		sprite.texture = sprite_map[Age.ADULT]
+		_shape.height = 100.0
+		collision_shape.position.y = 14.0
+	elif t > 10.0:
+		sprite.texture = sprite_map[Age.TEEN]
+		_shape.height = 80.0
+		collision_shape.position.y = 24.0
+	else:
+		sprite.texture = sprite_map[Age.CHILD]
+		_shape.height = 60.0
+		collision_shape.position.y = 34.0
 	
 
 func _physics_process(delta: float) -> void:
