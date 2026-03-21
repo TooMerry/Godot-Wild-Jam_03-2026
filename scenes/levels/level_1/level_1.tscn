@@ -1,10 +1,16 @@
-[gd_scene format=3 uid="uid://cjihvxocx4n42"]
+[gd_scene format=4 uid="uid://cjihvxocx4n42"]
 
 [ext_resource type="Script" uid="uid://fnlsjd58ahyw" path="res://scenes/levels/level.gd" id="1_7uxs1"]
 [ext_resource type="PackedScene" uid="uid://crtsrqp5yp1ik" path="res://scenes/character/character.tscn" id="1_v45ci"]
+[ext_resource type="Texture2D" uid="uid://sdwv8ridpewy" path="res://resources/images/backgrounds/sky.png" id="2_31rk5"]
 [ext_resource type="Script" uid="uid://l0oay6hngdph" path="res://scenes/levels/follow_camera.gd" id="2_spwf2"]
 [ext_resource type="PackedScene" uid="uid://coxx2yn3347dq" path="res://scenes/objects/grow_object/grow_obj.tscn" id="3_6xh4u"]
-[ext_resource type="PackedScene" uid="uid://c1d4cgsnem67a" path="res://scenes/ui/timer_hud.tscn" id="4_cyt5c"]
+[ext_resource type="Texture2D" uid="uid://c1xxg7gjp8fmx" path="res://resources/images/backgrounds/clouds_back.png" id="3_w3g2g"]
+[ext_resource type="PackedScene" uid="uid://c1d4cgsnem67a" path="res://scenes/ui/hud.tscn" id="4_cyt5c"]
+[ext_resource type="Texture2D" uid="uid://c33pdoujp77ea" path="res://resources/images/backgrounds/mountains.png" id="4_napug"]
+[ext_resource type="Texture2D" uid="uid://ck4g4jxdvx0f8" path="res://resources/images/backgrounds/clouds_front.png" id="5_1jeig"]
+[ext_resource type="Texture2D" uid="uid://yv5id2ccrcre" path="res://resources/images/backgrounds/plains.png" id="6_hhmec"]
+[ext_resource type="TileSet" uid="uid://ln46eqf1lgbw" path="res://resources/images/tilesets/dirt.tres" id="7_w3g2g"]
 
 [sub_resource type="Animation" id="Animation_papml"]
 length = 0.001
@@ -115,33 +121,6 @@ _data = {
 &"intro": SubResource("Animation_4x8ai")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_spwf2"]
-size = Vector2(64, 704)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7uxs1"]
-size = Vector2(4096, 64)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lh42"]
-size = Vector2(64, 704)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_58uyj"]
-size = Vector2(209.5, 357.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojo11"]
-size = Vector2(128, 45)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_31rk5"]
-size = Vector2(212.5, 430)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3g2g"]
-size = Vector2(44.75, 248.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_napug"]
-size = Vector2(194, 174)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1jeig"]
-size = Vector2(179, 376)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhmec"]
 size = Vector2(261, 68)
 
@@ -170,71 +149,58 @@ libraries/ = SubResource("AnimationLibrary_spwf2")
 [node name="Environment" type="Node2D" parent="." unique_id=2063173202]
 metadata/_edit_lock_ = true
 
-[node name="LevelLabel" type="Label" parent="Environment" unique_id=1245675742]
-offset_left = 96.0
-offset_top = 128.0
-offset_right = 330.0
-offset_bottom = 216.0
-theme_override_font_sizes/font_size = 64
-text = "LEVEL 1"
-
-[node name="ExitLabel" type="Label" parent="Environment" unique_id=304463770]
-offset_left = 128.0
-offset_top = 356.0
-offset_right = 194.0
-offset_bottom = 449.0
-theme_override_font_sizes/font_size = 32
-text = "EXIT
-  ->"
-
-[node name="ExitLabel2" type="Label" parent="Environment" unique_id=398892754]
-offset_left = 4126.0
-offset_top = 369.0
-offset_right = 4192.0
-offset_bottom = 510.0
-theme_override_font_sizes/font_size = 32
-text = "EXIT
-  |
-  v"
-
-[node name="Colliders" type="StaticBody2D" parent="Environment" unique_id=2024854861]
+[node name="Background" type="Node2D" parent="Environment" unique_id=1603552557]
 metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
-[node name="LeftWall" type="CollisionShape2D" parent="Environment/Colliders" unique_id=241603287]
-position = Vector2(32, 352)
-shape = SubResource("RectangleShape2D_spwf2")
+[node name="Sky" type="Parallax2D" parent="Environment/Background" unique_id=1224525326]
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(1280, 0)
 
-[node name="Ground" type="CollisionShape2D" parent="Environment/Colliders" unique_id=647918657]
-position = Vector2(2048, 640)
-shape = SubResource("RectangleShape2D_7uxs1")
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Background/Sky" unique_id=1140511413]
+texture = ExtResource("2_31rk5")
+centered = false
 
-[node name="RightWall" type="CollisionShape2D" parent="Environment/Colliders" unique_id=762204954]
-position = Vector2(4576, 352)
-shape = SubResource("RectangleShape2D_3lh42")
+[node name="CloudsBack" type="Parallax2D" parent="Environment/Background" unique_id=398188818]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(-4, 0)
 
-[node name="Block" type="CollisionShape2D" parent="Environment/Colliders" unique_id=812280820]
-position = Vector2(1150.25, 427.75)
-shape = SubResource("RectangleShape2D_58uyj")
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Background/CloudsBack" unique_id=1227996334]
+texture = ExtResource("3_w3g2g")
+centered = false
 
-[node name="Block2" type="CollisionShape2D" parent="Environment/Colliders" unique_id=1001553809]
-position = Vector2(1787, 457.5)
-shape = SubResource("RectangleShape2D_ojo11")
+[node name="Mountains" type="Parallax2D" parent="Environment/Background" unique_id=1276367103]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1280, 0)
 
-[node name="Block3" type="CollisionShape2D" parent="Environment/Colliders" unique_id=360526049]
-position = Vector2(2133.75, 391)
-shape = SubResource("RectangleShape2D_31rk5")
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Background/Mountains" unique_id=975578349]
+texture = ExtResource("4_napug")
+centered = false
 
-[node name="Block4" type="CollisionShape2D" parent="Environment/Colliders" unique_id=400848843]
-position = Vector2(2522.625, 48)
-shape = SubResource("RectangleShape2D_w3g2g")
+[node name="CloudsFront" type="Parallax2D" parent="Environment/Background" unique_id=1081761509]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(-16, 0)
 
-[node name="Block5" type="CollisionShape2D" parent="Environment/Colliders" unique_id=951981338]
-position = Vector2(2337, 519)
-shape = SubResource("RectangleShape2D_napug")
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Background/CloudsFront" unique_id=1036021949]
+texture = ExtResource("5_1jeig")
+centered = false
 
-[node name="Block6" type="CollisionShape2D" parent="Environment/Colliders" unique_id=1704034594]
-position = Vector2(4001.5, 416)
-shape = SubResource("RectangleShape2D_1jeig")
+[node name="Plains" type="Parallax2D" parent="Environment/Background" unique_id=1701133828]
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Background/Plains" unique_id=1672128664]
+texture = ExtResource("6_hhmec")
+centered = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Environment" unique_id=2122282911]
+position = Vector2(0, -32)
+tile_map_data = PackedByteArray("AAABAAoAAwADAAMAAAACAAoAAwABAAAAAAADAAoAAwABAAAAAAAEAAoAAwABAAAAAAAFAAoAAwABAAAAAAAGAAoAAwABAAAAAAAHAAoAAwABAAAAAAAIAAoAAwABAAAAAAAJAAoAAwABAAAAAAAKAAoAAwABAAAAAAALAAoAAwABAAAAAAAMAAoAAwABAAAAAAANAAoAAwABAAAAAAAOAAoAAwABAAAAAAAPAAoAAwAAAAMAAAAQAAoAAwABAAMAAAAQAAkAAwAAAAEAAAAQAAgAAwAAAAEAAAAQAAcAAwAAAAEAAAAQAAYAAwAAAAEAAAAQAAUAAwAAAAAAAAATAAUAAwACAAAAAAATAAYAAwACAAEAAAATAAcAAwACAAEAAAATAAgAAwACAAEAAAATAAkAAwACAAEAAAAiAAQAAwACAAEAAAAiAAUAAwACAAEAAAAiAAYAAwACAAEAAAAlAAgAAwACAAEAAAAlAAkAAwACAAEAAAARAAUAAwABAAAAAAASAAUAAwABAAAAAAASAAYAAwABAAEAAAARAAYAAwABAAEAAAARAAcAAwABAAEAAAASAAcAAwABAAEAAAASAAgAAwABAAEAAAARAAgAAwABAAEAAAARAAkAAwABAAEAAAASAAkAAwABAAEAAAASAAoAAwABAAEAAAARAAoAAwABAAEAAAATAAoAAwACAAMAAAAUAAoAAwADAAMAAAAVAAoAAwABAAAAAAAWAAoAAwABAAAAAAAXAAoAAwABAAAAAAAYAAoAAwABAAAAAAAZAAoAAwABAAAAAAAaAAoAAwABAAAAAAAbAAoAAwABAAAAAAAcAAoAAwABAAAAAAAdAAoAAwABAAAAAAAeAAoAAwAAAAMAAAAfAAoAAwABAAMAAAAfAAkAAwAAAAEAAAAfAAgAAwAAAAEAAAAfAAcAAwAAAAEAAAAfAAYAAwAAAAEAAAAfAAUAAwAAAAEAAAAfAAQAAwAAAAEAAAAfAAMAAwAAAAAAAAAgAAMAAwABAAAAAAAhAAMAAwABAAAAAAAiAAMAAwACAAAAAAAgAAQAAwABAAEAAAAhAAQAAwABAAEAAAAhAAUAAwABAAEAAAAgAAUAAwABAAEAAAAgAAYAAwABAAEAAAAgAAcAAwABAAEAAAAgAAgAAwABAAEAAAAgAAkAAwABAAEAAAAgAAoAAwABAAEAAAAhAAoAAwABAAEAAAAhAAkAAwABAAEAAAAhAAgAAwABAAEAAAAhAAcAAwABAAEAAAAhAAYAAwABAAEAAAAiAAcAAwACAAMAAAAjAAcAAwADAAMAAAAkAAcAAwABAAAAAAAlAAcAAwACAAAAAAAiAAgAAwABAAEAAAAiAAkAAwABAAEAAAAiAAoAAwABAAEAAAAjAAgAAwABAAEAAAAjAAkAAwABAAEAAAAjAAoAAwABAAEAAAAkAAgAAwABAAEAAAAkAAkAAwABAAEAAAAkAAoAAwABAAEAAAAlAAoAAwACAAMAAAAmAAoAAwADAAMAAAAnAAoAAwABAAAAAAAoAAoAAwABAAAAAAApAAoAAwABAAAAAAAqAAoAAwABAAAAAAArAAoAAwABAAAAAAAsAAoAAwABAAAAAAAtAAoAAwABAAAAAAAuAAoAAwABAAAAAAAvAAoAAwABAAAAAAAwAAoAAwABAAAAAAAxAAoAAwABAAAAAAAyAAoAAwABAAAAAAAzAAoAAwABAAAAAAA0AAoAAwABAAAAAAA1AAoAAwABAAAAAAA2AAoAAwABAAAAAAA3AAoAAwABAAAAAAA4AAoAAwABAAAAAAA5AAoAAwABAAAAAAA6AAoAAwABAAAAAAA7AAoAAwABAAAAAAA8AAoAAwAAAAMAAAA9AAoAAwABAAMAAAA9AAkAAwAAAAEAAAA9AAgAAwAAAAEAAAA9AAcAAwAAAAEAAAA9AAYAAwAAAAEAAAA9AAUAAwAAAAEAAAA9AAQAAwAAAAAAAAA+AAQAAwABAAAAAAA/AAQAAwACAAAAAAA/AAoAAwACAAEAAAA/AAsAAwACAAIAAAA/AAkAAwACAAEAAAA/AAgAAwACAAEAAAA/AAcAAwACAAEAAAA/AAYAAwACAAEAAAA/AAUAAwACAAEAAAA+AAUAAwABAAEAAAA+AAYAAwABAAEAAAA+AAcAAwABAAEAAAA+AAgAAwABAAEAAAA+AAkAAwABAAEAAAA+AAoAAwABAAEAAAA+AAsAAwABAAEAAAA9AAsAAwABAAEAAAA8AAsAAwABAAEAAAA7AAsAAwABAAEAAAA6AAsAAwABAAEAAAA5AAsAAwABAAEAAAA4AAsAAwABAAEAAAA3AAsAAwABAAEAAAA2AAsAAwABAAEAAAA1AAsAAwABAAEAAAA0AAsAAwABAAEAAAAzAAsAAwABAAEAAAAyAAsAAwABAAEAAAAxAAsAAwABAAEAAAAwAAsAAwABAAEAAAAvAAsAAwABAAEAAAAuAAsAAwABAAEAAAAtAAsAAwABAAEAAAAsAAsAAwABAAEAAAArAAsAAwABAAEAAAAqAAsAAwABAAEAAAABAAsAAwABAAEAAAACAAsAAwABAAEAAAADAAsAAwABAAEAAAAEAAsAAwABAAEAAAAFAAsAAwABAAEAAAAGAAsAAwABAAEAAAAHAAsAAwABAAEAAAAIAAsAAwABAAEAAAAJAAsAAwABAAEAAAAKAAsAAwABAAEAAAALAAsAAwABAAEAAAAMAAsAAwABAAEAAAANAAsAAwABAAEAAAAOAAsAAwABAAEAAAAPAAsAAwABAAEAAAAQAAsAAwABAAEAAAARAAsAAwABAAEAAAASAAsAAwABAAEAAAATAAsAAwABAAEAAAAUAAsAAwABAAEAAAAVAAsAAwABAAEAAAAWAAsAAwABAAEAAAAXAAsAAwABAAEAAAAYAAsAAwABAAEAAAAZAAsAAwABAAEAAAAaAAsAAwABAAEAAAAbAAsAAwABAAEAAAAcAAsAAwABAAEAAAAdAAsAAwABAAEAAAAeAAsAAwABAAEAAAAfAAsAAwABAAEAAAAgAAsAAwABAAEAAAAhAAsAAwABAAEAAAAiAAsAAwABAAEAAAAjAAsAAwABAAEAAAAkAAsAAwABAAEAAAAlAAsAAwABAAEAAAAmAAsAAwABAAEAAAAnAAsAAwABAAEAAAAoAAsAAwABAAEAAAApAAsAAwABAAEAAAAAAAoAAwACAAMAAAAAAAsAAwABAAEAAAAAAAkAAwACAAEAAAAAAAgAAwACAAEAAAAAAAcAAwACAAEAAAAAAAYAAwACAAEAAAAAAAUAAwACAAEAAAAAAAQAAwACAAEAAAAAAAMAAwACAAEAAAAAAAIAAwACAAEAAAAAAAEAAwACAAEAAAAAAAAAAwACAAEAAAAnAAAAAwAAAAAAAAAnAAEAAwAAAAEAAAAnAAIAAwAAAAEAAAAnAAMAAwAAAAIAAAAoAAMAAwACAAIAAAAoAAEAAwACAAEAAAAoAAIAAwACAAEAAAAoAAAAAwACAAAAAABHAAIAAwAAAAEAAABHAAMAAwAAAAEAAABHAAQAAwAAAAEAAABHAAUAAwAAAAEAAABHAAYAAwAAAAEAAABHAAcAAwAAAAEAAABHAAgAAwAAAAEAAABHAAkAAwAAAAEAAABHAAoAAwAAAAEAAABHAAAAAwAAAAEAAABHAAEAAwAAAAEAAABHAAsAAwAAAAEAAAAbAAcAAwAAAAAAAAAcAAcAAwACAAAAAAAbAAgAAwAAAAIAAAAcAAgAAwACAAIAAAABAAkAAwAAAAQAAAACAAkAAwABAAQAAAADAAkAAwABAAQAAAAEAAkAAwABAAQAAAAFAAkAAwABAAQAAAAGAAkAAwABAAQAAAAHAAkAAwABAAQAAAAIAAkAAwABAAQAAAAJAAkAAwABAAQAAAAKAAkAAwABAAQAAAALAAkAAwABAAQAAAAMAAkAAwABAAQAAAANAAkAAwABAAQAAAAOAAkAAwABAAQAAAAPAAkAAwACAAQAAAARAAQAAwABAAQAAAASAAQAAwABAAQAAAATAAQAAwACAAQAAAAQAAQAAwAAAAQAAAAVAAkAAwABAAQAAAAWAAkAAwABAAQAAAAXAAkAAwABAAQAAAAYAAkAAwABAAQAAAAZAAkAAwABAAQAAAAaAAkAAwABAAQAAAAbAAkAAwABAAQAAAAcAAkAAwABAAQAAAAdAAkAAwABAAQAAAAeAAkAAwACAAQAAAAUAAkAAwAAAAQAAAAbAAYAAwAAAAQAAAAcAAYAAwACAAQAAAAiAAIAAwACAAQAAAAlAAYAAwACAAQAAAAhAAIAAwABAAQAAAAgAAIAAwABAAQAAAAfAAIAAwAAAAQAAAAjAAYAAwAAAAQAAAAkAAYAAwABAAQAAAAnAAkAAwABAAQAAAAoAAkAAwABAAQAAAApAAkAAwABAAQAAAAqAAkAAwABAAQAAAArAAkAAwABAAQAAAAsAAkAAwABAAQAAAAtAAkAAwABAAQAAAAuAAkAAwABAAQAAAAvAAkAAwABAAQAAAAwAAkAAwABAAQAAAAxAAkAAwABAAQAAAAyAAkAAwABAAQAAAAzAAkAAwABAAQAAAA0AAkAAwABAAQAAAA1AAkAAwABAAQAAAA2AAkAAwABAAQAAAA3AAkAAwABAAQAAAA4AAkAAwABAAQAAAA5AAkAAwABAAQAAAA6AAkAAwABAAQAAAA7AAkAAwABAAQAAAA+AAMAAwABAAQAAAA8AAkAAwACAAQAAAA/AAMAAwACAAQAAAA9AAMAAwAAAAQAAAAmAAkAAwAAAAQAAAA=")
+tile_set = ExtResource("7_w3g2g")
+occlusion_enabled = false
+navigation_enabled = false
 
 [node name="Objects" type="Node2D" parent="Environment" unique_id=2094994136]
 metadata/_edit_lock_ = true
@@ -250,25 +216,25 @@ position = Vector2(921, 542)
 position = Vector2(1505, 543)
 
 [node name="GrowObj4" parent="Environment/Objects" unique_id=1809852139 instance=ExtResource("3_6xh4u")]
-position = Vector2(1788, 368)
+position = Vector2(1788, 352)
 initial_progress = 1.0
 
 [node name="GrowObj5" parent="Environment/Objects" unique_id=1795831998 instance=ExtResource("3_6xh4u")]
-position = Vector2(2368, 366)
+position = Vector2(2368, 352)
 initial_progress = 1.0
 
 [node name="GrowObj6" parent="Environment/Objects" unique_id=1649323291 instance=ExtResource("3_6xh4u")]
-position = Vector2(2575, 538)
+position = Vector2(2575, 544)
 initial_progress = 1.0
 
 [node name="GrowObj7" parent="Environment/Objects" unique_id=2136053801 instance=ExtResource("3_6xh4u")]
-position = Vector2(3005, 541)
+position = Vector2(3005, 544)
 
 [node name="GrowObj8" parent="Environment/Objects" unique_id=922592970 instance=ExtResource("3_6xh4u")]
-position = Vector2(3415, 543)
+position = Vector2(3415, 544)
 
 [node name="GrowObj9" parent="Environment/Objects" unique_id=1417245666 instance=ExtResource("3_6xh4u")]
-position = Vector2(3786, 542)
+position = Vector2(3786, 544)
 
 [node name="Traps" type="Area2D" parent="Environment" unique_id=276767838]
 collision_layer = 0

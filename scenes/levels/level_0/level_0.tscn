@@ -1,10 +1,16 @@
-[gd_scene format=3 uid="uid://1ruio0qaspmx"]
+[gd_scene format=4 uid="uid://1ruio0qaspmx"]
 
 [ext_resource type="Script" uid="uid://fnlsjd58ahyw" path="res://scenes/levels/level.gd" id="1_e1xyi"]
 [ext_resource type="Script" uid="uid://l0oay6hngdph" path="res://scenes/levels/follow_camera.gd" id="2_4x8ai"]
+[ext_resource type="Texture2D" uid="uid://sdwv8ridpewy" path="res://resources/images/backgrounds/sky.png" id="2_dugi3"]
 [ext_resource type="PackedScene" uid="uid://coxx2yn3347dq" path="res://scenes/objects/grow_object/grow_obj.tscn" id="2_pcaiw"]
 [ext_resource type="PackedScene" uid="uid://crtsrqp5yp1ik" path="res://scenes/character/character.tscn" id="2_w7xqs"]
+[ext_resource type="Texture2D" uid="uid://c1xxg7gjp8fmx" path="res://resources/images/backgrounds/clouds_back.png" id="3_ssous"]
 [ext_resource type="PackedScene" uid="uid://c1d4cgsnem67a" path="res://scenes/ui/hud.tscn" id="4_4vors"]
+[ext_resource type="Texture2D" uid="uid://ck4g4jxdvx0f8" path="res://resources/images/backgrounds/clouds_front.png" id="4_aeg4k"]
+[ext_resource type="Texture2D" uid="uid://c33pdoujp77ea" path="res://resources/images/backgrounds/mountains.png" id="4_d1lse"]
+[ext_resource type="Texture2D" uid="uid://yv5id2ccrcre" path="res://resources/images/backgrounds/plains.png" id="6_e1yj7"]
+[ext_resource type="TileSet" uid="uid://ln46eqf1lgbw" path="res://resources/images/tilesets/dirt.tres" id="7_e1yj7"]
 
 [sub_resource type="Animation" id="Animation_papml"]
 length = 0.001
@@ -115,21 +121,6 @@ _data = {
 &"intro": SubResource("Animation_4x8ai")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dugi3"]
-size = Vector2(64, 704)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssous"]
-size = Vector2(4096, 64)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aeg4k"]
-size = Vector2(64, 704)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1lse"]
-size = Vector2(645, 127)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_papml"]
-size = Vector2(1013, 357)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4x8ai"]
 size = Vector2(512, 128)
 
@@ -148,65 +139,64 @@ libraries/ = SubResource("AnimationLibrary_papml")
 [node name="Environment" type="Node2D" parent="." unique_id=97439430]
 metadata/_edit_lock_ = true
 
-[node name="LevelLabel" type="Label" parent="Environment" unique_id=844203701]
-offset_left = 96.0
-offset_top = 128.0
-offset_right = 330.0
-offset_bottom = 216.0
-theme_override_font_sizes/font_size = 64
-text = "LEVEL 0"
-
-[node name="ExitLabel" type="Label" parent="Environment" unique_id=1989234720]
-offset_left = 128.0
-offset_top = 356.0
-offset_right = 194.0
-offset_bottom = 449.0
-theme_override_font_sizes/font_size = 32
-text = "EXIT
-  ->"
-
-[node name="ExitLabel2" type="Label" parent="Environment" unique_id=142658008]
-offset_left = 4126.0
-offset_top = 369.0
-offset_right = 4192.0
-offset_bottom = 510.0
-theme_override_font_sizes/font_size = 32
-text = "EXIT
-  |
-  v"
-
-[node name="Colliders" type="StaticBody2D" parent="Environment" unique_id=1106344774]
+[node name="Background" type="Node2D" parent="Environment" unique_id=112893205]
 metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
-[node name="LeftWall" type="CollisionShape2D" parent="Environment/Colliders" unique_id=668465748]
-position = Vector2(32, 352)
-shape = SubResource("RectangleShape2D_dugi3")
+[node name="Sky" type="Parallax2D" parent="Environment/Background" unique_id=1717247212]
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(1280, 0)
 
-[node name="Ground" type="CollisionShape2D" parent="Environment/Colliders" unique_id=1588863097]
-position = Vector2(2048, 640)
-shape = SubResource("RectangleShape2D_ssous")
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Background/Sky" unique_id=681497547]
+texture = ExtResource("2_dugi3")
+centered = false
 
-[node name="RightWall" type="CollisionShape2D" parent="Environment/Colliders" unique_id=65270945]
-position = Vector2(4576, 352)
-shape = SubResource("RectangleShape2D_aeg4k")
+[node name="CloudsBack" type="Parallax2D" parent="Environment/Background" unique_id=324740074]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(-4, 0)
 
-[node name="Block" type="CollisionShape2D" parent="Environment/Colliders" unique_id=1101387805]
-position = Vector2(1289.5, 542.5)
-shape = SubResource("RectangleShape2D_d1lse")
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Background/CloudsBack" unique_id=68859525]
+texture = ExtResource("3_ssous")
+centered = false
 
-[node name="Block2" type="CollisionShape2D" parent="Environment/Colliders" unique_id=1589958947]
-position = Vector2(1297.5, 169)
-shape = SubResource("RectangleShape2D_papml")
+[node name="Mountains" type="Parallax2D" parent="Environment/Background" unique_id=160465035]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1280, 0)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Colliders" unique_id=1705948828]
-position = Vector2(3230.0469, 429.79065)
-polygon = PackedVector2Array(-1025.0469, -58.790634, -1025.0469, 28.209364, 853.9531, 89.209366, 851.9531, -63.790634)
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Background/Mountains" unique_id=633730688]
+texture = ExtResource("4_d1lse")
+centered = false
+
+[node name="CloudsFront" type="Parallax2D" parent="Environment/Background" unique_id=1369163293]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(-16, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Background/CloudsFront" unique_id=261782684]
+texture = ExtResource("4_aeg4k")
+centered = false
+
+[node name="Plains" type="Parallax2D" parent="Environment/Background" unique_id=1606976458]
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Background/Plains" unique_id=890639069]
+texture = ExtResource("6_e1yj7")
+centered = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Environment" unique_id=577233602]
+position = Vector2(0, -32)
+tile_map_data = PackedByteArray("AAABAAoAAwADAAMAAAACAAoAAwABAAAAAAADAAoAAwABAAAAAAAEAAoAAwABAAAAAAAFAAoAAwABAAAAAAAGAAoAAwABAAAAAAAHAAoAAwABAAAAAAAIAAoAAwABAAAAAAAJAAoAAwABAAAAAAAKAAoAAwABAAAAAAALAAoAAwABAAAAAAAMAAoAAwABAAAAAAANAAoAAwABAAAAAAAOAAoAAwAAAAMAAAAPAAoAAwABAAMAAAAQAAoAAwABAAEAAAARAAoAAwABAAEAAAASAAoAAwABAAEAAAATAAoAAwABAAEAAAAUAAoAAwABAAEAAAAVAAoAAwABAAEAAAAWAAoAAwABAAEAAAAXAAoAAwABAAEAAAAYAAoAAwACAAMAAAAZAAoAAwADAAMAAAAaAAoAAwABAAAAAAAbAAoAAwABAAAAAAAcAAoAAwABAAAAAAAdAAoAAwABAAAAAAAeAAoAAwABAAAAAAAfAAoAAwABAAAAAAAgAAoAAwABAAAAAAAhAAoAAwABAAAAAAAiAAoAAwABAAAAAAAjAAoAAwABAAAAAAAkAAoAAwABAAAAAAAlAAoAAwABAAAAAAAmAAoAAwABAAAAAAAnAAoAAwABAAAAAAAoAAoAAwABAAAAAAApAAoAAwABAAAAAAAqAAoAAwABAAAAAAArAAoAAwABAAAAAAAsAAoAAwABAAAAAAAtAAoAAwABAAAAAAAuAAoAAwABAAAAAAAvAAoAAwABAAAAAAAwAAoAAwABAAAAAAAxAAoAAwABAAAAAAAyAAoAAwABAAAAAAAzAAoAAwABAAAAAAA0AAoAAwABAAAAAAA1AAoAAwABAAAAAAA2AAoAAwABAAAAAAA3AAoAAwABAAAAAAA4AAoAAwABAAAAAAA5AAoAAwABAAAAAAA6AAoAAwABAAAAAAA7AAoAAwABAAAAAAA8AAoAAwABAAAAAAA9AAoAAwABAAAAAAA+AAoAAwABAAAAAAA/AAoAAwACAAAAAAA/AAsAAwACAAEAAAA+AAsAAwABAAEAAAA9AAsAAwABAAEAAAA8AAsAAwABAAEAAAA7AAsAAwABAAEAAAA6AAsAAwABAAEAAAA5AAsAAwABAAEAAAA4AAsAAwABAAEAAAA3AAsAAwABAAEAAAA2AAsAAwABAAEAAAA1AAsAAwABAAEAAAA0AAsAAwABAAEAAAAzAAsAAwABAAEAAAAyAAsAAwABAAEAAAAxAAsAAwABAAEAAAAwAAsAAwABAAEAAAAvAAsAAwABAAEAAAAuAAsAAwABAAEAAAAtAAsAAwABAAEAAAAsAAsAAwABAAEAAAArAAsAAwABAAEAAAAqAAsAAwABAAEAAAApAAsAAwABAAEAAAAoAAsAAwABAAEAAAAnAAsAAwABAAEAAAAmAAsAAwABAAEAAAAlAAsAAwABAAEAAAAkAAsAAwABAAEAAAAjAAsAAwABAAEAAAAiAAsAAwABAAEAAAAhAAsAAwABAAEAAAAgAAsAAwABAAEAAAAfAAsAAwABAAEAAAAeAAsAAwABAAEAAAAdAAsAAwABAAEAAAAcAAsAAwABAAEAAAAbAAsAAwABAAEAAAAaAAsAAwABAAEAAAAZAAsAAwABAAEAAAAYAAsAAwABAAEAAAAXAAsAAwABAAEAAAAWAAsAAwABAAEAAAAVAAsAAwABAAEAAAAUAAsAAwABAAEAAAATAAsAAwABAAEAAAASAAsAAwABAAEAAAARAAsAAwABAAEAAAAQAAsAAwABAAEAAAAPAAsAAwABAAEAAAAOAAsAAwABAAEAAAANAAsAAwABAAEAAAAMAAsAAwABAAEAAAALAAsAAwABAAEAAAAKAAsAAwABAAEAAAAJAAsAAwABAAEAAAAIAAsAAwABAAEAAAAHAAsAAwABAAEAAAAGAAsAAwABAAEAAAAFAAsAAwABAAEAAAAEAAsAAwABAAEAAAADAAsAAwABAAEAAAACAAsAAwABAAEAAAABAAsAAwABAAEAAAAAAAsAAwABAAEAAAAAAAoAAwACAAMAAAAAAAkAAwACAAEAAAAAAAgAAwACAAEAAAAAAAcAAwACAAEAAAAAAAYAAwACAAEAAAAAAAUAAwACAAEAAAAAAAQAAwACAAEAAAAAAAMAAwACAAEAAAAAAAIAAwACAAEAAAAAAAEAAwACAAEAAAAAAAAAAwACAAEAAABHAAAAAwAAAAEAAABHAAEAAwAAAAEAAABHAAIAAwAAAAEAAABHAAMAAwAAAAEAAABHAAQAAwAAAAEAAABHAAUAAwAAAAEAAABHAAYAAwAAAAEAAABHAAcAAwAAAAEAAABHAAgAAwAAAAEAAABHAAkAAwAAAAEAAABHAAoAAwAAAAEAAABHAAsAAwAAAAEAAAAPAAkAAwAAAAEAAAAPAAgAAwAAAAAAAAAQAAgAAwABAAAAAAARAAgAAwABAAAAAAASAAgAAwABAAAAAAATAAgAAwABAAAAAAAUAAgAAwABAAAAAAAVAAgAAwABAAAAAAAWAAgAAwABAAAAAAAXAAgAAwABAAAAAAAYAAgAAwACAAAAAAAYAAkAAwACAAEAAAAQAAkAAwABAAEAAAARAAkAAwABAAEAAAASAAkAAwABAAEAAAATAAkAAwABAAEAAAAUAAkAAwABAAEAAAAVAAkAAwABAAEAAAAWAAkAAwABAAEAAAAXAAkAAwABAAEAAAAMAAAAAwAAAAEAAAAMAAEAAwAAAAEAAAAMAAIAAwAAAAEAAAAMAAMAAwAAAAEAAAAMAAQAAwAAAAEAAAAMAAUAAwAAAAIAAAANAAUAAwABAAIAAAAOAAUAAwABAAIAAAAPAAUAAwABAAIAAAAQAAUAAwABAAIAAAARAAUAAwABAAIAAAASAAUAAwABAAIAAAATAAUAAwABAAIAAAAUAAUAAwABAAIAAAAVAAUAAwABAAIAAAAWAAUAAwABAAIAAAAXAAUAAwABAAIAAAAYAAUAAwABAAIAAAAZAAUAAwABAAIAAAAaAAUAAwABAAIAAAAbAAUAAwACAAIAAAAbAAQAAwACAAEAAAAbAAMAAwACAAEAAAAbAAIAAwACAAEAAAAbAAEAAwACAAEAAAAbAAAAAwACAAEAAAANAAAAAwABAAEAAAANAAEAAwABAAEAAAANAAIAAwABAAEAAAANAAMAAwABAAEAAAANAAQAAwABAAEAAAAOAAAAAwABAAEAAAAOAAEAAwABAAEAAAAOAAIAAwABAAEAAAAOAAMAAwABAAEAAAAOAAQAAwABAAEAAAAPAAAAAwABAAEAAAAPAAEAAwABAAEAAAAPAAIAAwABAAEAAAAPAAMAAwABAAEAAAAPAAQAAwABAAEAAAAQAAAAAwABAAEAAAAQAAEAAwABAAEAAAAQAAIAAwABAAEAAAAQAAMAAwABAAEAAAAQAAQAAwABAAEAAAARAAAAAwABAAEAAAARAAEAAwABAAEAAAARAAIAAwABAAEAAAARAAMAAwABAAEAAAARAAQAAwABAAEAAAASAAAAAwABAAEAAAASAAEAAwABAAEAAAASAAIAAwABAAEAAAASAAMAAwABAAEA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AAAlAAkAAwABAAQAAAAmAAkAAwABAAQAAAAnAAkAAwABAAQAAAAoAAkAAwABAAQAAAApAAkAAwABAAQAAAAqAAkAAwABAAQAAAArAAkAAwABAAQAAAAsAAkAAwABAAQAAAAtAAkAAwABAAQAAAAuAAkAAwABAAQAAAAvAAkAAwABAAQAAAAwAAkAAwABAAQAAAAxAAkAAwABAAQAAAAyAAkAAwABAAQAAAAzAAkAAwABAAQAAAA0AAkAAwABAAQAAAA1AAkAAwABAAQAAAA2AAkAAwABAAQAAAA3AAkAAwABAAQAAAA4AAkAAwABAAQAAAA5AAkAAwABAAQAAAA6AAkAAwABAAQAAAA7AAkAAwABAAQAAAA8AAkAAwABAAQAAAA9AAkAAwABAAQAAAA+AAkAAwABAAQAAAA/AAkAAwACAAQAAAA/AAUAAwACAAQAAAA+AAUAAwABAAQAAAA9AAUAAwABAAQAAAA8AAUAAwABAAQAAAA7AAUAAwABAAQAAAA6AAUAAwABAAQAAAA5AAUAAwABAAQAAAA4AAUAAwABAAQAAAA3AAUAAwABAAQAAAA2AAUAAwABAAQAAAA1AAUAAwABAAQAAAA0AAUAAwABAAQAAAAzAAUAAwABAAQAAAAyAAUAAwABAAQAAAAxAAUAAwABAAQAAAAwAAUAAwABAAQAAAAvAAUAAwABAAQAAAAuAAUAAwABAAQAAAAtAAUAAwABAAQAAAAsAAUAAwABAAQAAAArAAUAAwABAAQAAAAqAAUAAwABAAQAAAApAAUAAwABAAQAAAAoAAUAAwABAAQAAAAnAAUAAwABAAQAAAAmAAUAAwABAAQAAAAlAAUAAwABAAQAAAAkAAUAAwABAAQAAAAjAAUAAwABAAQAAAAiAAUAAwAAAAQAAAA=")
+tile_set = ExtResource("7_e1yj7")
+occlusion_enabled = false
+navigation_enabled = false
 
 [node name="Objects" type="Node2D" parent="Environment" unique_id=89715000]
 metadata/_edit_lock_ = true
 
 [node name="GrowObj" parent="Environment/Objects" unique_id=1900398055 instance=ExtResource("2_pcaiw")]
-position = Vector2(901, 542)
+position = Vector2(901, 544)
 initial_progress = 1.0
 
 [node name="GrowObj2" parent="Environment/Objects" unique_id=1061055209 instance=ExtResource("2_pcaiw")]
@@ -214,19 +204,19 @@ position = Vector2(1679, 544)
 initial_progress = 1.0
 
 [node name="GrowObj3" parent="Environment/Objects" unique_id=975831933 instance=ExtResource("2_pcaiw")]
-position = Vector2(2268, 309)
+position = Vector2(2268, 288)
 initial_progress = 1.0
 
 [node name="GrowObj4" parent="Environment/Objects" unique_id=1929540872 instance=ExtResource("2_pcaiw")]
-position = Vector2(2514, 306)
+position = Vector2(2514, 288)
 initial_progress = 1.0
 
 [node name="GrowObj5" parent="Environment/Objects" unique_id=1317380532 instance=ExtResource("2_pcaiw")]
-position = Vector2(2765, 305)
+position = Vector2(2765, 288)
 initial_progress = 1.0
 
 [node name="GrowObj6" parent="Environment/Objects" unique_id=1360952698 instance=ExtResource("2_pcaiw")]
-position = Vector2(3015, 306)
+position = Vector2(3015, 288)
 initial_progress = 1.0
 
 [node name="ExitArea" type="Area2D" parent="Environment" unique_id=2146477806]

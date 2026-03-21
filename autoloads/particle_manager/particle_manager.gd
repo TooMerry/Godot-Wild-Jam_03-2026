@@ -15,6 +15,10 @@ func _process(delta: float) -> void:
 	
 	for i: int in range(_particles.size() - 1, -1, -1):
 		var p = _particles[i]
+		if not is_instance_valid(p.target):
+			_particles.remove_at(i)
+			continue
+		
 		var direction = p.target.global_position - p.position
 		if direction.length() < distance_threshold:
 			_particles.remove_at(i)

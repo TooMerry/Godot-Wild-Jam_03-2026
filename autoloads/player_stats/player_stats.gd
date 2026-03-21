@@ -53,12 +53,9 @@ func _get_object_at_mouse() -> Stealable:
 	query.collide_with_areas = false
 	
 	var result = _space_state.intersect_point(query, 1)
-	if result.is_empty():
+	if result.is_empty() or result[0].collider is not Stealable:
 		return null
-	var collider:PhysicsBody2D = result[0].collider
-	if(collider is Stealable):
-		return collider
-	return null
+	return result[0].collider
 
 signal timeout();
 func add_time(seconds:float) -> void:

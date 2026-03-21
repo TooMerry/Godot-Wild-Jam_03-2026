@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://coxx2yn3347dq"]
 
-[ext_resource type="Texture2D" uid="uid://j63toosxu5jo" path="res://icon.svg" id="1_bosna"]
 [ext_resource type="Script" uid="uid://2ekv3r45yhc3" path="res://scenes/objects/grow_object/grow_obj.gd" id="1_v1jtv"]
 [ext_resource type="Shader" uid="uid://cff2v346qh3vm" path="res://resources/shaders/highlight/highlight.gdshader" id="2_rrk06"]
+[ext_resource type="Texture2D" uid="uid://b3dh3g2txw88j" path="res://resources/images/sprites/mushroom.png" id="3_dtpy6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rrk06"]
 shader = ExtResource("2_rrk06")
@@ -22,7 +22,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [PackedVector2Array(-64, 64, -64, -64, 64, -64, 64, 64)]
+"values": [PackedVector2Array(-20, 64, -20, -32, -64, -48, 64, -48, 20, -32, 20, 64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_iupk5"]
@@ -35,10 +47,22 @@ tracks/0/path = NodePath("CollisionShape2D:polygon")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.99, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.33, 0.67, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [PackedVector2Array(-64, 64, -64, -64, -63, -64, 0, -64, 63, -64, 64, -64, 64, 64), PackedVector2Array(-64, 64, -64, -64, -119, -190, 0, -186, 122, -191, 64, -64, 64, 64), PackedVector2Array(-64, 64, -64, -64, -119, -190, 0, -186, 122, -191, 64, -64, 64, 64)]
+"values": [PackedVector2Array(-20, 64, -20, -32, -64, -48, 64, -48, 20, -32, 20, 64), PackedVector2Array(-24, 64, -24, -52, -84, -68, 84, -68, 24, -52, 24, 64), PackedVector2Array(-32, 64, -32, -88, -104, -112, 104, -112, 32, -88, 32, 64), PackedVector2Array(-40, 64, -40, -128, -120, -160, 120, -160, 40, -128, 40, 64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.33, 0.67, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t2okv"]
@@ -54,11 +78,14 @@ sprite = NodePath("Sprite2D")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="." unique_id=1255144793]
-polygon = PackedVector2Array(-64, 64, -64, -64, 64, -64, 64, 64)
+polygon = PackedVector2Array(-20, 64, -20, -32, -64, -48, 64, -48, 20, -32, 20, 64)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=202794022]
 material = SubResource("ShaderMaterial_rrk06")
-texture = ExtResource("1_bosna")
+texture = ExtResource("3_dtpy6")
+centered = false
+offset = Vector2(-128, -192)
+hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1810403594]
 libraries/ = SubResource("AnimationLibrary_t2okv")
