@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://83wieng44kk8"]
+[gd_scene format=4 uid="uid://83wieng44kk8"]
 
 [ext_resource type="Script" uid="uid://fnlsjd58ahyw" path="res://scenes/levels/level.gd" id="1_o2n0b"]
 [ext_resource type="Script" uid="uid://cvgkus60jjudo" path="res://scenes/objects/moving_platform/platform_path.gd" id="2_qpij7"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://j63toosxu5jo" path="res://icon.svg" id="4_yxxbu"]
 [ext_resource type="PackedScene" uid="uid://wrvyh1hpnb7x" path="res://scenes/ui/pause_menu/pause_menu.tscn" id="5_acoyq"]
 [ext_resource type="PackedScene" uid="uid://coxx2yn3347dq" path="res://scenes/objects/grow_object/grow_obj.tscn" id="5_yxxbu"]
+[ext_resource type="TileSet" uid="uid://ln46eqf1lgbw" path="res://resources/images/tilesets/dirt.tres" id="6_yxxbu"]
 
 [sub_resource type="Animation" id="Animation_papml"]
 length = 0.001
@@ -123,10 +124,10 @@ _data = {
 size = Vector2(3595, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83a0a"]
-size = Vector2(248, 412)
+size = Vector2(248, 382)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bm2i8"]
-size = Vector2(248, 306)
+size = Vector2(248, 215)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7db3"]
 size = Vector2(585.5, 41)
@@ -168,7 +169,7 @@ size = Vector2(128, 128)
 size = Vector2(1378, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_juui1"]
-size = Vector2(376.5, 20)
+size = Vector2(420.5, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qra2n"]
 size = Vector2(105, 128)
@@ -223,15 +224,15 @@ shape = SubResource("RectangleShape2D_qi3d5")
 metadata/_edit_lock_ = true
 
 [node name="Ledge01" type="CollisionShape2D" parent="Environment/Colliders" unique_id=1282916783]
-position = Vector2(526, 391)
+position = Vector2(526, 406)
 shape = SubResource("RectangleShape2D_83a0a")
 
 [node name="Ledge02" type="CollisionShape2D" parent="Environment/Colliders" unique_id=539406772]
-position = Vector2(2158, 391)
+position = Vector2(2158, 406)
 shape = SubResource("RectangleShape2D_83a0a")
 
 [node name="Ledge03" type="CollisionShape2D" parent="Environment/Colliders" unique_id=282727400]
-position = Vector2(2436, 338)
+position = Vector2(2436, 383.5)
 shape = SubResource("RectangleShape2D_bm2i8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Colliders" unique_id=1083374597]
@@ -256,20 +257,21 @@ metadata/_edit_lock_ = true
 [node name="GrowObjects" type="Node2D" parent="Environment/Objects" unique_id=655645324]
 metadata/_edit_lock_ = true
 
-[node name="254" parent="Environment/Objects/GrowObjects" unique_id=1900398055 instance=ExtResource("5_yxxbu")]
+[node name="224" parent="Environment/Objects/GrowObjects" unique_id=1900398055 instance=ExtResource("5_yxxbu")]
 position = Vector2(270, 532)
 
 [node name="GrowObj" parent="Environment/Objects/GrowObjects" unique_id=2082342248 instance=ExtResource("5_yxxbu")]
-position = Vector2(3002, 381)
+position = Vector2(3002, 385)
 
 [node name="GrowObj2" parent="Environment/Objects/GrowObjects" unique_id=1051252466 instance=ExtResource("5_yxxbu")]
 position = Vector2(3321, 226)
+initial_progress = 1.0
 
 [node name="Platforms" type="Node2D" parent="Environment/Objects" unique_id=1166337057]
 metadata/_edit_lock_ = true
 
 [node name="Path2D" type="Path2D" parent="Environment/Objects/Platforms" unique_id=1963968853]
-position = Vector2(719, 249)
+position = Vector2(719, 279)
 curve = SubResource("Curve2D_m7db3")
 
 [node name="PlatformPath" type="AnimatableBody2D" parent="Environment/Objects/Platforms/Path2D" unique_id=201102021 node_paths=PackedStringArray("_sprite", "_path")]
@@ -288,7 +290,7 @@ texture = ExtResource("4_yxxbu")
 shape = SubResource("RectangleShape2D_ah86r")
 
 [node name="Path2D2" type="Path2D" parent="Environment/Objects/Platforms" unique_id=1184059720]
-position = Vector2(1395, 249)
+position = Vector2(1395, 279)
 curve = SubResource("Curve2D_m7db3")
 
 [node name="PlatformPath" type="AnimatableBody2D" parent="Environment/Objects/Platforms/Path2D2" unique_id=115847075 node_paths=PackedStringArray("_sprite", "_path")]
@@ -316,7 +318,7 @@ position = Vector2(0, -1)
 script = ExtResource("2_qpij7")
 _sprite = NodePath("Sprite2D")
 _path = NodePath("..")
-speed = 200.0
+speed = -200.0
 metadata/_custom_type_script = "uid://cvgkus60jjudo"
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Objects/Platforms/Path2D3/PlatformPath" unique_id=2098253795]
@@ -336,7 +338,7 @@ position = Vector2(1343, 563)
 shape = SubResource("RectangleShape2D_rr702")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment/Traps" unique_id=1543464819]
-position = Vector2(2748.75, 439)
+position = Vector2(2770.75, 439)
 shape = SubResource("RectangleShape2D_juui1")
 
 [node name="ExitArea" type="Area2D" parent="Environment" unique_id=1970465594]
@@ -349,6 +351,13 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExitArea" unique_id=1747327435]
 position = Vector2(-39.5, 0)
 shape = SubResource("RectangleShape2D_qra2n")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Environment" unique_id=1152525130]
+position = Vector2(0, -32)
+tile_map_data = PackedByteArray("AAD//woAAwABAAEAAAD//wkAAwACAAEAAAD//wgAAwACAAEAAAD//wcAAwACAAEAAAD//wYAAwACAAEAAAD//wUAAwACAAEAAAD//wQAAwACAAEAAAD//wMAAwACAAEAAAD//wIAAwACAAEAAAD//wEAAwACAAEAAAD//wAAAwACAAEAAAD/////AwACAAEAAAD///7/AwACAAEAAAD///3/AwACAAEAAAD///z/AwACAAAAAAAAAAoAAwABAAAAAAABAAoAAwABAAAAAAACAAoAAwABAAAAAAADAAoAAwABAAAAAAAEAAoAAwABAAAAAAAFAAoAAwABAAAAAAAGAAoAAwABAAAAAAAHAAoAAwABAAAAAAAIAAoAAwABAAAAAAAJAAoAAwABAAAAAAAKAAoAAwABAAAAAAAKAAsAAwABAAEAAAAJAAsAAwABAAEAAAAIAAsAAwABAAEAAAAHAAsAAwABAAEAAAAGAAsAAwABAAEAAAAFAAsAAwABAAEAAAAEAAsAAwABAAEAAAADAAsAAwABAAEAAAACAAsAAwABAAEAAAABAAsAAwABAAEAAAAAAAsAAwABAAEAAAD//wsAAwABAAEAAAD+/woAAwABAAEAAAD+/wkAAwABAAEAAAD+/wgAAwABAAEAAAD+/wsAAwABAAEAAAD+//z/AwABAAAAAAD+//3/AwABAAEAAAD+//7/AwABAAEAAAD+////AwABAAEAAAD+/wAAAwABAAEAAAD+/wEAAwABAAEAAAD+/wIAAwABAAEAAAD+/wMAAwABAAEAAAD+/wQAAwABAAEAAAD+/wUAAwABAAEAAAD+/wYAAwABAAEAAAD+/wcAAwABAAEAAAD9//z/AwAAAAAAAAD9//3/AwAAAAEAAAD9//7/AwAAAAEAAAD9////AwAAAAEAAAD9/wAAAwAAAAEAAAD9/wEAAwAAAAEAAAD9/wIAAwAAAAEAAAD9/wMAAwAAAAEAAAD9/wQAAwAAAAEAAAD9/wUAAwAAAAEAAAD9/wYAAwAAAAEAAAD9/wcAAwAAAAEAAAD9/wgAAwAAAAEAAAD9/wkAAwAAAAEAAAD9/woAAwAAAAEAAAD9/wsAAwAAAAEAAAALAAoAAwABAAAAAAAMAAoAAwABAAAAAAANAAoAAwABAAAAAAAOAAoAAwABAAAAAAAPAAoAAwACAAAAAAAPAAsAAwACAAEAAAAPAAwAAwACAAIAAAAOAAwAAwABAAIAAAANAAwAAwABAAIAAAAMAAwAAwABAAIAAAALAAwAAwABAAIAAAAKAAwAAwABAAIAAAANAAsAAwABAAEAAAAMAAsAAwABAAEAAAALAAsAAwABAAEAAAD+/wwAAwABAAIAAAD9/wwAAwAAAAIAAAD//wwAAwABAAIAAAAAAAwAAwABAAIAAAABAAwAAwABAAIAAAACAAwAAwABAAIAAAADAAwAAwABAAIAAAAEAAwAAwABAAIAAAAFAAwAAwABAAIAAAAGAAwAAwABAAIAAAAHAAwAAwABAAIAAAAIAAwAAwABAAIAAAAJAAwAAwABAAIAAAAOAAsAAwABAAEAAAA=")
+tile_set = ExtResource("6_yxxbu")
+occlusion_enabled = false
+navigation_enabled = false
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1894551901 node_paths=PackedStringArray("target")]
 limit_left = 0
@@ -368,6 +377,7 @@ min_speed_scale = 0.308
 shrinking_threshold_time = 20
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1362938602]
+visible = false
 
 [node name="TimerHud" parent="CanvasLayer" unique_id=1546810575 instance=ExtResource("4_qpij7")]
 metadata/_edit_lock_ = true
