@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://cvgkus60jjudo" path="res://scenes/objects/moving_platform/platform_path.gd" id="7_issku"]
 [ext_resource type="Texture2D" uid="uid://cwm8dpgf82asu" path="res://resources/images/sprites/rock.png" id="8_4xau6"]
 [ext_resource type="Texture2D" uid="uid://gi5xlh6o62ui" path="res://resources/images/sprites/platform.png" id="9_4xau6"]
+[ext_resource type="Script" uid="uid://dtfqqdy7fd5jm" path="res://Scenes/objects/moving_platform/door_activation.gd" id="11_5owdk"]
 [ext_resource type="TileSet" uid="uid://ln46eqf1lgbw" path="res://resources/images/tilesets/dirt.tres" id="11_wlqsf"]
 [ext_resource type="TileSet" uid="uid://dsk7as61obdu4" path="res://resources/images/tilesets/sign.tres" id="12_slc34"]
 [ext_resource type="PackedScene" uid="uid://wrvyh1hpnb7x" path="res://scenes/ui/pause_menu/pause_menu.tscn" id="15_x3a3q"]
@@ -147,6 +148,12 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5owdk"]
+size = Vector2(139, 118)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytkhg"]
+size = Vector2(142, 128)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hsbt"]
 size = Vector2(105, 128)
 
@@ -220,13 +227,12 @@ metadata/_edit_lock_ = true
 [node name="PathObjects" type="Node2D" parent="Environment/Objects" unique_id=656708495]
 
 [node name="Path2D" type="Path2D" parent="Environment/Objects/PathObjects" unique_id=2129610883]
-position = Vector2(631, 378)
+position = Vector2(631, 358)
 curve = SubResource("Curve2D_6h3mm")
 
 [node name="PlatformPath" type="AnimatableBody2D" parent="Environment/Objects/PathObjects/Path2D" unique_id=2103246792 node_paths=PackedStringArray("_path")]
 script = ExtResource("7_issku")
 _path = NodePath("..")
-time_before_movement_start = 1.0
 speed = 200.0
 looping = false
 max_temporal_offset = 10.0
@@ -246,7 +252,6 @@ curve = SubResource("Curve2D_qpij7")
 [node name="PlatformPath" type="AnimatableBody2D" parent="Environment/Objects/PathObjects/Path2D2" unique_id=1499257510 node_paths=PackedStringArray("_path")]
 script = ExtResource("7_issku")
 _path = NodePath("..")
-time_before_movement_start = 10.0
 speed = 200.0
 looping = false
 max_temporal_offset = 30.0
@@ -299,6 +304,24 @@ shape = SubResource("RectangleShape2D_a46op")
 
 [node name="GrowObj" parent="Environment/Objects/GrowObjects" unique_id=1900398055 instance=ExtResource("2_hopjm")]
 position = Vector2(1071, 541)
+
+[node name="DoorActivation" type="Node2D" parent="Environment/Objects" unique_id=165841671]
+
+[node name="Area2D" type="Area2D" parent="Environment/Objects/DoorActivation" unique_id=554012697 node_paths=PackedStringArray("door")]
+script = ExtResource("11_5owdk")
+door = NodePath("../../PathObjects/Path2D/PlatformPath")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Objects/DoorActivation/Area2D" unique_id=984063965]
+position = Vector2(454, 510)
+shape = SubResource("RectangleShape2D_5owdk")
+
+[node name="Area2D2" type="Area2D" parent="Environment/Objects/DoorActivation" unique_id=1672517709 node_paths=PackedStringArray("door")]
+script = ExtResource("11_5owdk")
+door = NodePath("../../PathObjects/Path2D2/PlatformPath")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Objects/DoorActivation/Area2D2" unique_id=1732050433]
+position = Vector2(1722, 255)
+shape = SubResource("RectangleShape2D_ytkhg")
 
 [node name="Traps" type="Area2D" parent="Environment" unique_id=1105877759]
 collision_layer = 0
