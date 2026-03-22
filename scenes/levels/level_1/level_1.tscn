@@ -131,13 +131,14 @@ size = Vector2(512, 128)
 script = ExtResource("1_7uxs1")
 level_id = 1
 next_level_id = 2
-next_level_path = "uid://cpyn0ve7v3qv6"
+next_level_path = "uid://b2fhxdd3awyb2"
 animation_player = NodePath("AnimationPlayer")
 exit_area = NodePath("Environment/ExitArea")
-traps = NodePath("Environment/TrapLayer/Traps")
+traps = [NodePath("Environment/TrapLayer/Traps")]
 metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=239551110]
+process_mode = 3
 libraries/ = SubResource("AnimationLibrary_spwf2")
 
 [node name="Environment" type="Node2D" parent="." unique_id=2063173202]

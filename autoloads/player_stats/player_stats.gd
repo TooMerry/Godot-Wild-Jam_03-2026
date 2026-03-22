@@ -1,6 +1,6 @@
 extends Node
 #Whether or not the timer is currently running
-var player:CharacterBody2D
+var player:Player
 var paused:bool = false
 var remaining_time:float = 617.0
 
@@ -57,7 +57,8 @@ func _get_object_at_mouse() -> Stealable:
 		return null
 	return result[0].collider
 
-signal timeout();
+signal timeout()
+signal death_anim_finished()
 func add_time(seconds:float) -> void:
 	remaining_time += seconds
 func subtract_time(seconds:float) -> void:
@@ -70,9 +71,23 @@ func set_player(new_player:CharacterBody2D) -> void:
 		if player != null:
 			player.queue_free()
 		player = new_player
+		player.death_anim_finished.connect(death_anim_finished.emit)
 
+func trigger_player_death():
+	player.transition_state(Player.DEAD)
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if !paused:
+		if(remaining_time >= delta):
+			remaining_time -= delta
+		else:
+			remaining_time = 0
+		if(remaining_time <= 0):
+			paused = true
+			trigger_player_death()
+			#timeout.emit()
+			return
+	
 	if !_target_selected:
 		var new_target:Stealable
 		new_target = _get_object_at_mouse()
@@ -84,25 +99,15 @@ func _process(delta: float) -> void:
 		_current_target.set_highlight(true)
 		_target_selected = true
 		if Input.is_action_pressed("steal"):
-			var time_stolen: float = _current_target.steal(delta)
-			PlayerStats.add_time(time_stolen)
+			var time_stolen: float = _current_target.steal(delta*_current_target.time_transfer_multiplier)
+			add_time(time_stolen)
 			if time_stolen > 0.0:
 				ParticleManager.generate(_current_target.global_position, player, steal_sfx)
 		elif Input.is_action_pressed("give"):
-			var time_given: float = _current_target.give(delta)
-			PlayerStats.subtract_time(time_given)
+			var time_given: float = _current_target.give(delta*_current_target.time_transfer_multiplier)
+			subtract_time(time_given)
 			if time_given > 0.0:
 				ParticleManager.generate(player.global_position, _current_target, give_sfx)
 		else:
 			_target_selected = false
-
-func _physics_process(delta: float) -> void:
-	if !paused:
-		if(remaining_time >= delta):
-			remaining_time -= delta
-		else:
-			remaining_time = 0
-		if(remaining_time <= 0):
-			paused = true
-			timeout.emit()
 		

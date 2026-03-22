@@ -15,7 +15,9 @@ extends Stealable
 @export var animation_player: AnimationPlayer
 
 var is_hovered: bool = false
-@export var time_transfer_multiplier = 1.
+@export var _time_transfer_multiplier = 1.:
+	set(value):
+		time_transfer_multiplier = value
 
 func _ready() -> void:
 	animation_player.play(&"grow")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ccgj00d4ytf21"]
 
-[ext_resource type="Script" uid="uid://bumgohx5dy0b3" path="res://scenes/levels/test_level/test_level.gd" id="1_u4cxi"]
+[ext_resource type="Script" uid="uid://fnlsjd58ahyw" path="res://scenes/levels/level.gd" id="1_qv4mi"]
 [ext_resource type="PackedScene" uid="uid://crtsrqp5yp1ik" path="res://scenes/character/character.tscn" id="2_nvi8s"]
 [ext_resource type="Script" uid="uid://l0oay6hngdph" path="res://scenes/levels/follow_camera.gd" id="3_l4mxu"]
 [ext_resource type="PackedScene" uid="uid://cgye513ma42o4" path="res://scenes/objects/moving_platform/platform_path.tscn" id="4_15cv5"]
@@ -35,8 +35,7 @@ radius = 104.702354
 radius = 99.724625
 
 [node name="TestLevel" type="Node2D" unique_id=1029438254 node_paths=PackedStringArray("animation_player", "exit_area")]
-script = ExtResource("1_u4cxi")
-level_id = 1
+script = ExtResource("1_qv4mi")
 animation_player = NodePath("AnimationPlayer")
 exit_area = NodePath("Area2D")
 
@@ -44,6 +43,11 @@ exit_area = NodePath("Area2D")
 
 [node name="Character" parent="." unique_id=47124019 instance=ExtResource("2_nvi8s")]
 position = Vector2(430, 175)
+ground_speed = 350.0
+slowing_threshold_time = 65.0
+max_slow_time = 110.0
+min_speed_scale = 0.309
+shrinking_threshold_time = 20
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=711602039 node_paths=PackedStringArray("target")]
 ignore_rotation = false
@@ -56,6 +60,7 @@ position = Vector2(1129, 286)
 curve = SubResource("Curve2D_vmhy7")
 
 [node name="AnimatableBody2D" parent="PlatformPath" index="0" unique_id=1515891538]
+time_before_movement_start = 2.0
 looping = false
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=823194823]

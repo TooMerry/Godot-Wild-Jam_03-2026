@@ -9,18 +9,21 @@ extends Node
 
 @export var animation_player: AnimationPlayer
 @export var exit_area: Area2D
-@export var traps: Area2D
+@export var traps: Array[Area2D]
 
 
 func _ready() -> void:
 	exit_area.body_entered.connect(_on_exit_area_entered)
 	if traps:
-		traps.body_entered.connect(_on_traps_entered)
+		for trap in traps:
+			trap.body_entered.connect(_on_traps_entered)
 	PlayerStats.set_time(initial_timer)
 	await SceneManager.transition_finished
 	if(animation_player.has_animation(&"intro")):
+		get_tree().paused = true
 		animation_player.play(&"intro")
 		await animation_player.animation_finished
+		get_tree().paused = false
 	PlayerStats.paused = false
 	print(PlayerStats.paused)
 
@@ -37,5 +40,6 @@ func _on_exit_area_entered(_body: Node2D) -> void:
 	go_to_next_level()
 
 
-func _on_traps_entered(_body: Node2D) -> void:
-	SceneManager.change_scene(get_tree().current_scene.scene_file_path)
+func _on_traps_entered(body: Node2D) -> void:
+	if body == PlayerStats.player:
+		PlayerStats.trigger_player_death()

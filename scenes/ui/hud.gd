@@ -7,7 +7,7 @@ extends Control
 func _ready() -> void:
 	pause_button.pressed.connect(_pause_game)
 	_pause_menu.game_unpaused.connect(pause_button.show)
-	PlayerStats.timeout.connect(_on_timeout)
+	PlayerStats.death_anim_finished.connect(_on_death)
 
 ##TODO: Move this to an autoload, pausing game shouldn't
 ## happen from this ui node
@@ -15,7 +15,7 @@ func _pause_game() -> void:
 	pause_button.hide()
 	_pause_menu.open()
 
-func _on_timeout() -> void:
+func _on_death() -> void:
 	pause_button.hide()
 	_game_over_menu.open()
 
