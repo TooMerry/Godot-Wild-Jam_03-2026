@@ -28,9 +28,17 @@ ParticleManager="*uid://dnrjfre830gtn"
 SaveManager="*uid://dqfedfru1csyv"
 PlayerStats="*uid://crpxufqdoi3sx"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [global_group]
 
 stealable="Objects with the steal() function to steal time"
+
+[gui]
+
+theme/custom_font="uid://daqh3040djh07"
 
 [input]
 

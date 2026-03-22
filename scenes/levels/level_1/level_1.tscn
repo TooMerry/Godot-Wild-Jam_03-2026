@@ -133,6 +133,7 @@ script = ExtResource("1_7uxs1")
 level_id = 1
 next_level_id = 2
 next_level_path = "uid://b2fhxdd3awyb2"
+initial_timer = 40.0
 animation_player = NodePath("AnimationPlayer")
 exit_area = NodePath("Environment/ExitArea")
 traps = [NodePath("Environment/TrapLayer/Traps")]
