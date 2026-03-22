@@ -46,7 +46,6 @@ var friction_coeff = ground_friction
 
 var _shape: CapsuleShape2D
 
-
 func _ready() -> void:
 	PlayerStats.set_player(self)
 	_shape = collision_shape.shape
@@ -55,7 +54,6 @@ func _on_state_finish(string:String):
 	if string == "death":
 		death_anim_finished.emit()
 		print(string)
-		
 
 func _set_time_dependent_factors() -> void:
 	var t:float = PlayerStats.remaining_time
@@ -85,11 +83,9 @@ func _set_time_dependent_factors() -> void:
 		sprite.texture = sprite_map[Age.CHILD]
 		_shape.height = 60.0
 		collision_shape.position.y = 34.0
-	
 
 func _physics_process(delta: float) -> void:
 	_set_time_dependent_factors()
-	
 	scale = Vector2.ONE*_scale_factor
 	if(get_gravity() != Vector2.ZERO):
 		gravity = get_gravity()
