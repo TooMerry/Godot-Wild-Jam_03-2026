@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 @export var sprite:Sprite2D
@@ -34,7 +35,7 @@ var _scale_factor:float = 1
 @onready var animation_state_machine:AnimationNodeStateMachinePlayback = tree["parameters/playback"]
 var jump_velocity:Vector2 = Vector2(0,-400)
 var platform_velocity:Vector2
-enum{GROUND,EDGE,JUMP,AIR}
+enum{GROUND,DEAD,JUMP,AIR}
 var _state:int = GROUND
 var speed:float
 var can_move_horizontal:bool = true
@@ -50,6 +51,11 @@ func _ready() -> void:
 	PlayerStats.set_player(self)
 	_shape = collision_shape.shape
 
+func _on_state_finish(string:String):
+	if string == "death":
+		death_anim_finished.emit()
+		print(string)
+		
 
 func _set_time_dependent_factors() -> void:
 	var t:float = PlayerStats.remaining_time
@@ -118,38 +124,40 @@ func _do_state(delta:float) -> void:
 		GROUND:
 			if Input.is_action_just_pressed("jump"):
 				velocity += platform_velocity + jump_velocity
-				_transition_state(JUMP)
+				transition_state(JUMP)
 				return
 			if !is_on_floor():
 				if(_air_time_remaining > 0):
 					_air_time_remaining -= delta
 				else:
-					_transition_state(AIR)
+					transition_state(AIR)
 					return
 			else:
 				_air_time_remaining = air_time
-		EDGE:
+		DEAD:
 			pass
 		JUMP:
 			if is_on_floor():
-				_transition_state(GROUND)
+				transition_state(GROUND)
 				return
 			#Checks whether gravity and velocity are pointing away from each other
 			if gravity.dot(velocity) > 0:
-				_transition_state(AIR)
+				transition_state(AIR)
 				return
 		AIR:
 			if is_on_floor():
-				_transition_state(GROUND)
+				transition_state(GROUND)
 				return
 		_:
 			pass
 
-func _transition_state(to:int) -> void:
+func transition_state(to:int) -> void:
 	_exit_state(_state)
 	_enter_state(to)
-
+	
+signal death_anim_finished()
 func _enter_state(state:int) -> void:
+	_state = state
 	match state:
 		GROUND:
 			falling = false
@@ -158,8 +166,16 @@ func _enter_state(state:int) -> void:
 			can_move_horizontal = true
 			animation_state_machine.travel("land")
 			_air_time_remaining = air_time
-		EDGE:
-			pass
+		DEAD:
+			can_jump = false
+			can_move_horizontal = false
+			speed = 0
+			animation_state_machine.travel("death")
+			var anim_state:String = await tree.animation_finished
+			print(anim_state)
+			if anim_state == "death":
+				death_anim_finished.emit()
+			
 		JUMP:
 			falling = true
 			speed = air_speed
@@ -174,14 +190,13 @@ func _enter_state(state:int) -> void:
 			animation_state_machine.travel("air")
 		_:
 			pass
-	_state = state
 
 func _exit_state(state:int) -> void:
 	match state:
 		GROUND:
 			_air_time_remaining = air_time
 			pass
-		EDGE:
+		DEAD:
 			pass
 		JUMP:
 			pass

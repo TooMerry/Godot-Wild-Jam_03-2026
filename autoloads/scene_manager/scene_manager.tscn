@@ -5,6 +5,7 @@
 [ext_resource type="Material" uid="uid://dm30dh25apyat" path="res://resources/shaders/transition/slide_up/slide_up.tres" id="3_vdgyo"]
 
 [node name="SceneManager" type="Node" unique_id=274669452 node_paths=PackedStringArray("transition_layer", "transition_rect")]
+process_mode = 3
 script = ExtResource("1_8vy5l")
 transition_map = Dictionary[StringName, ShaderMaterial]({
 &"circular_sweep": ExtResource("2_xh5my"),

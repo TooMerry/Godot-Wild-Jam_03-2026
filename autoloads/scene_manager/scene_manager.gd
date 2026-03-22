@@ -81,6 +81,7 @@ func _change_scene_internal(path: String, transition_name: StringName) -> void:
 		return
 	
 	is_changing = true
+	_tree.paused = true
 	transition_rect.set_material(transition_map[transition_name])
 	await _transition_out()
 	
@@ -99,6 +100,7 @@ func _change_scene_internal(path: String, transition_name: StringName) -> void:
 	
 	await _transition_in()
 	is_changing = false
+	_tree.paused = false
 	
 	transition_finished.emit()
 
@@ -128,6 +130,7 @@ func _transition_out() -> Signal:
 	transition_rect.show()
 	
 	var tween: Tween = transition_rect.create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(
 			transition_rect,
 			"material:shader_parameter/progress",
@@ -157,6 +160,7 @@ func _transition_in() -> Signal:
 	transition_rect.show()
 	
 	var tween: Tween = transition_rect.create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(
 			transition_rect,
 			"material:shader_parameter/progress",

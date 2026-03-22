@@ -1,4 +1,3 @@
-@tool
 class_name PlatformPath extends Stealable
 
 var path_follow:PathFollow2D
