@@ -10,6 +10,27 @@
 [ext_resource type="Texture2D" uid="uid://yv5id2ccrcre" path="res://resources/images/backgrounds/plains.png" id="6_jo8o5"]
 [ext_resource type="Texture2D" uid="uid://dlfquotkpamwy" path="res://resources/images/backgrounds/tree.png" id="7_tk7lu"]
 [ext_resource type="Texture2D" uid="uid://bt8r6slba83ba" path="res://resources/images/backgrounds/main_menu_adult.png" id="8_chxti"]
+[ext_resource type="Texture2D" uid="uid://dlta1l3lf50sy" path="res://resources/images/sprites/leaves.png" id="9_2pxis"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jo8o5"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_chxti"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(576, 32, 1)
+direction = Vector3(-1, 1, 0)
+spread = 16.0
+initial_velocity_min = 192.0
+initial_velocity_max = 256.0
+angular_velocity_min = -90.000015
+angular_velocity_max = 89.999985
+scale_min = 0.5
+scale_max = 1.5
+anim_offset_max = 1.0
 
 [node name="MainMenu" type="Control" unique_id=193770007 node_paths=PackedStringArray("play_button", "level_menu", "options_button", "options_menu")]
 layout_mode = 3
@@ -78,6 +99,14 @@ centered = false
 [node name="Character" type="Sprite2D" parent="Background" unique_id=2132612341]
 texture = ExtResource("8_chxti")
 centered = false
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=538060377]
+material = SubResource("CanvasItemMaterial_jo8o5")
+position = Vector2(832, 32)
+amount = 16
+texture = ExtResource("9_2pxis")
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_chxti")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1152475819]
 layout_mode = 1
