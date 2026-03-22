@@ -15,12 +15,14 @@ func _ready() -> void:
 			var sfx_player: AudioStreamPlayer = child
 			sfx_player.finished.connect(_on_sfx_player_finished.bind(sfx_player))
 			_available_sfx_players.push_back(child)
+	var bgm_stream:AudioStream = load("uid://14blugiu46by")
+	bgm_player.finished.connect(play_bgm.bind(bgm_stream))
+	play_bgm(bgm_stream)
 
 
 func play_bgm(stream: AudioStream) -> void:
 	if bgm_player.playing:
 		bgm_player.stop()
-	
 	bgm_player.set_stream(stream)
 	bgm_player.play()
 

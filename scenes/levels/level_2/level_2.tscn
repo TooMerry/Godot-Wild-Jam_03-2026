@@ -344,7 +344,6 @@ min_speed_scale = 0.308
 shrinking_threshold_time = 20
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1362938602]
-visible = false
 
 [node name="TimerHud" parent="CanvasLayer" unique_id=1546810575 instance=ExtResource("4_68es0")]
 metadata/_edit_lock_ = true
