@@ -6,6 +6,7 @@ var path_follow:PathFollow2D
 
 #Remote transform to set the position of the body
 var _remote:RemoteTransform2D
+var _paused:bool = false
 
 #Variables describing the movement of the platform
 @export_category("Movement")
@@ -131,7 +132,8 @@ func _do_time_step(delta:float) -> void:
 			progress = next_prog
 
 func _physics_process(delta: float) -> void:
-	_do_time_step(delta)
+	if !_paused:
+		_do_time_step(delta)
 
 func toggle_looping() -> void:
 	looping = !looping
@@ -168,6 +170,11 @@ func set_platform_frame(val:int) -> void:
 	if val > max_frame:
 		val = max_frame
 	_sprite.frame = val
+
+func pause() -> void:
+	_paused = true
+func unpause() -> void:
+	_paused = false
 
 var transferring:bool = false
 func set_highlight(enabled:bool) -> void:
