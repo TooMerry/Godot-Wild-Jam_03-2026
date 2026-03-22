@@ -36,6 +36,10 @@ window/stretch/mode="canvas_items"
 
 stealable="Objects with the steal() function to steal time"
 
+[gui]
+
+theme/custom_font="uid://daqh3040djh07"
+
 [input]
 
 jump={
