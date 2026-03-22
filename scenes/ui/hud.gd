@@ -3,6 +3,7 @@ extends Control
 @export var pause_button:Button
 @export var _game_over_menu:GameOverMenu
 @export var _pause_menu:PauseMenu
+@export var _win_menu:WinPopup
 
 func _ready() -> void:
 	pause_button.pressed.connect(_pause_game)
@@ -14,6 +15,10 @@ func _ready() -> void:
 func _pause_game() -> void:
 	pause_button.hide()
 	_pause_menu.open()
+
+func win() -> void:
+	pause_button.hide()
+	_win_menu.open()
 
 func _on_death() -> void:
 	pause_button.hide()

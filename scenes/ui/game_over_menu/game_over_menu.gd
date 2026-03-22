@@ -36,6 +36,3 @@ func _on_retry() -> void:
 func _on_main_menu() -> void:
 	get_tree().paused = false
 	SceneManager.change_scene(_main_menu_uid)
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

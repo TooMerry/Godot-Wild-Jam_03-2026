@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dt6w8e0sili1r" path="res://scenes/ui/hud.gd" id="1_bo48s"]
 [ext_resource type="PackedScene" uid="uid://cwvumscyl7lmo" path="res://scenes/ui/game_over_menu/game_over_menu.tscn" id="2_8qguk"]
+[ext_resource type="PackedScene" uid="uid://ir78gtk6he2i" path="res://scenes/ui/win_popup/win_popup.tscn" id="3_8qguk"]
 [ext_resource type="PackedScene" uid="uid://wrvyh1hpnb7x" path="res://scenes/ui/pause_menu/pause_menu.tscn" id="3_136eg"]
 
-[node name="Hud" type="Control" unique_id=1546810575 node_paths=PackedStringArray("label", "pause_button", "_game_over_menu", "_pause_menu")]
+[node name="Hud" type="Control" unique_id=1546810575 node_paths=PackedStringArray("label", "pause_button", "_game_over_menu", "_pause_menu", "_win_menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +18,7 @@ label = NodePath("MarginContainer/Label")
 pause_button = NodePath("MarginContainer/PauseButton")
 _game_over_menu = NodePath("GameOverMenu")
 _pause_menu = NodePath("PauseMenu")
+_win_menu = NodePath("WinMenu")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1150160667]
 layout_mode = 1
@@ -48,6 +50,9 @@ theme_override_font_sizes/font_size = 32
 text = "PAUSE"
 
 [node name="GameOverMenu" parent="." unique_id=262418473 instance=ExtResource("2_8qguk")]
+layout_mode = 1
+
+[node name="WinMenu" parent="." unique_id=1352392900 instance=ExtResource("3_8qguk")]
 layout_mode = 1
 
 [node name="PauseMenu" parent="." unique_id=490790483 instance=ExtResource("3_136eg")]

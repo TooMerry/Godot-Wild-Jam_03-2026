@@ -17,6 +17,7 @@
 [ext_resource type="Shader" uid="uid://cff2v346qh3vm" path="res://resources/shaders/highlight/highlight.gdshader" id="9_g0m7m"]
 [ext_resource type="Texture2D" uid="uid://b6wjt4egqc35f" path="res://resources/images/tilesets/dirt.png" id="10_drns5"]
 [ext_resource type="TileSet" uid="uid://dsk7as61obdu4" path="res://resources/images/tilesets/sign.tres" id="12_nd7a6"]
+[ext_resource type="Script" uid="uid://cmna3hxukpwo0" path="res://scenes/levels/level_3/win_area.gd" id="13_lhkh2"]
 
 [sub_resource type="Animation" id="Animation_papml"]
 length = 0.001
@@ -418,6 +419,7 @@ position = Vector2(2479, -289)
 collision_layer = 0
 input_pickable = false
 monitorable = false
+script = ExtResource("13_lhkh2")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExitArea" unique_id=1747327435]
