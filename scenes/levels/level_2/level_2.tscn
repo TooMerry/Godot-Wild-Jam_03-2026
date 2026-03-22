@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://yv5id2ccrcre" path="res://resources/images/backgrounds/plains.png" id="6_odxlg"]
 [ext_resource type="Script" uid="uid://cvgkus60jjudo" path="res://scenes/objects/moving_platform/platform_path.gd" id="7_issku"]
 [ext_resource type="Texture2D" uid="uid://cwm8dpgf82asu" path="res://resources/images/sprites/rock.png" id="8_4xau6"]
+[ext_resource type="Shader" uid="uid://cff2v346qh3vm" path="res://resources/shaders/highlight/highlight.gdshader" id="8_ytkhg"]
 [ext_resource type="Texture2D" uid="uid://gi5xlh6o62ui" path="res://resources/images/sprites/platform.png" id="9_4xau6"]
 [ext_resource type="Script" uid="uid://dtfqqdy7fd5jm" path="res://Scenes/objects/moving_platform/door_activation.gd" id="11_5owdk"]
 [ext_resource type="TileSet" uid="uid://ln46eqf1lgbw" path="res://resources/images/tilesets/dirt.tres" id="11_wlqsf"]
@@ -133,6 +134,12 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_odxlg"]
+shader = ExtResource("8_ytkhg")
+shader_parameter/outline_thickness = 5.0
+shader_parameter/anti_alias_amount = 1.0
+shader_parameter/outline_colour = Color(1, 1, 1, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a46op"]
 size = Vector2(128, 128)
 
@@ -142,11 +149,29 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_issku"]
+shader = ExtResource("8_ytkhg")
+shader_parameter/outline_thickness = 5.0
+shader_parameter/anti_alias_amount = 1.0
+shader_parameter/outline_colour = Color(1, 1, 1, 1)
+
 [sub_resource type="Curve2D" id="Curve2D_acoyq"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 400, 0)
 }
 point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sfxq0"]
+shader = ExtResource("8_ytkhg")
+shader_parameter/outline_thickness = 5.0
+shader_parameter/anti_alias_amount = 1.0
+shader_parameter/outline_colour = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ekcpv"]
+shader = ExtResource("8_ytkhg")
+shader_parameter/outline_thickness = 5.0
+shader_parameter/anti_alias_amount = 1.0
+shader_parameter/outline_colour = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5owdk"]
 size = Vector2(139, 118)
@@ -230,8 +255,9 @@ metadata/_edit_lock_ = true
 position = Vector2(631, 358)
 curve = SubResource("Curve2D_6h3mm")
 
-[node name="PlatformPath" type="AnimatableBody2D" parent="Environment/Objects/PathObjects/Path2D" unique_id=2103246792 node_paths=PackedStringArray("_path")]
+[node name="PlatformPath" type="AnimatableBody2D" parent="Environment/Objects/PathObjects/Path2D" unique_id=2103246792 node_paths=PackedStringArray("_sprite", "_path")]
 script = ExtResource("7_issku")
+_sprite = NodePath("Sprite2D")
 _path = NodePath("..")
 speed = 200.0
 looping = false
@@ -240,6 +266,7 @@ min_temporal_offset = -10.0
 metadata/_custom_type_script = "uid://cvgkus60jjudo"
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Objects/PathObjects/Path2D/PlatformPath" unique_id=1091036260]
+material = SubResource("ShaderMaterial_odxlg")
 texture = ExtResource("8_4xau6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Objects/PathObjects/Path2D/PlatformPath" unique_id=508097582]
@@ -249,8 +276,9 @@ shape = SubResource("RectangleShape2D_a46op")
 position = Vector2(1970, 133)
 curve = SubResource("Curve2D_qpij7")
 
-[node name="PlatformPath" type="AnimatableBody2D" parent="Environment/Objects/PathObjects/Path2D2" unique_id=1499257510 node_paths=PackedStringArray("_path")]
+[node name="PlatformPath" type="AnimatableBody2D" parent="Environment/Objects/PathObjects/Path2D2" unique_id=1499257510 node_paths=PackedStringArray("_sprite", "_path")]
 script = ExtResource("7_issku")
+_sprite = NodePath("Sprite2D")
 _path = NodePath("..")
 speed = 200.0
 looping = false
@@ -259,6 +287,7 @@ min_temporal_offset = -30.0
 metadata/_custom_type_script = "uid://cvgkus60jjudo"
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Objects/PathObjects/Path2D2/PlatformPath" unique_id=1541329114]
+material = SubResource("ShaderMaterial_issku")
 texture = ExtResource("8_4xau6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Objects/PathObjects/Path2D2/PlatformPath" unique_id=353078910]
@@ -268,8 +297,9 @@ shape = SubResource("RectangleShape2D_a46op")
 position = Vector2(2228, 390)
 curve = SubResource("Curve2D_acoyq")
 
-[node name="PlatformPath" type="AnimatableBody2D" parent="Environment/Objects/PathObjects/Path2D3" unique_id=1653793171 node_paths=PackedStringArray("_path")]
+[node name="PlatformPath" type="AnimatableBody2D" parent="Environment/Objects/PathObjects/Path2D3" unique_id=1653793171 node_paths=PackedStringArray("_sprite", "_path")]
 script = ExtResource("7_issku")
+_sprite = NodePath("Sprite2D")
 _path = NodePath("..")
 boomerang = true
 max_temporal_offset = 10.0
@@ -277,6 +307,7 @@ min_temporal_offset = -10.0
 metadata/_custom_type_script = "uid://cvgkus60jjudo"
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Objects/PathObjects/Path2D3/PlatformPath" unique_id=1338744820]
+material = SubResource("ShaderMaterial_sfxq0")
 texture = ExtResource("9_4xau6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Objects/PathObjects/Path2D3/PlatformPath" unique_id=1063904093]
@@ -286,8 +317,9 @@ shape = SubResource("RectangleShape2D_a46op")
 position = Vector2(2756, 390)
 curve = SubResource("Curve2D_acoyq")
 
-[node name="PlatformPath" type="AnimatableBody2D" parent="Environment/Objects/PathObjects/Path2D4" unique_id=1886782106 node_paths=PackedStringArray("_path")]
+[node name="PlatformPath" type="AnimatableBody2D" parent="Environment/Objects/PathObjects/Path2D4" unique_id=1886782106 node_paths=PackedStringArray("_sprite", "_path")]
 script = ExtResource("7_issku")
+_sprite = NodePath("Sprite2D")
 _path = NodePath("..")
 boomerang = true
 max_temporal_offset = 10.0
@@ -295,6 +327,7 @@ min_temporal_offset = -10.0
 metadata/_custom_type_script = "uid://cvgkus60jjudo"
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Objects/PathObjects/Path2D4/PlatformPath" unique_id=612979121]
+material = SubResource("ShaderMaterial_ekcpv")
 texture = ExtResource("9_4xau6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Objects/PathObjects/Path2D4/PlatformPath" unique_id=2118749066]
