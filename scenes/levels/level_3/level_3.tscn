@@ -220,7 +220,7 @@ texture = ExtResource("2_480yb")
 centered = false
 
 [node name="CloudsBack" type="Parallax2D" parent="Environment/Background" unique_id=1764437359]
-scroll_scale = Vector2(0.2, 0.2)
+scroll_scale = Vector2(0.2, 0.02)
 repeat_size = Vector2(1280, 720)
 autoscroll = Vector2(-4, 0)
 
@@ -237,7 +237,7 @@ texture = ExtResource("4_v53q1")
 centered = false
 
 [node name="CloudsFront" type="Parallax2D" parent="Environment/Background" unique_id=2078738485]
-scroll_scale = Vector2(0.6, 0.6)
+scroll_scale = Vector2(0.6, 0)
 repeat_size = Vector2(1280, 720)
 autoscroll = Vector2(-16, 0)
 
