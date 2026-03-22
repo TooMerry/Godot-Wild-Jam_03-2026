@@ -44,8 +44,8 @@ autowrap_mode = 3
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 27
-text = "Pause"
+theme_override_font_sizes/font_size = 32
+text = "PAUSE"
 
 [node name="GameOverMenu" parent="." unique_id=262418473 instance=ExtResource("2_8qguk")]
 layout_mode = 1

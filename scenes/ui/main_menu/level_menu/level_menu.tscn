@@ -34,9 +34,12 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2147211779]
 layout_mode = 2
+tooltip_text = "LEVEL_SELECTION"
+mouse_filter = 1
 theme_override_font_sizes/font_size = 64
 text = "LEVEL_SELECTION"
 horizontal_alignment = 1
+text_overrun_behavior = 5
 
 [node name="HFlowContainer" type="HFlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=898210860]
 layout_mode = 2

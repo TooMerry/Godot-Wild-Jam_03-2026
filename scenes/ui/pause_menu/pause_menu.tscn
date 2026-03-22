@@ -50,8 +50,8 @@ alignment = 1
 
 [node name="GamePaused" type="Label" parent="LeftMenu/PanelContainer/VBoxContainer" unique_id=1690535520]
 layout_mode = 2
-theme_override_font_sizes/font_size = 62
-text = "Game Paused"
+theme_override_font_sizes/font_size = 64
+text = "GAME_PAUSED"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -60,25 +60,26 @@ layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="ResumeButton" type="Button" parent="LeftMenu/PanelContainer/VBoxContainer/VBoxContainer" unique_id=371846867]
-custom_minimum_size = Vector2(320, 0)
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 29
-text = "Resume"
+theme_override_font_sizes/font_size = 32
+text = "RESUME"
 
 [node name="OptionsButton" type="Button" parent="LeftMenu/PanelContainer/VBoxContainer/VBoxContainer" unique_id=1607078746]
-custom_minimum_size = Vector2(320, 0)
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 29
-text = "Options"
+theme_override_font_sizes/font_size = 32
+text = "OPTIONS"
 
 [node name="MainMenuButton" type="Button" parent="LeftMenu/PanelContainer/VBoxContainer/VBoxContainer" unique_id=2000723095]
-custom_minimum_size = Vector2(320, 0)
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 29
-text = "Return to Main Menu"
+tooltip_text = "RETURN_MAIN_MENU"
+theme_override_font_sizes/font_size = 32
+text = "MAIN_MENU"
 
 [node name="OptionsMenu" parent="." unique_id=403750368 instance=ExtResource("2_xgg5q")]
 layout_mode = 0

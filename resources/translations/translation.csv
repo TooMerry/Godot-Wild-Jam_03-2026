@@ -1,0 +1,30 @@
+keys,en,fr
+GAME_TITLE,Stealing Time,Stealing Time
+PLAY,Play,Jouer
+OPTIONS,Options,Paramètres
+LEVEL_SELECTION,Level Selection,Sélection du niveau
+GAME_PAUSED,Game Paused,Jeu en pause
+RESUME,Resume,Reprendre
+MAIN_MENU,Main Menu,Menu principal
+RETURN_MAIN_MENU,Return to Main Menu,Retourner au menu principal
+PAUSE,Pause,Pause
+GAME_OVER,Game Over,Game Over
+EPITAPH,"""A life well lived""","""Une vie pleinement vécue"""
+RETRY,Retry,Réessayer
+LANGUAGE,Language,Langue
+EN,English,English
+FR,Français,Français
+AUDIO,Audio,Audio
+MASTER_VOLUME,Master volume,Volume principal
+BGM_VOLUME,BGM volume,Volume de la musique
+SFX_VOLUME,SFX volume,Volume des effets sonores
+CONTROLS,Controls,Contrôles
+LEFT,Left,Gauche
+RIGHT,Right,Droite
+UP,Up,Haut
+DOWN,Down,Bas
+JUMP,Jump,Sauter
+STEAL,Steal,Voler
+GIVE,Give,Donner
+PRESS_ANY_KEY,Press any key...,Appuyer sur une touche...
+CANCEL,Cancel,Annuler

@@ -1,6 +1,9 @@
 class_name OptionsMenu
 extends RightSideMenu
 
+@export var locales: Array[String] = []
+@export var locale_option_button: OptionButton
+
 @export var actions: Array[StringName] = []
 @export var actions_container: Control
 @export var action_binding_row_scene: PackedScene
@@ -14,6 +17,15 @@ var _current_rebinding_row: ActionBindingRow
 
 func _ready() -> void:
 	super._ready()
+	
+	var current_locale: String = TranslationServer.get_locale()
+	for i: int in locales.size():
+		locale_option_button.add_item(locales[i].to_upper())
+		if current_locale == locales[i]:
+			locale_option_button.select(i)
+	
+	locale_option_button.item_selected.connect(_on_locale_selected)
+	
 	_rebind_canvas.process_mode = Node.PROCESS_MODE_ALWAYS
 	rebind_overlay.rebind_cancelled.connect(_on_rebind_cancelled)
 	rebind_overlay.rebind_finished.connect(_on_rebind_finished)
@@ -28,6 +40,10 @@ func _ready() -> void:
 func reset() -> void:
 	super.reset()
 	OptionsManager.save_options()
+
+
+func _on_locale_selected(index: int) -> void:
+	TranslationServer.set_locale(locales[index])
 
 
 func _on_rebind_requested(row: ActionBindingRow) -> void:

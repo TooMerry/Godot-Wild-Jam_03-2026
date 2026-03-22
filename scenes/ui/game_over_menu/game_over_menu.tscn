@@ -59,8 +59,8 @@ alignment = 1
 
 [node name="GameOverLabel" type="Label" parent="PopupMargin/PanelContainer/MarginContainer/VBoxContainer" unique_id=795198593]
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "Game Over"
+theme_override_font_sizes/font_size = 64
+text = "GAME_OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -68,21 +68,26 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 15
-text = "\"A life well lived\""
+theme_override_font_sizes/font_size = 32
+text = "EPITAPH"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PopupMargin/PanelContainer/MarginContainer/VBoxContainer" unique_id=1296343311]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 64
 alignment = 1
 
 [node name="Retry" type="Button" parent="PopupMargin/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=617577661]
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
-text = "Retry Level"
+theme_override_font_sizes/font_size = 32
+text = "RETRY"
 
 [node name="MainMenu" type="Button" parent="PopupMargin/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=520733202]
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
-text = "Return to Menu"
+tooltip_text = "RETURN_MAIN_MENU"
+theme_override_font_sizes/font_size = 32
+text = "MAIN_MENU"

@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://vwft63q1jrdl" path="res://scenes/ui/main_menu/options_menu/volume_slider.gd" id="2_is7k0"]
 [ext_resource type="PackedScene" uid="uid://caw84e5akm8b0" path="res://scenes/ui/main_menu/options_menu/action_binding_row.tscn" id="2_yqoo4"]
 
-[node name="OptionsMenu" type="MarginContainer" unique_id=1074797397 node_paths=PackedStringArray("actions_container", "rebind_overlay", "first_focus_target")]
+[node name="OptionsMenu" type="MarginContainer" unique_id=1074797397 node_paths=PackedStringArray("locale_option_button", "actions_container", "rebind_overlay", "first_focus_target")]
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -17,6 +17,8 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 script = ExtResource("1_yqoo4")
+locales = Array[String](["en", "fr"])
+locale_option_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer/HBoxContainer/OptionButton")
 actions_container = NodePath("PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer")
 action_binding_row_scene = ExtResource("2_yqoo4")
 rebind_overlay = NodePath("RebindOverlay")
@@ -64,6 +66,23 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer" unique_id=1262905064]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer/HBoxContainer" unique_id=1537988786]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "LANGUAGE"
+text_overrun_behavior = 5
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer/HBoxContainer" unique_id=1608024342]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 32
+
 [node name="AudioLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer" unique_id=690641449]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
@@ -79,8 +98,11 @@ layout_mode = 2
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer/MasterVolumeRow" unique_id=1294860432]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "MASTER_VOLUME"
+mouse_filter = 1
 theme_override_font_sizes/font_size = 32
 text = "MASTER_VOLUME"
+text_overrun_behavior = 5
 
 [node name="VolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer/MasterVolumeRow" unique_id=725457216]
 custom_minimum_size = Vector2(256, 0)
@@ -97,8 +119,11 @@ layout_mode = 2
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer/BgmVolumeRow" unique_id=2123955736]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "BGM_VOLUME"
+mouse_filter = 1
 theme_override_font_sizes/font_size = 32
 text = "BGM_VOLUME"
+text_overrun_behavior = 5
 
 [node name="VolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer/BgmVolumeRow" unique_id=1782441475]
 custom_minimum_size = Vector2(256, 0)
@@ -116,8 +141,11 @@ layout_mode = 2
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer/SfxVolumeRow" unique_id=1866932388]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "SFX_VOLUME"
+mouse_filter = 1
 theme_override_font_sizes/font_size = 32
 text = "SFX_VOLUME"
+text_overrun_behavior = 5
 
 [node name="VolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/RowContainer/SfxVolumeRow" unique_id=1038759754]
 custom_minimum_size = Vector2(256, 0)

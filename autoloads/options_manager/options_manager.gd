@@ -18,6 +18,9 @@ extends Node
 
 const OPTIONS_FILE: String = "user://options.cfg"
 
+const SECTION_GAMEPLAY: String = "gameplay"
+const SECTION_KEY_LOCALE: String = "locale"
+
 const SECTION_AUDIO: String = "audio"
 const SECTION_KEY_MASTER_VOLUME: String = "master_volume"
 const SECTION_KEY_BGM_VOLUME: String = "bgm_volume"
@@ -59,8 +62,20 @@ func _create_options() -> void:
 
 func load_options() -> void:
 	_options.load(OPTIONS_FILE)
+	_load_gameplay()
 	_load_audio()
 	_load_controls()
+
+
+func _load_gameplay() -> void:
+	if not _options.has_section(SECTION_GAMEPLAY):
+		return
+	
+	var locale: String = _options.get_value(
+			SECTION_GAMEPLAY,
+			SECTION_KEY_LOCALE,
+			"en")
+	TranslationServer.set_locale(locale)
 
 
 func _load_audio() -> void:
@@ -101,9 +116,15 @@ func _load_controls() -> void:
 
 
 func save_options() -> void:
+	_save_gameplay()
 	_save_audio()
 	_save_controls()
 	_options.save(OPTIONS_FILE)
+
+
+func _save_gameplay() -> void:
+	var locale: String = TranslationServer.get_locale()
+	_options.set_value(SECTION_GAMEPLAY, SECTION_KEY_LOCALE, locale)
 
 
 func _save_audio() -> void:

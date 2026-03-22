@@ -74,6 +74,10 @@ give={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://resources/translations/translation.en.translation", "res://resources/translations/translation.fr.translation")
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
