@@ -46,12 +46,6 @@ var friction_coeff = ground_friction
 
 var _shape: CapsuleShape2D
 
-@onready var _space_state:PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
-
-var _current_target:Stealable
-var _target_selected:bool = false
-
-
 func _ready() -> void:
 	PlayerStats.set_player(self)
 	_shape = collision_shape.shape
@@ -60,31 +54,6 @@ func _on_state_finish(string:String):
 	if string == "death":
 		death_anim_finished.emit()
 		print(string)
-
-
-func _set_target(delta:float) -> void:
-	if !_target_selected:
-		var new_target:Stealable
-		new_target = _get_object_at_mouse()
-		if new_target != _current_target:
-			if _current_target:
-				_current_target.set_highlight(false)
-			_current_target = new_target
-	if _current_target:
-		_current_target.set_highlight(true)
-		_target_selected = true
-		if Input.is_action_pressed("steal"):
-			var time_stolen: float = _current_target.steal(delta*_current_target.time_transfer_multiplier)
-			PlayerStats.add_time(time_stolen)
-			if time_stolen > 0.0:
-				ParticleManager.generate(_current_target.global_position, self, PlayerStats.steal_sfx)
-		elif Input.is_action_pressed("give"):
-			var time_given: float = _current_target.give(delta*_current_target.time_transfer_multiplier)
-			PlayerStats.subtract_time(time_given)
-			if time_given > 0.0:
-				ParticleManager.generate(global_position, _current_target, PlayerStats.give_sfx)
-		else:
-			_target_selected = false
 
 func _set_time_dependent_factors() -> void:
 	var t:float = PlayerStats.remaining_time
@@ -114,24 +83,9 @@ func _set_time_dependent_factors() -> void:
 		sprite.texture = sprite_map[Age.CHILD]
 		_shape.height = 60.0
 		collision_shape.position.y = 34.0
-	
-
-func _get_object_at_mouse() -> Stealable:
-	var query = PhysicsPointQueryParameters2D.new()
-	query.position = get_global_mouse_position()
-	query.collide_with_bodies = true
-	query.collide_with_areas = false
-	
-	var result = _space_state.intersect_point(query, 1)
-	if result.is_empty() or result[0].collider is not Stealable:
-		return null
-	return result[0].collider
-
-
 
 func _physics_process(delta: float) -> void:
 	_set_time_dependent_factors()
-	#_set_target(delta)
 	scale = Vector2.ONE*_scale_factor
 	if(get_gravity() != Vector2.ZERO):
 		gravity = get_gravity()

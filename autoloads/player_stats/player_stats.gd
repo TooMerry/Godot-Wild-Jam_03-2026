@@ -38,14 +38,6 @@ func _on_scene_change() -> void:
 func _get_mouse_position() -> Vector2:
 	if player:
 		return player.get_global_mouse_position()
-	#
-	#if _scene:
-		#var viewport:Viewport = _scene.get_viewport()
-		#var screen_transform:Transform2D = viewport.get_screen_transform()
-		#var canvas_transform:Transform2D = viewport.canvas_transform
-		#var screenPos:Vector2 = viewport.get_mouse_position()
-		##https://forum.godotengine.org/t/how-to-transform-screen-position-to-global-through-a-camera2d/38241/2
-		#return (screen_transform*canvas_transform).affine_inverse()*screenPos
 	return Vector2.ZERO
 
 func _get_object_at_mouse() -> Stealable:
